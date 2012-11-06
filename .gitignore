@@ -1,5 +1,10 @@
 *.class
-/target/*
+log/
+target/
+.project
+.settings/
+.idea/
+library/
 # Package Files #
 *.jar
 *.war

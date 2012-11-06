@@ -1,0 +1,29 @@
+EIS TODOS
+=======
+
+Topics definieren
+ ☐ Abhänig von Nachricht
+ ☐ Nachrichten Typ immer bekannt
+ ☐ Die 3 Benutzergruppen sind Topics
+ ☐ Zuweisung auf ein oder mehrere Topics in Message Definiert
+   ☐ technician
+   ☐ 
+
+
+PubSub aufsetzen
+ ✔ Topics definieren (applicationContext.xml) @done (12-11-06 14:16)
+ ✔ ActiveMQ Instanz starten (tcp:localhost:64646) @done (12-11-06 14:35)
+ ✔ Logging initialisieren und auf INFO Runlevel definieren @done (12-11-06 14:39)
+ ✔ DatabaseListener erstellen (@Servive (AutoWired) durch component scan) - MessageListener (I) @done (12-11-06 14:59)
+ ✔ Beispiel Services ohne Funktion (TwitterService als Thread Jede Sekunde sendend) @done (12-11-06 15:17)
+ ✔ Twtter funktioniert @done (12-11-06 16:06)
+
+ClientStub
+ ✔ Client als Stand Alone Topic Listener (director) @done (12-11-06 16:09)
+ ✔ Da er alle Tweets und WebService Messages bekommt -> einmal testen @done (12-11-06 16:09)
+ ✔ JavaFX ! pivot ist zu komplex - javaFX CSS anpassung möglich Designfreiheiten (Timeline mit Buttons) @done (12-11-06 20:51)
+ ☐ Interaktionstest ! - Position der Timeline bewegen lassen? - Button klick -> line.y +30
+ ☐ Proof - - Synchronisation - Latenz Netzweit
+
+Persistenz
+ ☐ SQLite Instanz in applicationContext definieren um Messages zu persistierung
