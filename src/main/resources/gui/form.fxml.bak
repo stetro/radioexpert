@@ -22,6 +22,7 @@
             </AnchorPane>
           </content>
         </ScrollPane>
+        <ToggleButton fx:id="foo" mnemonicParsing="false" style="&#10;color:green;&#10;&#10;" text="ToggleButton" />
       </children>
     </HBox>
     <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
