@@ -27,7 +27,7 @@ public class ServerInstance {
             ApplicationContext context = new ClassPathXmlApplicationContext("applicationServerContext.xml");
             // Twitter Service starten
             TwitterService twitterService = (TwitterService) context.getBean("twitterService");
-            twitterService.start();
+            //twitterService.start();
             // TODO: Weitere Services starten !
             logger.info("Server Start erfolgreich ...");
         } catch (Exception e) {

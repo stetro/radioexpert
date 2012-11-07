@@ -1,6 +1,7 @@
 *.class
 log/
 target/
+var/
 .project
 .settings/
 .idea/
