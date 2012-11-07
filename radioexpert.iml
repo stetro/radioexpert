@@ -11,6 +11,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.h2database:h2:1.3.168" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.5.8" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:jcl-over-slf4j:1.5.8" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:0.9.17" level="project" />
@@ -21,6 +22,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:3.0.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:3.0.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:3.0.0.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:3.0.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:3.0.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:3.0.0.RELEASE" level="project" />
@@ -34,7 +36,6 @@
     <orderEntry type="library" name="Maven: org.apache.geronimo.specs:geronimo-j2ee-management_1.0_spec:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.xbean:xbean-spring:3.5" level="project" />
     <orderEntry type="library" name="Maven: org.twitter4j:twitter4j-core:2.1.4" level="project" />
-    <orderEntry type="library" name="Maven: com.oracle:javafx:${javafx.version}" level="project" />
   </component>
 </module>
 
