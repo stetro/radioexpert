@@ -1,5 +1,6 @@
 package de.fhkoeln.eis.radioexpert.server.services;
 
+import de.fhkoeln.eis.radioexpert.messaging.messages.TwitterMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,9 @@ public class TwitterService {
      */
     private int pollInterval = 20 * 1000;
 
+    /**
+     * Startet den Twitterserver
+     */
     public void start() {
         logger.info("Twitter Service startet ...");
 
@@ -53,7 +57,6 @@ public class TwitterService {
             public void run() {
                 jmsTemplate.setPubSubDomain(true);
                 while (true) {
-                    System.out.println("Twitter wurde abgefragt ...");
                     try {
                         pollNewTweets(twitter);
                         Thread.sleep(pollInterval);
@@ -69,10 +72,21 @@ public class TwitterService {
         }).start();
     }
 
+    /**
+     * Fragt die neusten Tweets ab
+     * TODO: Speicher letzte TweetID
+     *
+     * @param twitter
+     * @throws TwitterException
+     */
     private void pollNewTweets(Twitter twitter) throws TwitterException {
         List<Status> statuses = twitter.getMentions();
         for (Status status : statuses) {
-            jmsTemplate.convertAndSend("director", status.getText());
+            TwitterMessage twitterMessage = new TwitterMessage();
+            twitterMessage.setMessage(status.getText());
+            twitterMessage.setTime(status.getCreatedAt());
+            twitterMessage.setUser(status.getUser().getName());
+            jmsTemplate.convertAndSend("director", twitterMessage);
         }
     }
 }
