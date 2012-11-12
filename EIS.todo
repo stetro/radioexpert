@@ -23,7 +23,7 @@ ClientStub
  ✔ Da er alle Tweets und WebService Messages bekommt -> einmal testen @done (12-11-06 16:09)
  ✔ JavaFX ! pivot ist zu komplex - javaFX CSS anpassung möglich Designfreiheiten (Timeline mit Buttons) @done (12-11-06 20:51)
  ☐ Interaktionstest ! - Position der Timeline bewegen lassen? - Button klick -> line.y +30
- ☐ Proof - - Synchronisation - Latenz Netzweit
+ ☐ Proof - Synchronisation - Latenz Netzweit
 
 Persistenz
  ☐ SQLite Instanz in applicationContext definieren um Messages zu persistierung

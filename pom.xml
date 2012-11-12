@@ -8,8 +8,8 @@
     <artifactId>radioexpert</artifactId>
     <version>1.0</version>
 
-    <dependencies>
 
+    <dependencies>
         <!-- h2 db -->
         <dependency>
             <groupId>com.h2database</groupId>
@@ -70,6 +70,11 @@
             <artifactId>spring-jdbc</artifactId>
             <version>3.0.0.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>3.0.0.RELEASE</version>
+        </dependency>
         <!-- JMS -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -107,7 +112,28 @@
             <artifactId>twitter4j-core</artifactId>
             <version>2.1.4</version>
         </dependency>
-
+        <!--Hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate</artifactId>
+            <version>3.5.1-Final</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>3.5.1-Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-annotations</artifactId>
+            <version>3.5.1-Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>3.5.1-Final</version>
+        </dependency>
     </dependencies>
 
 </project>
