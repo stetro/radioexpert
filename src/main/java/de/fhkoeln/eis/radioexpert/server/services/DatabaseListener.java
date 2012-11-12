@@ -28,10 +28,11 @@ public class DatabaseListener implements javax.jms.MessageListener {
     @Override
     public void onMessage(Message message) {
         ObjectMessage objectMessage = (ObjectMessage) message;
+        logger.info(objectMessage.toString());
         try {
             Session s = sessionFactory.openSession();
             s.save(objectMessage.getObject());
-        } catch (JMSException e) {
+        } catch (Exception e) {
             logger.error("Fehler beim Speichern in die Datenbank ! " + e.getMessage());
         }
     }

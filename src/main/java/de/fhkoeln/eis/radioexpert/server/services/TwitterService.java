@@ -52,7 +52,7 @@ public class TwitterService {
         final Twitter twitter = tf.getInstance();
 
         // Polling Thread definieren der alle <pollInterval> ms pollt
-        new Thread(new Runnable() {
+        new Thread(new Runnable () {
             @Override
             public void run() {
                 jmsTemplate.setPubSubDomain(true);
