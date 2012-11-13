@@ -38,6 +38,7 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
     <amq:topic id="technician" physicalName="technician"/>
     <amq:topic id="presenter" physicalName="presenter"/>
     <amq:topic id="director" physicalName="director"/>
+    <amq:queue id="destination"  physicalName="org.apache.activemq.spring.Test.spring.embedded"/>
 
     <!-- Services fuer topics abbonieren (alle Nachrichten in Datenbank schreiben)-->
     <jms:listener-container connection-factory="jmsConnectionFactory"
@@ -67,6 +68,7 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
             <list>
                 <value>de.fhkoeln.eis.radioexpert.messaging.messages.TwitterMessage</value>
                 <value>de.fhkoeln.eis.radioexpert.messaging.messages.FacebookMessage</value>
+                <value>de.fhkoeln.eis.radioexpert.messaging.messages.MailMessage</value>
             </list>
         </property>
         <property name="hibernateProperties">

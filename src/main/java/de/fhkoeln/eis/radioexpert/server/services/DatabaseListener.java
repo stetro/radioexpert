@@ -28,8 +28,8 @@ public class DatabaseListener implements javax.jms.MessageListener {
     @Override
     public void onMessage(Message message) {
         ObjectMessage objectMessage = (ObjectMessage) message;
-        logger.info(objectMessage.toString());
         try {
+            logger.info("Message empfangen !");
             Session s = sessionFactory.openSession();
             s.save(objectMessage.getObject());
         } catch (Exception e) {

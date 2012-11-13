@@ -38,6 +38,8 @@
     <orderEntry type="library" name="Maven: org.apache.xbean:xbean-spring:3.5" level="project" />
     <orderEntry type="library" name="Maven: org.twitter4j:twitter4j-core:2.1.4" level="project" />
     <orderEntry type="library" name="Maven: com.restfb:restfb:1.6.11" level="project" />
+    <orderEntry type="library" name="Maven: javax.mail:mail:1.4.2" level="project" />
+    <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-core:3.5.1-Final" level="project" />
     <orderEntry type="library" name="Maven: antlr:antlr:2.7.6" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.1" level="project" />

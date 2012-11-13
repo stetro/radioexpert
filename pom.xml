@@ -130,6 +130,12 @@
             <artifactId>restfb</artifactId>
             <version>1.6.11</version>
         </dependency>
+        <!-- Mail -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.2</version>
+        </dependency>
         <!--Hibernate -->
         <dependency>
             <groupId>org.hibernate</groupId>

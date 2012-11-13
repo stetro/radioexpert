@@ -1,6 +1,8 @@
 package de.fhkoeln.eis.radioexpert.server;
 
-import de.fhkoeln.eis.radioexpert.server.services.*;
+import de.fhkoeln.eis.radioexpert.server.services.FacebookService;
+import de.fhkoeln.eis.radioexpert.server.services.MailService;
+import de.fhkoeln.eis.radioexpert.server.services.TwitterService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -30,7 +32,10 @@ public class ServerInstance {
             //twitterService.start();
             // Facebook Service starten
             FacebookService facebookService = (FacebookService) context.getBean("facebookService");
-            facebookService.start();
+            //facebookService.start();
+            // MailService starten
+            MailService mailService = (MailService) context.getBean("mailService");
+            mailService.start();
             // TODO: Weitere Services starten !
             logger.info("Server Start erfolgreich ...");
         } catch (Exception e) {

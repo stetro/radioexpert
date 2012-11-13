@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class FacebookService {
+public class FacebookService implements RadioExpertService {
 
     /**
      * {@link org.springframework.jms.core.JmsTemplate} aus der applicationServerContext.xml (component-scan)
@@ -37,6 +37,7 @@ public class FacebookService {
      */
     private int pollInterval = 20 * 1000;
 
+    @Override
     public void start() {
         logger.info("Facebook Service startet ...");
         // Thread starten

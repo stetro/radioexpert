@@ -22,7 +22,7 @@ import java.util.List;
  */
 
 @Service
-public class TwitterService {
+public class TwitterService implements RadioExpertService {
     /**
      * {@link org.springframework.jms.core.JmsTemplate} aus der applicationServerContext.xml (component-scan)
      */
@@ -38,6 +38,7 @@ public class TwitterService {
     /**
      * Startet den Twitterserver
      */
+    @Override
     public void start() {
         logger.info("Twitter Service startet ...");
 
@@ -52,7 +53,7 @@ public class TwitterService {
         final Twitter twitter = tf.getInstance();
 
         // Polling Thread definieren der alle <pollInterval> ms pollt
-        new Thread(new Runnable () {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 jmsTemplate.setPubSubDomain(true);
