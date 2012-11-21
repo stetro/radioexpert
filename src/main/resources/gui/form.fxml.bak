@@ -6,43 +6,65 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
+<?import javafx.scene.web.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.fhkoeln.eis.radioexpert.client.TimeLineController">
+<AnchorPane id="AnchorPane" fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.fhkoeln.eis.radioexpert.client.ClientGUIController">
   <children>
-    <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+    <HBox fx:id="mainSplitHBox" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
       <children>
-        <ScrollPane prefWidth="302.0">
+        <ScrollPane fx:id="timelineScrollPane" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
           <content>
-            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="300.0">
-              <children>
-                <Line fx:id="timeLineLine" endX="200.0" layoutY="150.0" stroke="RED" AnchorPane.leftAnchor="0.0" />
-                <Ellipse fx:id="timeLineEllipse" fill="RED" layoutY="150.0" radiusX="5.0" radiusY="5.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="&#10;" AnchorPane.leftAnchor="-5.0" />
-              </children>
-            </AnchorPane>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
           </content>
+          <HBox.margin>
+            <Insets />
+          </HBox.margin>
         </ScrollPane>
-        <ToggleButton fx:id="foo" mnemonicParsing="false" style="&#10;color:green;&#10;&#10;" text="ToggleButton" />
+        <Accordion fx:id="infoAccordion" HBox.hgrow="ALWAYS">
+          <expandedPane>
+            <TitledPane fx:id="x1" animated="false" text="Interviewpartner">
+              <content>
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="300.0" />
+              </content>
+            </TitledPane>
+          </expandedPane>
+          <panes>
+            <TitledPane animated="false" text="Über die Sendung">
+              <content>
+                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </TitledPane>
+            <TitledPane animated="false" text="Eingeteilte Mitarbeiter">
+              <content>
+                <AnchorPane id="Content" fx:id="accordion" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="300.0" />
+              </content>
+            </TitledPane>
+            <fx:reference source="x1" />
+          </panes>
+        </Accordion>
+        <WebView fx:id="chatWebView" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
       </children>
     </HBox>
-    <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <MenuBar prefHeight="25.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <menus>
-        <Menu mnemonicParsing="false" text="File">
+        <Menu mnemonicParsing="false" text="Datei">
           <items>
             <MenuItem mnemonicParsing="false" text="Close" />
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
+        <Menu mnemonicParsing="false" text="Bearbeiten">
           <items>
-            <MenuItem mnemonicParsing="false" text="Delete" />
+            <MenuItem mnemonicParsing="false" text="Einstellungen" />
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Help">
+        <Menu mnemonicParsing="false" text="Hilfe">
           <items>
-            <MenuItem mnemonicParsing="false" text="About" />
+            <MenuItem mnemonicParsing="false" text="Über" />
           </items>
         </Menu>
       </menus>
     </MenuBar>
+    <Label fx:id="statusLable" text="Status: " AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" />
+    <ProgressBar fx:id="progressBar" prefWidth="300.0" progress="0.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
   </children>
 </AnchorPane>

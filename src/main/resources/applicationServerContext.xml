@@ -30,15 +30,8 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
         </amq:transportConnectors>
     </amq:broker>
 
-    <!-- connectionFactory fuer localhost messageBroker anlegen-->
-    <amq:connectionFactory id="jmsConnectionFactory" brokerURL="vm://localhost"/>
-
-    <!-- topics definieren -->
-    <!-- TODO: TOPICS -->
-    <amq:topic id="director" physicalName="director"/>
-    <!-- message queues -->
-    <amq:queue id="persistence.request" physicalName="persistence.request"/>
-    <amq:queue id="persistence.response" physicalName="persistence.response"/>
+    <!-- Topics und Connectionfactory ausgelagert fuer gemeinsame Nutzung-->
+    <import resource="jmsConnectionAndTopics.xml"/>
 
     <!-- Services fuer topics abbonieren (alle Nachrichten in Datenbank schreiben)-->
     <jms:listener-container connection-factory="jmsConnectionFactory" destination-type="topic">
@@ -49,12 +42,6 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
     <jms:listener-container connection-factory="jmsConnectionFactory" destination-type="queue">
         <jms:listener destination="persistence.request" ref="databaseController"/>
     </jms:listener-container>
-
-    <!-- jmsTemplate fuer Spring verknuepfen -->
-    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
-        <property name="connectionFactory" ref="jmsConnectionFactory"/>
-        <property name="defaultDestination" ref="director"/>
-    </bean>
 
     <!-- h2 dataSource definieren -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
