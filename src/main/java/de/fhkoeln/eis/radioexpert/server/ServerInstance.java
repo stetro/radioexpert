@@ -2,12 +2,16 @@ package de.fhkoeln.eis.radioexpert.server;
 
 import de.fhkoeln.eis.radioexpert.server.services.FacebookService;
 import de.fhkoeln.eis.radioexpert.server.services.MailService;
+import de.fhkoeln.eis.radioexpert.server.services.RadioExpertService;
 import de.fhkoeln.eis.radioexpert.server.services.TwitterService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Haupt Server Instanz<br/>
@@ -20,6 +24,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ServerInstance {
 
+    private static List<RadioExpertService> services = new ArrayList<RadioExpertService>();
+
     private static final Logger logger = LoggerFactory.getLogger(ServerInstance.class);
 
     public static void main(String[] args) {
@@ -27,16 +33,14 @@ public class ServerInstance {
             logger.info("Server startet ...");
             // EJB's instanzieren
             ApplicationContext context = new ClassPathXmlApplicationContext("applicationServerContext.xml");
-            // Twitter Service starten
-            TwitterService twitterService = (TwitterService) context.getBean("twitterService");
-            //twitterService.start();
-            // Facebook Service starten
-            FacebookService facebookService = (FacebookService) context.getBean("facebookService");
-            //facebookService.start();
-            // MailService starten
-            MailService mailService = (MailService) context.getBean("mailService");
-            mailService.start();
-            // TODO: Weitere Services starten !
+            // Services aus Context laden
+            services.add((RadioExpertService)context.getBean("twitterService"));
+            //services.add((RadioExpertService)context.getBean("facebookService"));
+            services.add((RadioExpertService)context.getBean("mailService"));
+            // Services starten
+            for(RadioExpertService service:services){
+                service.start();
+            }
             logger.info("Server Start erfolgreich ...");
         } catch (Exception e) {
             logger.error("Fehler beim Starten: ");

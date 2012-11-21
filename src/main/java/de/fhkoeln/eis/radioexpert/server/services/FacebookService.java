@@ -45,7 +45,9 @@ public class FacebookService implements RadioExpertService {
             @Override
             public void run() {
                 jmsTemplate.setPubSubDomain(true);
-                FacebookClient facebookClient = new DefaultFacebookClient("AAAAAAITEghMBADKVEtgQmp1uTazZAjtxMPxghEYZCc74QuTtmZB4Se4Ebe9vHGs3r3WcWOED5JZAkTNSoZA2Lhs1DXwEmgH3FRRMAKnmXKkb9wGQAl6OZB");
+                FacebookClient facebookClient = new DefaultFacebookClient("");
+                // FacebookClient.AccessToken accessToken = new FacebookClient.AccessToken();
+                // FacebookClient facebookClient = new DefaultFacebookClient(accessToken.getAccessToken());
                 while (true) {
                     try {
                         JsonObject jo = facebookClient.fetchObject("domradio.de/feed", JsonObject.class);
