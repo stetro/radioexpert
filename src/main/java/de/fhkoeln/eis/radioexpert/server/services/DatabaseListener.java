@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
+import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
 
 /**
@@ -18,7 +19,7 @@ import javax.jms.ObjectMessage;
  * @author Steffen Troester
  */
 @Service
-public class DatabaseListener implements javax.jms.MessageListener {
+public class DatabaseListener implements MessageListener {
 
     @Autowired
     SessionFactory sessionFactory;
@@ -27,12 +28,14 @@ public class DatabaseListener implements javax.jms.MessageListener {
 
     @Override
     public void onMessage(Message message) {
-        ObjectMessage objectMessage = (ObjectMessage) message;
         try {
+            ObjectMessage objectMessage = (ObjectMessage) message;
             logger.info("Message empfangen !");
             Session s = sessionFactory.openSession();
             s.save(objectMessage.getObject());
-        } catch (Exception e) {
+        } catch(ClassCastException e ){
+            logger.error("Unbekannte Nachricht wurde verschickt !" + e.getMessage());
+        }catch (Exception e) {
             logger.error("Fehler beim Speichern in die Datenbank ! " + e.getMessage());
         }
     }

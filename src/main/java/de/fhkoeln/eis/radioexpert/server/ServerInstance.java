@@ -35,11 +35,11 @@ public class ServerInstance {
             ApplicationContext context = new ClassPathXmlApplicationContext("applicationServerContext.xml");
             // Services aus Context laden
             services.add((RadioExpertService)context.getBean("twitterService"));
-            //services.add((RadioExpertService)context.getBean("facebookService"));
+            services.add((RadioExpertService)context.getBean("facebookService"));
             services.add((RadioExpertService)context.getBean("mailService"));
             // Services starten
             for(RadioExpertService service:services){
-                service.start();
+                //service.start();
             }
             logger.info("Server Start erfolgreich ...");
         } catch (Exception e) {

@@ -1,4 +1,4 @@
-package de.fhkoeln.eis.radioexpert.messaging;
+package de.fhkoeln.eis.radioexpert.proofofconcept;
 
 import java.text.DateFormat;
 import java.util.Date;
