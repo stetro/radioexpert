@@ -26,7 +26,7 @@ public class DatabaseController implements MessageListener{
 
     @Override
     public void onMessage(Message message) {
-        jmsTemplate.convertAndSend("persistence.response","FooBar");
+        jmsTemplate.convertAndSend("persistenceResponse","FooBar");
         logger.info("Abfragenachricht wurde empfangen  !!");
     }
 }

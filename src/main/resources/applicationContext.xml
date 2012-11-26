@@ -2,21 +2,20 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:jms="http://www.springframework.org/schema/jms"
+       xmlns:amq="http://activemq.apache.org/schema/core"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-3.0.xsd
-http://www.springframework.org/schema/jms
-http://www.springframework.org/schema/jms/spring-jms-3.0.xsd">
+http://activemq.apache.org/schema/core
+http://activemq.apache.org/schema/core/activemq-core.xsd">
 
     <context:component-scan base-package="de.fhkoeln.eis.radioexpert.client"/>
 
-    <!-- Services fuer topics abbonieren (alle Nachrichten in Datenbank schreiben)-->
-    <jms:listener-container connection-factory="jmsConnectionFactory" destination-type="topic">
-        <jms:listener destination="director" ref="clientGUIController"/>
-    </jms:listener-container>
+    <!-- connectionFactory fuer localhost messageBroker anlegen-->
+    <amq:connectionFactory id="jmsConnectionFactory" brokerURL="tcp://localhost:62626"/>
 
     <!-- Topics und Connectionfactory ausgelagert fuer gemeinsame Nutzung-->
     <import resource="jmsConnectionAndTopics.xml"/>
+
 </beans>

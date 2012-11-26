@@ -42,13 +42,14 @@
             <fx:reference source="x1" />
           </panes>
         </Accordion>
-        <WebView fx:id="chatWebView" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+        <WebView fx:id="chatWebView" prefHeight="200.0" prefWidth="200.0" style="color:red;" HBox.hgrow="ALWAYS" />
       </children>
     </HBox>
     <MenuBar prefHeight="25.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <menus>
         <Menu mnemonicParsing="false" text="Datei">
           <items>
+            <MenuItem mnemonicParsing="false" text="Aktuelle Sendung laden" fx:id="loadCurrentMenuItem" />
             <MenuItem mnemonicParsing="false" text="Close" />
           </items>
         </Menu>

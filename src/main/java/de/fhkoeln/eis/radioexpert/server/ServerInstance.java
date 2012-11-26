@@ -1,9 +1,6 @@
 package de.fhkoeln.eis.radioexpert.server;
 
-import de.fhkoeln.eis.radioexpert.server.services.FacebookService;
-import de.fhkoeln.eis.radioexpert.server.services.MailService;
 import de.fhkoeln.eis.radioexpert.server.services.RadioExpertService;
-import de.fhkoeln.eis.radioexpert.server.services.TwitterService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -34,11 +31,13 @@ public class ServerInstance {
             // EJB's instanzieren
             ApplicationContext context = new ClassPathXmlApplicationContext("applicationServerContext.xml");
             // Services aus Context laden
-            //services.add((RadioExpertService)context.getBean("twitterService"));
+
+            //services.add((RadioExpertService) context.getBean("twitterService"));
             //services.add((RadioExpertService)context.getBean("facebookService"));
-            services.add((RadioExpertService)context.getBean("mailService"));
+            //services.add((RadioExpertService)context.getBean("mailService"));
+
             // Services starten
-            for(RadioExpertService service:services){
+            for (RadioExpertService service : services) {
                 service.start();
             }
             logger.info("Server Start erfolgreich ...");

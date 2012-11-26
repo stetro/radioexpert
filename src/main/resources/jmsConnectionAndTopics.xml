@@ -7,16 +7,12 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 http://activemq.apache.org/schema/core
 http://activemq.apache.org/schema/core/activemq-core.xsd">
 
-
-    <!-- connectionFactory fuer localhost messageBroker anlegen-->
-    <amq:connectionFactory id="jmsConnectionFactory" brokerURL="vm://localhost"/>
-
     <!-- topics definieren -->
     <!-- TODO: TOPICS -->
     <amq:topic id="director" physicalName="director"/>
     <!-- message queues -->
-    <amq:queue id="persistence.request" physicalName="persistence.request"/>
-    <amq:queue id="persistence.response" physicalName="persistence.response"/>
+    <amq:queue id="persistenceRequest" physicalName="persistenceRequest"/>
+    <amq:queue id="persistenceResponse" physicalName="persistenceResponse"/>
 
     <!-- jmsTemplate fuer Spring verknuepfen -->
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">

@@ -16,9 +16,10 @@ public class Client {
         connection.start();
 
 
-        Queue queue = session.createQueue("persistence.request");
+        Queue queue = session.createQueue("persistenceRequest");
+        Queue queue2 = session.createQueue("persistenceResponse");
 
-        MessageConsumer consumer = session.createConsumer(queue);
+        MessageConsumer consumer = session.createConsumer(queue2);
         consumer.setMessageListener(new MessageListener() {
             @Override
             public void onMessage(Message message) {
@@ -35,7 +36,7 @@ public class Client {
         System.out.println("Eine Nachricht von Commandlinetool geschickt");
 
         try {
-            Thread.sleep(50000);
+            Thread.sleep(500000);
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
