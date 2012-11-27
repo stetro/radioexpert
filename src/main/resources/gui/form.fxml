@@ -67,5 +67,6 @@
     </MenuBar>
     <Label fx:id="statusLable" text="Status: " AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" />
     <ProgressBar fx:id="progressBar" prefWidth="300.0" progress="0.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+    <TextField fx:id="chatTextField" prefWidth="200.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="5.0" />
   </children>
 </AnchorPane>

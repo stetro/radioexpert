@@ -10,6 +10,7 @@ http://activemq.apache.org/schema/core/activemq-core.xsd">
     <!-- topics definieren -->
     <!-- TODO: TOPICS -->
     <amq:topic id="director" physicalName="director"/>
+    <amq:topic id="chat" physicalName="chat"/>
     <!-- message queues -->
     <amq:queue id="persistenceRequest" physicalName="persistenceRequest"/>
     <amq:queue id="persistenceResponse" physicalName="persistenceResponse"/>

@@ -1,6 +1,7 @@
 package de.fhkoeln.eis.radioexpert.client;
 
 import de.fhkoeln.eis.radioexpert.client.util.BroadcastLoader;
+import de.fhkoeln.eis.radioexpert.client.util.ChatHandler;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,17 +9,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
-import javafx.scene.web.WebEngine;
+import javafx.scene.control.TextField;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import org.apache.activemq.ActiveMQConnectionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.jms.*;
+import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -32,9 +30,13 @@ import java.util.ResourceBundle;
 public class ClientGUIController extends Application implements Initializable {
 
     @FXML
+    public TextField chatTextField;
+    @FXML
     public WebView chatWebView;
+    public ChatHandler chatHandler;
     @FXML
     public MenuItem loadCurrentMenuItem;
+
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -48,10 +50,8 @@ public class ClientGUIController extends Application implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        final WebEngine webEngine = chatWebView.getEngine();
-        webEngine.setJavaScriptEnabled(true);
-
         loadCurrentMenuItem.setOnAction(new BroadcastLoader());
+        chatHandler = new ChatHandler(chatWebView,chatTextField);
     }
 
     public void startClientGUI(String[] args) {
