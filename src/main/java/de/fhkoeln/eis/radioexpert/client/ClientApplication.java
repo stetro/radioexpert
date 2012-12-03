@@ -1,7 +1,7 @@
 package de.fhkoeln.eis.radioexpert.client;
 
+import org.apache.xbean.spring.context.ClassPathXmlApplicationContext;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Hauptklasse fuer die Clientseite mit GUI und ActiveMQ Anbindung
@@ -12,10 +12,25 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class ClientApplication {
 
     public static ApplicationContext context;
+    private static String[] args;
+    public static String user;
+    public static String host;
 
-    public static void main(String[] args) {
+    public static void runApplication(String host, String user, String role) {
+        ClientApplication.user = user;
+        ClientApplication.host = host;
+
         context = new ClassPathXmlApplicationContext("applicationContext.xml");
         ClientGUIController clientGUIController = (ClientGUIController) context.getBean("clientGUIController");
         clientGUIController.startClientGUI(args);
+    }
+
+    public static void main(String[] args) {
+        ClientApplication.args = args;
+        requestClientApplicationSettings();
+    }
+
+    private static void requestClientApplicationSettings() {
+        SimpleSettingsDialog dialog = new SimpleSettingsDialog();
     }
 }

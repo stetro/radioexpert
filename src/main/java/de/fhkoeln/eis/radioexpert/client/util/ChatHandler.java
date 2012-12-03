@@ -54,7 +54,7 @@ public class ChatHandler {
             @Override
             public void handle(KeyEvent keyEvent) {
                 if (keyEvent.getCode() == KeyCode.ENTER) {
-                    jmsTemplate.convertAndSend("chat", new ChatMessage(chatTextField.getText(), "userxy", new Date()));
+                    jmsTemplate.convertAndSend("chat", new ChatMessage(chatTextField.getText(), ClientApplication.user, new Date()));
                     logger.info("Nachricht " + chatTextField.getText() + " gesendet");
                     chatTextField.setText("");
                 }
@@ -74,7 +74,7 @@ public class ChatHandler {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            String script = "addMessage('" + chatMessage.getMessage() + "','"+chatMessage.getSender()+"','" + chatMessage.getTime().toString() + "')";
+                            String script = "addMessage('" + chatMessage.getMessage() + "','" + chatMessage.getSender() + "','" + chatMessage.getTime().toString() + "')";
                             logger.info(script);
                             chatWebView.getEngine().executeScript(script);
                         }
