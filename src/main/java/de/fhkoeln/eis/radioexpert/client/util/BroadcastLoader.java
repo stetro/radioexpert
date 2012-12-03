@@ -25,6 +25,7 @@ public class BroadcastLoader implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         jmsTemplate = ClientApplication.context.getBean(JmsTemplate.class);
+        jmsTemplate.setPubSubDomain(false);
         try {
             listenOnBroadcastResponse();
         } catch (JMSException e) {
@@ -49,6 +50,7 @@ public class BroadcastLoader implements EventHandler<ActionEvent> {
             @Override
             public void onMessage(Message message) {
                 logger.info("Response Empfangen !");
+                jmsTemplate.setPubSubDomain(true);
                 try {
                     connection.stop();
                     session.close();

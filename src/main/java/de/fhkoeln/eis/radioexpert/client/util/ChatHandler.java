@@ -14,6 +14,7 @@ import org.springframework.jms.core.JmsTemplate;
 
 import javax.jms.JMSException;
 import java.net.URL;
+import java.util.Date;
 
 /**
  * Abboniert chat und Stellt Nachrichten in WebView dar
@@ -53,7 +54,7 @@ public class ChatHandler {
             @Override
             public void handle(KeyEvent keyEvent) {
                 if (keyEvent.getCode() == KeyCode.ENTER) {
-                    jmsTemplate.convertAndSend("chat", new ChatMessage(chatTextField.getText(), "userxy"));
+                    jmsTemplate.convertAndSend("chat", new ChatMessage(chatTextField.getText(), "userxy", new Date()));
                     logger.info("Nachricht " + chatTextField.getText() + " gesendet");
                     chatTextField.setText("");
                 }
@@ -73,10 +74,11 @@ public class ChatHandler {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            chatWebView.getEngine().executeScript("$(\"#messages\").append(\"" + chatMessage.getMessage() + "\")");
+                            String script = "addMessage('" + chatMessage.getMessage() + "','"+chatMessage.getSender()+"','" + chatMessage.getTime().toString() + "')";
+                            logger.info(script);
+                            chatWebView.getEngine().executeScript(script);
                         }
                     });
-
                 }
             }
         }).start();

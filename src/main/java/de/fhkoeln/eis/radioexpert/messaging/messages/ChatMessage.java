@@ -2,6 +2,7 @@ package de.fhkoeln.eis.radioexpert.messaging.messages;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Einfache Chatnachricht
@@ -21,9 +22,22 @@ public class ChatMessage implements Serializable {
     @Column(name = "sender")
     private String sender;
 
-    public ChatMessage(String message, String sender) {
+    public ChatMessage(String message, String sender, Date time) {
+        this.id = id;
         this.message = message;
         this.sender = sender;
+        this.time = time;
+    }
+
+    @Column(name = "time")
+    private Date time;
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 
     public long getId() {
