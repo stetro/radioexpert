@@ -16,7 +16,7 @@ public class Client {
         connection.start();
 
 
-        Queue queue = session.createQueue("persistenceRequest");
+        Topic chatTopic = session.createTopic("chat");
         Queue queue2 = session.createQueue("persistenceResponse");
 
         MessageConsumer consumer = session.createConsumer(queue2);
@@ -27,7 +27,7 @@ public class Client {
             }
         });
 
-        MessageProducer messageProducer = session.createProducer(queue);
+        MessageProducer messageProducer = session.createProducer(chatTopic);
 
         TextMessage textMessage = session.createTextMessage();
         textMessage.setText("from command line client : " + new Date());

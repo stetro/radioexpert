@@ -39,6 +39,7 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
     <!-- Services fuer topics abbonieren (alle Nachrichten in Datenbank schreiben)-->
     <jms:listener-container connection-factory="jmsConnectionFactory" destination-type="topic">
         <jms:listener destination="director" ref="databaseListener"/>
+        <jms:listener destination="chat" ref="databaseListener"/>
         <!-- TODO: TOPICS -->
     </jms:listener-container>
     <!-- Services fuer queues abbonieren -->
