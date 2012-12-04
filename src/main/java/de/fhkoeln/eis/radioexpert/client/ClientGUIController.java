@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.web.WebView;
@@ -16,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -36,7 +36,8 @@ public class ClientGUIController extends Application implements Initializable {
     public ChatHandler chatHandler;
     @FXML
     public MenuItem loadCurrentMenuItem;
-
+    @FXML
+    public ListView socialListView;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -51,7 +52,7 @@ public class ClientGUIController extends Application implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadCurrentMenuItem.setOnAction(new BroadcastLoader());
-        chatHandler = new ChatHandler(chatWebView,chatTextField);
+        chatHandler = new ChatHandler(chatWebView, chatTextField);
     }
 
     public void startClientGUI(String[] args) {

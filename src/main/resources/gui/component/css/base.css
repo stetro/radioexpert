@@ -209,10 +209,12 @@ svg {
 */
   overflow: hidden;
 }
-
+body {
+font: 13px/1.5 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
+}
 h1{
 }
-
-#messages{
-padding:5px;
+.message .text{
+background-color:#EFEFEF;
+padding:3px;
 }

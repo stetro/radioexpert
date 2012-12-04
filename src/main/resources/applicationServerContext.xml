@@ -24,7 +24,7 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
     <context:component-scan base-package="de.fhkoeln.eis.radioexpert.server"/>
 
     <!-- JMS Message Broker (hier ActiveMQ) -->
-    <amq:broker persistent="false" useJmx="false">
+    <amq:broker persistent="true" useJmx="false" >
         <amq:transportConnectors>
             <amq:transportConnector uri="tcp://localhost:62626"/>
         </amq:transportConnectors>

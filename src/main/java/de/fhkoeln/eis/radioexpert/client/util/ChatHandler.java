@@ -49,6 +49,7 @@ public class ChatHandler {
         chatWebView.getEngine().load(url.toExternalForm());
     }
 
+
     private void setupKeyListener() {
         this.chatTextField.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
             @Override
@@ -63,19 +64,17 @@ public class ChatHandler {
     }
 
     private void setupMessageListener() throws JMSException {
-
         jmsTemplate.setPubSubDomain(true);
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) {
+                while (Platform.isImplicitExit()) {
                     final ChatMessage chatMessage = (ChatMessage) jmsTemplate.receiveAndConvert("chat");
-                    logger.info("Nachricht empfangen " + chatMessage.getMessage());
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            String script = "addMessage('" + chatMessage.getMessage() + "','" + chatMessage.getSender() + "','" + chatMessage.getTime().toString() + "')";
-                            logger.info(script);
+                            String script = "addMessage('" + chatMessage.getMessage() + "','" + chatMessage.getSender() + "','" + chatMessage.getTime().getTime() + "')";
+                            logger.info("Nachricht empfangen " + chatMessage.getMessage());
                             chatWebView.getEngine().executeScript(script);
                         }
                     });
@@ -83,6 +82,4 @@ public class ChatHandler {
             }
         }).start();
     }
-
-
 }

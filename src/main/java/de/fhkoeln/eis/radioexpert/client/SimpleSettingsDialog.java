@@ -3,6 +3,8 @@ package de.fhkoeln.eis.radioexpert.client;
 import java.awt.*;
 import java.util.Scanner;
 
+import static java.util.Arrays.asList;
+
 /**
  * Fragt zu Beginn jeder Sitzung den Server und die Nutzerrolle ab
  * User: Steffen Tröster
@@ -13,12 +15,22 @@ public class SimpleSettingsDialog {
 
     public SimpleSettingsDialog() throws HeadlessException {
         Scanner scanner = new Scanner(System.in);
+
         System.out.println("Benutzerrolle (t/m/r):");
         String role = scanner.nextLine();
+        if (!asList("t", "m", "r").contains(role)) {
+            role = "r";
+        }
+
         System.out.println("Benutzername :");
         String user = scanner.nextLine();
+
         System.out.println("Serveradresse :");
         String server = scanner.nextLine();
-        ClientApplication.runApplication("localhost", "stetro", "r");
+        if (server.isEmpty()) {
+            server = "localhost";
+        }
+
+        ClientApplication.runApplication("localhost", user, role);
     }
 }

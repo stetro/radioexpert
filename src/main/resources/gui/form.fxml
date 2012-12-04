@@ -10,41 +10,6 @@
 
 <AnchorPane id="AnchorPane" fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.fhkoeln.eis.radioexpert.client.ClientGUIController">
   <children>
-    <HBox fx:id="mainSplitHBox" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
-      <children>
-        <ScrollPane fx:id="timelineScrollPane" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-          <content>
-            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-          </content>
-          <HBox.margin>
-            <Insets />
-          </HBox.margin>
-        </ScrollPane>
-        <Accordion fx:id="infoAccordion" HBox.hgrow="ALWAYS">
-          <expandedPane>
-            <TitledPane fx:id="x1" animated="false" text="Interviewpartner">
-              <content>
-                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="300.0" />
-              </content>
-            </TitledPane>
-          </expandedPane>
-          <panes>
-            <TitledPane animated="false" text="Über die Sendung">
-              <content>
-                <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </TitledPane>
-            <TitledPane animated="false" text="Eingeteilte Mitarbeiter">
-              <content>
-                <AnchorPane id="Content" fx:id="accordion" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="300.0" />
-              </content>
-            </TitledPane>
-            <fx:reference source="x1" />
-          </panes>
-        </Accordion>
-        <WebView fx:id="chatWebView" prefHeight="200.0" prefWidth="200.0" style="color:red;" HBox.hgrow="ALWAYS" />
-      </children>
-    </HBox>
     <MenuBar prefHeight="25.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <menus>
         <Menu mnemonicParsing="false" text="Datei">
@@ -65,8 +30,48 @@
         </Menu>
       </menus>
     </MenuBar>
-    <Label fx:id="statusLable" text="Status: " AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" />
-    <ProgressBar fx:id="progressBar" prefWidth="300.0" progress="0.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
-    <TextField fx:id="chatTextField" prefWidth="200.0" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="5.0" />
+    <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+      <children>
+        <WebView fx:id="timelineWebView" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+          <HBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" fx:id="x1" />
+          </HBox.margin>
+        </WebView>
+        <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" HBox.margin="$x1">
+          <children>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Untitled Tab 1">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+                <Tab text="Untitled Tab 2">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+          </children>
+        </VBox>
+        <SplitPane dividerPositions="0.5010799136069114" focusTraversable="true" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" HBox.hgrow="ALWAYS" HBox.margin="$x1">
+          <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+              <children>
+                <ListView fx:id="socialListView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+              </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+              <children>
+                <WebView fx:id="chatWebView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                <TextField fx:id="chatTextField" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="80.0" />
+                <Button fx:id="chatButton" mnemonicParsing="false" text="Senden" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+              </children>
+            </AnchorPane>
+          </items>
+        </SplitPane>
+      </children>
+    </HBox>
   </children>
 </AnchorPane>
