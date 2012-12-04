@@ -11,6 +11,10 @@ http://activemq.apache.org/schema/core/activemq-core.xsd">
     <!-- TODO: TOPICS -->
     <amq:topic id="director" physicalName="director"/>
     <amq:topic id="chat" physicalName="chat"/>
+
+    <amq:topic id="mail" physicalName="mail"/>
+    <amq:topic id="twitter" physicalName="twitter"/>
+    <amq:topic id="facebook" physicalName="facebook"/>
     <!-- message queues -->
     <amq:queue id="persistenceRequest" physicalName="persistenceRequest"/>
     <amq:queue id="persistenceResponse" physicalName="persistenceResponse"/>

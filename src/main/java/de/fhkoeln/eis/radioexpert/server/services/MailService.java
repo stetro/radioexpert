@@ -65,7 +65,7 @@ public class MailService implements RadioExpertService {
         Message[] messages = folder.getMessages();
         for (Message m : messages) {
             MailMessage mailMessage = new MailMessage(m.getContent().toString(), m.getFrom()[0].toString(), new Date());
-            jmsTemplate.convertAndSend("director", mailMessage);
+            jmsTemplate.convertAndSend("mail", mailMessage);
             logger.info("Nachricht !!" + mailMessage.getMessage());
         }
     }

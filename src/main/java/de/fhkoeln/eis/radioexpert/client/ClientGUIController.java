@@ -2,6 +2,7 @@ package de.fhkoeln.eis.radioexpert.client;
 
 import de.fhkoeln.eis.radioexpert.client.util.BroadcastLoader;
 import de.fhkoeln.eis.radioexpert.client.util.ChatHandler;
+import de.fhkoeln.eis.radioexpert.client.util.SocialMediaListHandler;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +39,7 @@ public class ClientGUIController extends Application implements Initializable {
     public MenuItem loadCurrentMenuItem;
     @FXML
     public ListView socialListView;
+    public SocialMediaListHandler socialMediaListHandler;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -53,6 +55,7 @@ public class ClientGUIController extends Application implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadCurrentMenuItem.setOnAction(new BroadcastLoader());
         chatHandler = new ChatHandler(chatWebView, chatTextField);
+        socialMediaListHandler = new SocialMediaListHandler(socialListView);
     }
 
     public void startClientGUI(String[] args) {

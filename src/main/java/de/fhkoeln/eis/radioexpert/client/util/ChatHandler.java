@@ -70,16 +70,20 @@ public class ChatHandler {
             public void run() {
                 while (Platform.isImplicitExit()) {
                     final ChatMessage chatMessage = (ChatMessage) jmsTemplate.receiveAndConvert("chat");
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            String script = "addMessage('" + chatMessage.getMessage() + "','" + chatMessage.getSender() + "','" + chatMessage.getTime().getTime() + "')";
-                            logger.info("Nachricht empfangen " + chatMessage.getMessage());
-                            chatWebView.getEngine().executeScript(script);
-                        }
-                    });
+                    displayChatMessage(chatMessage);
                 }
             }
         }).start();
+    }
+
+    private void displayChatMessage(final ChatMessage chatMessage) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                String script = "addMessage('" + chatMessage.getMessage() + "','" + chatMessage.getSender() + "','" + chatMessage.getTime().getTime() + "')";
+                logger.info("Nachricht empfangen " + chatMessage.getMessage());
+                chatWebView.getEngine().executeScript(script);
+            }
+        });
     }
 }
