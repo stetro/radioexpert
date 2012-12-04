@@ -6,6 +6,7 @@ var/
 .settings/
 .idea/
 library/
+active*
 # Package Files #
 *.jar
 *.war
