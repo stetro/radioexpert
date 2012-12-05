@@ -23,19 +23,23 @@ PubSub aufsetzen
  ✔ Beispiel Services ohne Funktion (TwitterService als Thread Jede Sekunde sendend) @done (12-11-06 15:17)
  ✔ Twtter funktioniert @done (12-11-06 16:06)
  ✔ Facebook funktioniert @done (12-11-12 12:20)
+ ☐ 
 
 ClientStub
  ✔ Client als Stand Alone Topic Listener (director) @done (12-11-06 16:09)
  ✔ Da er alle Tweets und WebService Messages bekommt -> einmal testen @done (12-11-06 16:09)
  ✔ JavaFX ! pivot ist zu komplex - javaFX CSS anpassung möglich Designfreiheiten (Timeline mit Buttons) @done (12-11-06 20:51)
  ✔ Interaktionstest ! - Position der Timeline bewegen lassen? - Button klick -> line.y +30 @done (12-11-13 10:01)
- ☐ Proof - Synchronisation - Latenz Netzweit
+ ✔ Proof - Synchronisation - Latenz Netzweit @done (12-12-04 15:56)
+ ☐ 
 
 Persistenz
  ✔ Hibernate Speicherung @done (12-11-12 10:19)
  ✔ Alle Objekte instanziieren @done (12-11-12 10:19)
  ✔ Alle POJOS die kommuniziert werden, speichern ! @done (12-11-12 10:19)
- ☐ PersistenzMessage - Fragt an der Persistenz die Sendungsrelevanten daten ab !
+ ✔ PersistenzMessage - Fragt an der Persistenz die Sendungsrelevanten daten ab ! @done (12-12-04 15:55)
+ ✔ MessageQueues fuer den Austausch @done (12-12-04 15:56)
+ ☐ 
 
 
 Persistenz und Ressourcen

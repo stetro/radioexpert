@@ -34,7 +34,7 @@ public class ServerInstance {
 
             //services.add((RadioExpertService) context.getBean("twitterService"));
             //services.add((RadioExpertService)context.getBean("facebookService"));
-            //services.add((RadioExpertService)context.getBean("mailService"));
+            services.add((RadioExpertService)context.getBean("mailService"));
 
             // Services starten
             for (RadioExpertService service : services) {

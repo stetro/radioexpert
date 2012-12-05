@@ -52,6 +52,7 @@ public class TwitterService implements RadioExpertService {
         TwitterFactory tf = new TwitterFactory(cb.build());
         final Twitter twitter = tf.getInstance();
 
+
         // Polling Thread definieren der alle <pollInterval> ms pollt
         new Thread(new Runnable() {
             @Override
@@ -87,7 +88,7 @@ public class TwitterService implements RadioExpertService {
             twitterMessage.setMessage(status.getText());
             twitterMessage.setTime(status.getCreatedAt());
             twitterMessage.setUser(status.getUser().getName());
-            jmsTemplate.convertAndSend("director", twitterMessage);
+            jmsTemplate.convertAndSend("twitter", twitterMessage);
         }
     }
 }
