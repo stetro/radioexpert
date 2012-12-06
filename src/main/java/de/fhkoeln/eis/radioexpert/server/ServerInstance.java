@@ -21,6 +21,7 @@ import java.util.List;
 @Service
 public class ServerInstance {
 
+
     private static List<RadioExpertService> services = new ArrayList<RadioExpertService>();
 
     private static final Logger logger = LoggerFactory.getLogger(ServerInstance.class);
@@ -32,9 +33,9 @@ public class ServerInstance {
             ApplicationContext context = new ClassPathXmlApplicationContext("applicationServerContext.xml");
             // Services aus Context laden
 
-            //services.add((RadioExpertService) context.getBean("twitterService"));
+            services.add((RadioExpertService) context.getBean("twitterService"));
             //services.add((RadioExpertService)context.getBean("facebookService"));
-            services.add((RadioExpertService)context.getBean("mailService"));
+            //services.add((RadioExpertService)context.getBean("mailService"));
 
             // Services starten
             for (RadioExpertService service : services) {

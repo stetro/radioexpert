@@ -13,6 +13,7 @@ import org.springframework.jms.core.JmsTemplate;
  * User: Steffen Tröster
  * Date: 04.12.12
  * Time: 15:26
+ * TODO: Bessere Darstellung der Social Media Elemenete in der ListView
  */
 public class SocialMediaListHandler {
     private ListView socialListView;
