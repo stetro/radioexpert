@@ -8,6 +8,7 @@ var/
 library/
 active*
 # Package Files #
+*.iml
 *.jar
 *.war
 *.ear
