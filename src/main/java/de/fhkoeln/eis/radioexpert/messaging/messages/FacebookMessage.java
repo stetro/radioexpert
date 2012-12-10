@@ -13,7 +13,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "FacebookMessages")
-public class FacebookMessage implements Serializable {
+public class FacebookMessage implements Serializable, SocialMediaMessage {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")

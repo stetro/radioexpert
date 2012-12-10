@@ -1,7 +1,5 @@
 package de.fhkoeln.eis.radioexpert.messaging.messages;
 
-import org.springframework.core.style.ToStringCreator;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -14,7 +12,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "TwitterMessages")
-public class TwitterMessage implements Serializable {
+public class TwitterMessage implements Serializable, SocialMediaMessage {
     @Column(name = "message")
     private String message;
     @Column(name = "user")

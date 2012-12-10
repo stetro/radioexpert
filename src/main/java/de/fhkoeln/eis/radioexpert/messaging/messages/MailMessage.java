@@ -13,7 +13,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "MailMessages")
-public class MailMessage implements Serializable {
+public class MailMessage implements Serializable, SocialMediaMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id")
