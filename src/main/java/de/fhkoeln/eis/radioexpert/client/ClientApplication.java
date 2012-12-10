@@ -1,5 +1,7 @@
 package de.fhkoeln.eis.radioexpert.client;
 
+import de.fhkoeln.eis.radioexpert.client.ui.ClientGUIController;
+import de.fhkoeln.eis.radioexpert.client.ui.SimpleSettingsDialog;
 import org.apache.xbean.spring.context.ClassPathXmlApplicationContext;
 import org.springframework.context.ApplicationContext;
 

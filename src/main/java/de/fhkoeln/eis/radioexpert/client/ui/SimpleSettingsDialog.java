@@ -1,4 +1,6 @@
-package de.fhkoeln.eis.radioexpert.client;
+package de.fhkoeln.eis.radioexpert.client.ui;
+
+import de.fhkoeln.eis.radioexpert.client.ClientApplication;
 
 import java.awt.*;
 import java.util.Scanner;

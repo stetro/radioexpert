@@ -1,4 +1,4 @@
-package de.fhkoeln.eis.radioexpert.client.util;
+package de.fhkoeln.eis.radioexpert.client.uihandler;
 
 import de.fhkoeln.eis.radioexpert.client.ClientApplication;
 import de.fhkoeln.eis.radioexpert.messaging.messages.ChatMessage;

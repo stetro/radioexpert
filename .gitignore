@@ -2,11 +2,12 @@
 log/
 target/
 var/
+activemq-data/
 .project
 .settings/
 .idea/
 library/
-active*
+
 # Package Files #
 *.iml
 *.jar

@@ -1,9 +1,9 @@
-package de.fhkoeln.eis.radioexpert.client;
+package de.fhkoeln.eis.radioexpert.client.ui;
 
 import de.fhkoeln.eis.radioexpert.client.util.BroadcastLoader;
-import de.fhkoeln.eis.radioexpert.client.util.ChatHandler;
-import de.fhkoeln.eis.radioexpert.client.util.SocialMediaListHandler;
-import de.fhkoeln.eis.radioexpert.client.util.TimeLineHandler;
+import de.fhkoeln.eis.radioexpert.client.uihandler.ChatHandler;
+import de.fhkoeln.eis.radioexpert.client.uihandler.SocialMediaListHandler;
+import de.fhkoeln.eis.radioexpert.client.uihandler.TimeLineHandler;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +32,7 @@ import java.util.ResourceBundle;
 @Service
 public class ClientGUIController extends Application implements Initializable {
 
+    private static Logger logger = LoggerFactory.getLogger(ClientGUIController.class);
     /*
     TimeLineHandler Variablen
      */
@@ -54,7 +55,8 @@ public class ClientGUIController extends Application implements Initializable {
     SocialMediaListHandler Variablen
      */
     @FXML
-    public ListView socialListView;
+    public ListView<String> socialListView;
+
     public SocialMediaListHandler socialMediaListHandler;
 
     @Override
@@ -63,9 +65,8 @@ public class ClientGUIController extends Application implements Initializable {
         stage.setTitle("RadioExpert - Client Anwendung ");
         stage.setScene(new Scene(root, 800, 500));
         stage.show();
+        logger.info("UI wurde gestartet !");
     }
-
-    private static Logger logger = LoggerFactory.getLogger(ClientGUIController.class);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
