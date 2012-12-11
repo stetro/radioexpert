@@ -38,7 +38,6 @@ public class Client {
         try {
             Thread.sleep(500000);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         connection.stop();
