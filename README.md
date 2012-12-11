@@ -7,6 +7,7 @@ Installation
 ------------
 To build this project, install jdk7 with javafx support and add a settings.xml for maven in ~/.m2/settings.xml. settings.xml has to contain the following content :
 
+
 ```xml
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -30,3 +31,16 @@ To build this project, install jdk7 with javafx support and add a settings.xml f
    </activeProfiles>
 </settings>
 ```
+
+Run Application
+---------------
+You can run the server instance with:
+```sh
+mvn exec:java
+```
+This contains:
+
+* Instance of Apache ActiveMQ as message broker
+* Instance of filebased h2 database
+* External Data Services like Twitter, Facebook and Mail
+* PubSub logik and database storage with hibernate
