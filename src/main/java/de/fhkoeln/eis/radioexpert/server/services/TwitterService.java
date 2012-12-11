@@ -76,7 +76,7 @@ public class TwitterService implements RadioExpertService {
 
     /**
      * Fragt die neusten Tweets ab
-     * TODO: Speicher letzte TweetID
+     * TODO: Speicher letzte TweetID um nur "Neuste" Mentions zu bekommen
      *
      * @param twitter
      * @throws TwitterException
