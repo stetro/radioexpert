@@ -26,10 +26,10 @@ import java.util.Date;
  * Time: 10:38
  */
 public class ChatHandler {
-    private static JmsTemplate jmsTemplate;
     private static WebView chatWebView;
-    private static TextField chatTextField;
-    private static Button chatButton;
+    private JmsTemplate jmsTemplate;
+    private TextField chatTextField;
+    private Button chatButton;
 
     private static Logger logger = LoggerFactory.getLogger(ChatHandler.class);
     private static SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm");
@@ -75,6 +75,7 @@ public class ChatHandler {
     }
 
     public static void displayChatMessage(final ChatMessage chatMessage) {
+        if (chatWebView == null) return;
         // In UI Thread einhaengen und Nachricht in WebView darstellen
         Platform.runLater(new Runnable() {
             @Override

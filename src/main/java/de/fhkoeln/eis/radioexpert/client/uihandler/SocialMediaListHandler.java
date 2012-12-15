@@ -21,6 +21,7 @@ public class SocialMediaListHandler {
     }
 
     public static void displayMessage(final SocialMediaMessage mediaMessage) {
+        if (socialListView == null) return;
         // In UI Thread einhaengen und Nachricht in ListView darstellen
         Platform.runLater(new Runnable() {
             @Override
