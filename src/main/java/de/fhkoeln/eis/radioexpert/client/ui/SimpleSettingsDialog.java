@@ -9,6 +9,7 @@ import static java.util.Arrays.asList;
 
 /**
  * Fragt zu Beginn jeder Sitzung den Server und die Nutzerrolle ab
+ * <p/>
  * User: Steffen Tröster
  * Date: 03.12.12
  * Time: 19:14

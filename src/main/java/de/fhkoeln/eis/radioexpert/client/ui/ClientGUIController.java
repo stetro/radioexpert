@@ -71,7 +71,7 @@ public class ClientGUIController extends Application implements Initializable {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/gui/form.fxml"));
         stage.setTitle("RadioExpert - Client Anwendung ");
-        stage.setScene(new Scene(root, 800, 500));
+        stage.setScene(new Scene(root, 1000, 700));
         stage.show();
         logger.info("UI wurde gestartet !");
     }

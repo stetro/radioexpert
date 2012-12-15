@@ -55,14 +55,14 @@
             </TabPane>
           </children>
         </VBox>
-        <SplitPane dividerPositions="0.38660907127429806, 0.6155507559395248" focusTraversable="true" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" HBox.hgrow="ALWAYS" HBox.margin="$x1">
+        <SplitPane dividerPositions="0.1447084233261339, 0.4773218142548596" focusTraversable="true" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" HBox.hgrow="ALWAYS" HBox.margin="$x1">
           <items>
+            <ListView fx:id="onlineStatusListView" maxHeight="-Infinity" orientation="HORIZONTAL" prefHeight="100.0" prefWidth="200.0" />
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
               <children>
                 <ListView fx:id="socialListView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
               </children>
             </AnchorPane>
-            <ListView fx:id="onlineStatusListView" maxHeight="-Infinity" prefHeight="100.0" prefWidth="200.0" />
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
               <children>
                 <WebView fx:id="chatWebView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />

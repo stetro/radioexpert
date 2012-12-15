@@ -34,20 +34,19 @@ public class OnlineStatusHandlerMessageListener implements MessageListener {
 
 
     @Autowired
-    public OnlineStatusHandlerMessageListener(JmsTemplate jmsTemplate) {
+    public OnlineStatusHandlerMessageListener(final JmsTemplate jmsTemplate) {
         this.jmsTemplate = jmsTemplate;
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-
                 while (Platform.isImplicitExit()) {
                     try {
                         Thread.sleep(seconds * 1000);
-                    } catch (InterruptedException e) {
+                        jmsTemplate.convertAndSend("onlinestatus", ClientApplication.user);
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    OnlineStatusHandlerMessageListener.this.jmsTemplate.convertAndSend("onlinestatus", ClientApplication.user);
                 }
             }
         }).start();
