@@ -17,10 +17,12 @@ public class ClientApplication {
     private static String[] args;
     public static String user;
     public static String host;
+    public static String role;
 
     public static void runApplication(String host, String user, String role) {
         ClientApplication.user = user;
         ClientApplication.host = host;
+        ClientApplication.role = role;
 
         context = new ClassPathXmlApplicationContext("applicationContext.xml");
         ClientGUIController clientGUIController = (ClientGUIController) context.getBean("clientGUIController");

@@ -56,7 +56,7 @@ public class SocialMediaListHandler {
                 } else if (item instanceof FacebookMessage) {
                     i.setImage(new Image("gui/component/img/facebook.png"));
                 } else {
-                    i.setImage(new Image("gui/component/img/email.png"));
+                    i.setImage(new Image("gui/component/img/mail.png"));
                 }
                 HBox box = new HBox();
                 box.setSpacing(10.0);

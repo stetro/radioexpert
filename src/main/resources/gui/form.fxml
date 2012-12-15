@@ -55,9 +55,9 @@
             </TabPane>
           </children>
         </VBox>
-        <SplitPane dividerPositions="0.1447084233261339, 0.4773218142548596" focusTraversable="true" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" HBox.hgrow="ALWAYS" HBox.margin="$x1">
+        <SplitPane dividerPositions="0.13606911447084233, 0.47300215982721383" focusTraversable="true" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" HBox.hgrow="ALWAYS" HBox.margin="$x1">
           <items>
-            <ListView fx:id="onlineStatusListView" maxHeight="-Infinity" orientation="HORIZONTAL" prefHeight="100.0" prefWidth="200.0" />
+            <ListView fx:id="onlineStatusListView" maxHeight="60.0" minHeight="60.0" orientation="HORIZONTAL" prefHeight="60.0" prefWidth="200.0" />
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
               <children>
                 <ListView fx:id="socialListView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />

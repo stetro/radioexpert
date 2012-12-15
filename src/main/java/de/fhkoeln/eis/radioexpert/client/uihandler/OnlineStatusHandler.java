@@ -1,14 +1,15 @@
 package de.fhkoeln.eis.radioexpert.client.uihandler;
 
+import de.fhkoeln.eis.radioexpert.messaging.messages.OnlineStatusMessage;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.HBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 
@@ -24,62 +25,91 @@ import java.util.*;
 
 public class OnlineStatusHandler {
 
-    private static Map<String, Date> onlineStatus;
-    private static final int delaySeconds = 20;
-    private static ListView<String> onlineStatusListView;
+    private static Map<String, OnlineStatusMessage> onlineStatus;
+    private static final int delaySeconds = 10;
+    private static ListView<OnlineStatusMessage> onlineStatusListView;
 
 
-    public OnlineStatusHandler(ListView<String> givenOnlineStatusListView) {
+    public OnlineStatusHandler(ListView<OnlineStatusMessage> givenOnlineStatusListView) {
         onlineStatusListView = givenOnlineStatusListView;
-        onlineStatusListView.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+        onlineStatusListView.setCellFactory(new Callback<ListView<OnlineStatusMessage>, ListCell<OnlineStatusMessage>>() {
             @Override
-            public ListCell<String> call(ListView<String> stringListView) {
+            public ListCell<OnlineStatusMessage> call(ListView<OnlineStatusMessage> stringListView) {
                 return new OnlineStatusCell();
             }
         });
-        onlineStatus = new HashMap<String, Date>();
+        onlineStatus = new HashMap<String, OnlineStatusMessage>();
     }
 
-    public static void signPersonAsOnline(String user) {
+    public static void signPersonAsOnline(OnlineStatusMessage onlineStatusMessage) {
         if (onlineStatus == null) return;
-        onlineStatus.put(user, new Date());
+        onlineStatus.put(onlineStatusMessage.getUser(), onlineStatusMessage);
     }
 
     public static void updateOnlineStatus() {
         if (onlineStatusListView == null) return;
-        Date lastTime = new Date();
-        lastTime.setTime(lastTime.getTime() - delaySeconds * 1000);
+
         List<String> offlineList = new ArrayList<String>();
-        final List<String> onlineList = new ArrayList<String>();
-        for (Map.Entry<String, Date> e : onlineStatus.entrySet()) {
-            if (lastTime.after(e.getValue())) {
-                offlineList.add(e.getKey());
-            } else {
-                onlineList.add(e.getKey());
-            }
-        }
-        for (String user : offlineList) {
-            onlineStatus.remove(user);
-        }
+        final List<OnlineStatusMessage> onlineList = new ArrayList<OnlineStatusMessage>();
+
+        findOfflineAndOnlineUser(offlineList, onlineList);
+        removeOfflineUser(offlineList);
+        updateListInOnlineStatusListView(onlineList);
+    }
+
+    private static void updateListInOnlineStatusListView(final List<OnlineStatusMessage> onlineList) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                ObservableList<String> onlineUser = FXCollections.observableArrayList(onlineList);
+                ObservableList<OnlineStatusMessage> onlineUser = FXCollections.observableArrayList(onlineList);
                 onlineStatusListView.setItems(onlineUser);
             }
         });
     }
 
-    private class OnlineStatusCell extends ListCell<String> {
-        public void updateItem(String item, boolean empty) {
+    private static void removeOfflineUser(List<String> offlineList) {
+        for (String user : offlineList) {
+            onlineStatus.remove(user);
+        }
+    }
+
+    private static void findOfflineAndOnlineUser(List<String> offlineList, List<OnlineStatusMessage> onlineList) {
+        Date lastTime = new Date();
+        lastTime.setTime(lastTime.getTime() - delaySeconds * 1000);
+        for (Map.Entry<String, OnlineStatusMessage> e : onlineStatus.entrySet()) {
+            if (lastTime.after(e.getValue().getDate())) {
+                offlineList.add(e.getKey());
+            } else {
+                onlineList.add(e.getValue());
+            }
+        }
+    }
+
+    private class OnlineStatusCell extends ListCell<OnlineStatusMessage> {
+        public void updateItem(OnlineStatusMessage item, boolean empty) {
             super.updateItem(item, empty);
-            Rectangle rect = new Rectangle(15, 15);
             if (item != null) {
-                rect.setFill(Color.web("#0E0"));
-                HBox box = new HBox();
-                box.setSpacing(10.0);
-                box.getChildren().add(rect);
-                box.getChildren().add(new Text(this.getItem()));
+                ImageView imageView = new ImageView();
+                switch (item.getRole().charAt(0)) {
+                    case 'm':
+                        imageView.setImage(new Image("gui/component/img/moderation.png"));
+                        break;
+                    case 'r':
+                        imageView.setImage(new Image("gui/component/img/redaktion.png"));
+                        break;
+                    case 't':
+                        imageView.setImage(new Image("gui/component/img/technik.png"));
+                        break;
+                }
+                VBox box = new VBox();
+                box.setAlignment(Pos.CENTER);
+                box.setSpacing(5.0);
+                box.getChildren().add(imageView);
+                box.getChildren().add(new Text(this.getItem().getUser()));
+                this.setAlignment(Pos.CENTER);
+
+                this.setWidth(40);
+
                 setGraphic(box);
 
             }

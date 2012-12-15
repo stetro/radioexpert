@@ -5,6 +5,7 @@ import de.fhkoeln.eis.radioexpert.client.uihandler.OnlineStatusHandler;
 import de.fhkoeln.eis.radioexpert.client.uihandler.SocialMediaListHandler;
 import de.fhkoeln.eis.radioexpert.client.uihandler.TimeLineHandler;
 import de.fhkoeln.eis.radioexpert.client.util.BroadcastLoader;
+import de.fhkoeln.eis.radioexpert.messaging.messages.OnlineStatusMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.SocialMediaMessage;
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -63,7 +64,7 @@ public class ClientGUIController extends Application implements Initializable {
     OnlineStatusHandler Variablen
     */
     @FXML
-    public ListView<String> onlineStatusListView;
+    public ListView<OnlineStatusMessage> onlineStatusListView;
     private OnlineStatusHandler onlineStatusHandler;
 
 
