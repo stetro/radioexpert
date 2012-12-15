@@ -7,7 +7,6 @@ import de.fhkoeln.eis.radioexpert.client.uihandler.TimeLineHandler;
 import de.fhkoeln.eis.radioexpert.client.util.BroadcastLoader;
 import de.fhkoeln.eis.radioexpert.messaging.messages.OnlineStatusMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.SocialMediaMessage;
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -33,7 +33,7 @@ import java.util.ResourceBundle;
  * Time: 19:08
  */
 @Service
-public class ClientGUIController extends Application implements Initializable {
+public class ClientGUIController implements Initializable {
 
     private static Logger logger = LoggerFactory.getLogger(ClientGUIController.class);
     /*
@@ -69,15 +69,6 @@ public class ClientGUIController extends Application implements Initializable {
 
 
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/gui/form.fxml"));
-        stage.setTitle("RadioExpert - Client Anwendung ");
-        stage.setScene(new Scene(root, 1000, 700));
-        stage.show();
-        logger.info("UI wurde gestartet !");
-    }
-
-    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadCurrentMenuItem.setOnAction(new BroadcastLoader());
         chatHandler = new ChatHandler(chatWebView, chatTextField, chatButton);
@@ -86,13 +77,14 @@ public class ClientGUIController extends Application implements Initializable {
         onlineStatusHandler = new OnlineStatusHandler(onlineStatusListView);
     }
 
-    public void startClientGUI(String[] args) {
-        launch(args);
+    public void startClientGUI(Stage stage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/gui/form.fxml"));
+        stage.hide();
+        stage.setTitle("RadioExpert - Client Anwendung ");
+        stage.setScene(new Scene(root, 1000, 700));
+        stage.show();
+        logger.info("UI wurde gestartet !");
+
     }
 
-    @Override
-    public void stop() throws Exception {
-        super.stop();
-        System.exit(0);
-    }
 }

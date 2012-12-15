@@ -1,5 +1,7 @@
 package de.fhkoeln.eis.radioexpert.messaging.messages;
 
+import de.fhkoeln.eis.radioexpert.client.util.UserRole;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,21 +14,14 @@ import java.util.Date;
  */
 public class OnlineStatusMessage implements Serializable {
     private String user;
-    private String role;
+    private UserRole role;
     private Date date = new Date();
 
-    public OnlineStatusMessage(String user, String role) {
+    public OnlineStatusMessage(String user, UserRole role) {
         this.user = user;
         this.role = role;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     public String getUser() {
         return user;
@@ -38,5 +33,13 @@ public class OnlineStatusMessage implements Serializable {
 
     public Date getDate() {
         return date;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 }

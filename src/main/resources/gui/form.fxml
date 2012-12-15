@@ -34,10 +34,10 @@
       <children>
         <WebView fx:id="timeLineWebView" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
           <HBox.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" fx:id="x1" />
+            <Insets />
           </HBox.margin>
         </WebView>
-        <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" HBox.margin="$x1">
+        <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
           <children>
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
@@ -54,6 +54,9 @@
               </tabs>
             </TabPane>
           </children>
+          <HBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" fx:id="x1" />
+          </HBox.margin>
         </VBox>
         <SplitPane dividerPositions="0.13606911447084233, 0.47300215982721383" focusTraversable="true" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" HBox.hgrow="ALWAYS" HBox.margin="$x1">
           <items>

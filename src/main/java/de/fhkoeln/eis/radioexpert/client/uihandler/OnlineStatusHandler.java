@@ -32,6 +32,7 @@ public class OnlineStatusHandler {
 
     public OnlineStatusHandler(ListView<OnlineStatusMessage> givenOnlineStatusListView) {
         onlineStatusListView = givenOnlineStatusListView;
+        onlineStatusListView.setStyle("background-color:#FFF;");
         onlineStatusListView.setCellFactory(new Callback<ListView<OnlineStatusMessage>, ListCell<OnlineStatusMessage>>() {
             @Override
             public ListCell<OnlineStatusMessage> call(ListView<OnlineStatusMessage> stringListView) {
@@ -90,26 +91,14 @@ public class OnlineStatusHandler {
             super.updateItem(item, empty);
             if (item != null) {
                 ImageView imageView = new ImageView();
-                switch (item.getRole().charAt(0)) {
-                    case 'm':
-                        imageView.setImage(new Image("gui/component/img/moderation.png"));
-                        break;
-                    case 'r':
-                        imageView.setImage(new Image("gui/component/img/redaktion.png"));
-                        break;
-                    case 't':
-                        imageView.setImage(new Image("gui/component/img/technik.png"));
-                        break;
-                }
+                imageView.setImage(new Image(item.getRole().getImagePath()));
                 VBox box = new VBox();
                 box.setAlignment(Pos.CENTER);
                 box.setSpacing(5.0);
                 box.getChildren().add(imageView);
                 box.getChildren().add(new Text(this.getItem().getUser()));
                 this.setAlignment(Pos.CENTER);
-
                 this.setWidth(40);
-
                 setGraphic(box);
 
             }
