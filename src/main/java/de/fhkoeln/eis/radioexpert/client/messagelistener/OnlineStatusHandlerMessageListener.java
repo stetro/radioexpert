@@ -29,7 +29,7 @@ public class OnlineStatusHandlerMessageListener implements MessageListener {
 
 
     private JmsTemplate jmsTemplate;
-
+    private static final int seconds = 5;
     private Logger logger = LoggerFactory.getLogger(OnlineStatusHandlerMessageListener.class);
 
 
@@ -40,15 +40,14 @@ public class OnlineStatusHandlerMessageListener implements MessageListener {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                int seconds = 10;
+
                 while (Platform.isImplicitExit()) {
-                    logger.info("Online Status uebermittelt ...");
-                    OnlineStatusHandlerMessageListener.this.jmsTemplate.convertAndSend("onlinestatus", ClientApplication.user);
                     try {
                         Thread.sleep(seconds * 1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+                    OnlineStatusHandlerMessageListener.this.jmsTemplate.convertAndSend("onlinestatus", ClientApplication.user);
                 }
             }
         }).start();

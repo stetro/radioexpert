@@ -32,7 +32,7 @@
     </MenuBar>
     <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
       <children>
-        <WebView id="timelineWebView" fx:id="timeLineWebView" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+        <WebView fx:id="timeLineWebView" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
           <HBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" fx:id="x1" />
           </HBox.margin>
@@ -55,13 +55,14 @@
             </TabPane>
           </children>
         </VBox>
-        <SplitPane dividerPositions="0.5010799136069114" focusTraversable="true" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" HBox.hgrow="ALWAYS" HBox.margin="$x1">
+        <SplitPane dividerPositions="0.3347732181425486, 0.6673866090712743" focusTraversable="true" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" HBox.hgrow="ALWAYS" HBox.margin="$x1">
           <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
               <children>
                 <ListView fx:id="socialListView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
               </children>
             </AnchorPane>
+            <ListView fx:id="onlineStatusListView" prefHeight="200.0" prefWidth="200.0" />
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
               <children>
                 <WebView fx:id="chatWebView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />

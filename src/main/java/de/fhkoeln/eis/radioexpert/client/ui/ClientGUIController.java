@@ -1,9 +1,10 @@
 package de.fhkoeln.eis.radioexpert.client.ui;
 
-import de.fhkoeln.eis.radioexpert.client.util.BroadcastLoader;
 import de.fhkoeln.eis.radioexpert.client.uihandler.ChatHandler;
+import de.fhkoeln.eis.radioexpert.client.uihandler.OnlineStatusHandler;
 import de.fhkoeln.eis.radioexpert.client.uihandler.SocialMediaListHandler;
 import de.fhkoeln.eis.radioexpert.client.uihandler.TimeLineHandler;
+import de.fhkoeln.eis.radioexpert.client.util.BroadcastLoader;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +39,7 @@ public class ClientGUIController extends Application implements Initializable {
      */
     @FXML
     public WebView timeLineWebView;
-    public TimeLineHandler timeLineHandler;
+    private TimeLineHandler timeLineHandler;
     /*
     ChatHandler Variablen
      */
@@ -48,7 +49,7 @@ public class ClientGUIController extends Application implements Initializable {
     public WebView chatWebView;
     @FXML
     public Button chatButton;
-    public ChatHandler chatHandler;
+    private ChatHandler chatHandler;
     @FXML
     public MenuItem loadCurrentMenuItem;
     /*
@@ -56,8 +57,14 @@ public class ClientGUIController extends Application implements Initializable {
      */
     @FXML
     public ListView<String> socialListView;
+    private SocialMediaListHandler socialMediaListHandler;
+    /*
+    OnlineStatusHandler Variablen
+    */
+    @FXML
+    public ListView<String> onlineStatusListView;
+    private OnlineStatusHandler onlineStatusHandler;
 
-    public SocialMediaListHandler socialMediaListHandler;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -74,6 +81,7 @@ public class ClientGUIController extends Application implements Initializable {
         chatHandler = new ChatHandler(chatWebView, chatTextField, chatButton);
         socialMediaListHandler = new SocialMediaListHandler(socialListView);
         timeLineHandler = new TimeLineHandler(timeLineWebView);
+        onlineStatusHandler = new OnlineStatusHandler(onlineStatusListView);
     }
 
     public void startClientGUI(String[] args) {
