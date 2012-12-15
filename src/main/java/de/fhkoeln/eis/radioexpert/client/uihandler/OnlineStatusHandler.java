@@ -38,10 +38,10 @@ public class OnlineStatusHandler {
         }
         for (String user : removeList) {
             onlineStatus.remove(user);
-            System.out.println("offline is " + user);
+            //Offlinestatus hier deklarieren
         }
         for (Map.Entry<String, Date> e : onlineStatus.entrySet()) {
-            System.out.println("online is " + e.getKey());
+            //Onlinestatus hier deklarieren
         }
     }
 }
