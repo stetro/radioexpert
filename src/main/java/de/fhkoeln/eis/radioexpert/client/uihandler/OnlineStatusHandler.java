@@ -76,7 +76,6 @@ public class OnlineStatusHandler {
             Rectangle rect = new Rectangle(15, 15);
             if (item != null) {
                 rect.setFill(Color.web("#0E0"));
-
                 HBox box = new HBox();
                 box.setSpacing(10.0);
                 box.getChildren().add(rect);

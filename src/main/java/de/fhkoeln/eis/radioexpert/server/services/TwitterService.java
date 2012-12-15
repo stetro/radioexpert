@@ -6,10 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
-import twitter4j.Status;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
+import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
 
 import java.util.List;
@@ -34,6 +31,8 @@ public class TwitterService implements RadioExpertService {
      * PollInteravl in ms angegeben
      */
     private int pollInterval = 20 * 1000;
+
+    private static long lastTweetId;
 
     /**
      * Startet den Twitterserver
@@ -78,17 +77,28 @@ public class TwitterService implements RadioExpertService {
      * Fragt die neusten Tweets ab
      * TODO: Speicher letzte TweetID um nur "Neuste" Mentions zu bekommen
      *
-     * @param twitter
+     * @param twitter Twitter API Instance
      * @throws TwitterException
      */
     private void pollNewTweets(Twitter twitter) throws TwitterException {
-        List<Status> statuses = twitter.getMentions();
+        Paging paging;
+        if (lastTweetId > 0) {
+            paging = new Paging(lastTweetId);
+            paging.setSinceId(lastTweetId);
+        } else {
+            paging = new Paging();
+        }
+
+        List<Status> statuses = twitter.getMentions(paging);
         for (Status status : statuses) {
             TwitterMessage twitterMessage = new TwitterMessage();
             twitterMessage.setMessage(status.getText());
             twitterMessage.setTime(status.getCreatedAt());
             twitterMessage.setUser(status.getUser().getName());
             jmsTemplate.convertAndSend("twitter", twitterMessage);
+            if (status.getId() > lastTweetId) {
+                lastTweetId = status.getId();
+            }
         }
     }
 }

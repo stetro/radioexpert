@@ -5,6 +5,7 @@ import de.fhkoeln.eis.radioexpert.client.uihandler.OnlineStatusHandler;
 import de.fhkoeln.eis.radioexpert.client.uihandler.SocialMediaListHandler;
 import de.fhkoeln.eis.radioexpert.client.uihandler.TimeLineHandler;
 import de.fhkoeln.eis.radioexpert.client.util.BroadcastLoader;
+import de.fhkoeln.eis.radioexpert.messaging.messages.SocialMediaMessage;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,7 +57,7 @@ public class ClientGUIController extends Application implements Initializable {
     SocialMediaListHandler Variablen
      */
     @FXML
-    public ListView<String> socialListView;
+    public ListView<SocialMediaMessage> socialListView;
     private SocialMediaListHandler socialMediaListHandler;
     /*
     OnlineStatusHandler Variablen
@@ -86,5 +87,11 @@ public class ClientGUIController extends Application implements Initializable {
 
     public void startClientGUI(String[] args) {
         launch(args);
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        System.exit(0);
     }
 }
