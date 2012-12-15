@@ -1,7 +1,8 @@
-package de.fhkoeln.eis.radioexpert.client.uihandler;
+package de.fhkoeln.eis.radioexpert.client.messagelistener;
 
 
 import de.fhkoeln.eis.radioexpert.client.ClientApplication;
+import de.fhkoeln.eis.radioexpert.client.uihandler.OnlineStatusHandler;
 import javafx.application.Platform;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,5 +1,6 @@
-package de.fhkoeln.eis.radioexpert.client.uihandler;
+package de.fhkoeln.eis.radioexpert.client.messagelistener;
 
+import de.fhkoeln.eis.radioexpert.client.uihandler.ChatHandler;
 import de.fhkoeln.eis.radioexpert.messaging.messages.ChatMessage;
 import org.springframework.stereotype.Service;
 
