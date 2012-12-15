@@ -1,4 +1,4 @@
-package de.fhkoeln.eis.radioexpert.server.services;
+package de.fhkoeln.eis.radioexpert.server.messagelistener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import javax.jms.Message;
 import javax.jms.MessageListener;
-import javax.jms.TextMessage;
 
 /**
  * DatabaseController ist ein Service der auf die MessageQueue persistence.request horcht und

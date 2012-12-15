@@ -1,4 +1,4 @@
-package de.fhkoeln.eis.radioexpert.server.services;
+package de.fhkoeln.eis.radioexpert.server.messagelistener;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
