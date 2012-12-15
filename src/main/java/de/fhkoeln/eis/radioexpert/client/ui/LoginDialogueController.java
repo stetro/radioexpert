@@ -1,6 +1,7 @@
 package de.fhkoeln.eis.radioexpert.client.ui;
 
 import de.fhkoeln.eis.radioexpert.client.ClientApplication;
+import de.fhkoeln.eis.radioexpert.client.uihandler.ServerStatusHandler;
 import de.fhkoeln.eis.radioexpert.client.util.UserRole;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -12,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -42,13 +45,29 @@ public class LoginDialogueController implements Initializable {
     public Button submitButton;
     @FXML
     public Text serverStatusText;
+    @FXML
+    public ImageView logoImageView;
 
     private Logger logger = LoggerFactory.getLogger(LoginDialogueController.class);
 
+    public void startLoginGui(Stage stage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/gui/login.fxml"));
+        stage.setTitle("Login Dialog");
+        stage.setScene(new Scene(root, 400, 300));
+        stage.show();
+        logger.info("LoginDialogue wurde gestartet !");
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        showLogoImage();
         setComboBoxContent();
         submitButtonBindingAndApplicationStart();
+        showServerStatus();
+    }
+
+    private void showLogoImage() {
+        logoImageView.setImage(new Image("gui/component/img/logo.png"));
     }
 
     private void submitButtonBindingAndApplicationStart() {
@@ -56,7 +75,10 @@ public class LoginDialogueController implements Initializable {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 String name = nameTextField.getText();
-                // TODO: Error Handling
+                if (name.length() <= 2 || !ServerStatusHandler.serverIsAvailable()) {
+                    serverStatusText.setText("Fehler bei der Anmeldung !");
+                    return;
+                }
                 UserRole role = getSelectedRole();
                 ClientApplication.runApplication("localhost", name, role);
             }
@@ -81,11 +103,13 @@ public class LoginDialogueController implements Initializable {
         roleComboBox.setValue(items.get(0));
     }
 
-    public void startLoginGui(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/gui/login.fxml"));
-        stage.setTitle("Login Dialog");
-        stage.setScene(new Scene(root, 400, 300));
-        stage.show();
-        logger.info("LoginDialogue wurde gestartet !");
+    private void showServerStatus() {
+        if (ServerStatusHandler.serverIsAvailable()) {
+            serverStatusText.setText(serverStatusText.getText() + " Verfügbar!");
+        } else {
+            serverStatusText.setText(serverStatusText.getText() + " Fehler bei der Verbindung!");
+        }
     }
+
+
 }

@@ -15,6 +15,8 @@ http://activemq.apache.org/schema/core/activemq-core.xsd">
     <amq:topic id="mail" physicalName="mail"/>
     <amq:topic id="twitter" physicalName="twitter"/>
     <amq:topic id="facebook" physicalName="facebook"/>
+    <amq:topic id="serverstatuscheck" physicalName="servercheck"/>
+
     <!-- message queues -->
     <amq:queue id="persistenceRequest" physicalName="persistenceRequest"/>
     <amq:queue id="persistenceResponse" physicalName="persistenceResponse"/>

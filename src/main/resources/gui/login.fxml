@@ -4,13 +4,14 @@
 <?import java.util.*?>
 <?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.fhkoeln.eis.radioexpert.client.ui.LoginDialogueController">
   <children>
-    <ComboBox fx:id="roleComboBox" layoutX="168.0" layoutY="85.0" prefWidth="201.0">
+    <ComboBox fx:id="roleComboBox" layoutX="168.0" layoutY="162.0" prefWidth="201.0">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Item 1" />
@@ -19,10 +20,11 @@
         </FXCollections>
       </items>
     </ComboBox>
-    <Label layoutX="45.0" layoutY="91.0" text="Dein Job:" />
-    <Label layoutX="45.0" layoutY="45.0" text="Dein Name:" />
-    <TextField fx:id="nameTextField" layoutX="168.0" layoutY="45.0" prefWidth="201.0" />
-    <Button fx:id="submitButton" layoutX="284.0" layoutY="129.0" mnemonicParsing="false" text="Einloggen" />
-    <Text fx:id="serverStatusText" layoutX="45.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Serverstatus:" />
+    <Label layoutX="45.0" layoutY="171.0" text="Dein Job:" />
+    <Label layoutX="45.0" layoutY="134.0" text="Dein Name:" />
+    <TextField fx:id="nameTextField" layoutX="168.0" layoutY="128.0" prefWidth="201.0" />
+    <Button fx:id="submitButton" layoutX="284.0" layoutY="205.0" mnemonicParsing="false" text="Einloggen" />
+    <Text fx:id="serverStatusText" layoutX="45.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Serverstatus:" />
+    <ImageView fx:id="logoImageView" fitHeight="150.75" fitWidth="200.0" layoutX="103.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
   </children>
 </AnchorPane>
