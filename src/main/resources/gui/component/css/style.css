@@ -1,11 +1,36 @@
 
+#timelineComponent h1{
+    font-size: 18px;
+}
+#timelineComponent div#header{
+    
+    background-color: #CCC;
+    height: 100px;
+    padding:5px;
+    overflow: hidden;
+}
+
 div#timeline{
-    background-image:url(timeline.png);
-    background-repeat:repeat-y;
     margin:10px 0 0 0;
 
     padding:5px 0px 10px 20px;
     position:relative;
+    position: relative;
+    overflow-x:hidden;
+    overflow-y:  scroll;
+}
+
+div#timelinegrid{
+    background-image:url(timeline.png);
+    background-position: 35px 0;
+    background-repeat:repeat-y;
+    height: 100%;
+    width: 100px;
+}
+
+div#timeline span.time{
+    position: absolute;
+    left: 5px;
 }
 
 div#timeline span#timePointer{

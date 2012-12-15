@@ -15,6 +15,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -74,15 +76,27 @@ public class LoginDialogueController implements Initializable {
         submitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                String name = nameTextField.getText();
-                if (name.length() <= 2 || !ServerStatusHandler.serverIsAvailable()) {
-                    serverStatusText.setText("Fehler bei der Anmeldung !");
-                    return;
-                }
-                UserRole role = getSelectedRole();
-                ClientApplication.runApplication("localhost", name, role);
+                executeLogin();
             }
         });
+        nameTextField.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if (keyEvent.getCode() == KeyCode.ENTER) {
+                    executeLogin();
+                }
+            }
+        });
+    }
+
+    private void executeLogin() {
+        String name = nameTextField.getText();
+        if (name.length() <= 2 || !ServerStatusHandler.serverIsAvailable()) {
+            serverStatusText.setText("Fehler bei der Anmeldung !");
+            return;
+        }
+        UserRole role = getSelectedRole();
+        ClientApplication.runApplication("localhost", name, role);
     }
 
     private UserRole getSelectedRole() {
