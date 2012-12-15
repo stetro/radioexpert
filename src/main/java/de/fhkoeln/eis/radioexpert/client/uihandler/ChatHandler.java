@@ -14,39 +14,34 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jms.core.JmsTemplate;
 
-import javax.jms.JMSException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  * Abboniert chat und Stellt Nachrichten in WebView dar
+ * <p/>
  * User: Steffen Tröster
  * Date: 26.11.12
  * Time: 10:38
  */
 public class ChatHandler {
-    private final JmsTemplate jmsTemplate;
-    private WebView chatWebView;
-    private TextField chatTextField;
-    private Button chatButton;
+    private static JmsTemplate jmsTemplate;
+    private static WebView chatWebView;
+    private static TextField chatTextField;
+    private static Button chatButton;
 
     private static Logger logger = LoggerFactory.getLogger(ChatHandler.class);
     private static SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm");
 
-    public ChatHandler(WebView chatWebView, TextField chatTextField, Button chatButton) {
-        this.chatWebView = chatWebView;
-        this.chatTextField = chatTextField;
-        this.chatButton = chatButton;
+    public ChatHandler(WebView givenChatWebView, TextField givenChatTextField, Button givenChatButton) {
+        chatWebView = givenChatWebView;
+        chatTextField = givenChatTextField;
+        chatButton = givenChatButton;
         jmsTemplate = ClientApplication.context.getBean(JmsTemplate.class);
         jmsTemplate.setPubSubDomain(true);
-        try {
-            setupMessageListener();
-            setupKeyListener();
-            loadLocalChatHtmlComponent();
-        } catch (JMSException e) {
-            logger.error("Fehler beim Empfangen von Chatnachrichten");
-        }
+        setupKeyListener();
+        loadLocalChatHtmlComponent();
     }
 
     private void loadLocalChatHtmlComponent() {
@@ -57,7 +52,7 @@ public class ChatHandler {
 
 
     private void setupKeyListener() {
-        this.chatTextField.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+        chatTextField.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
                 if (keyEvent.getCode() == KeyCode.ENTER) {
@@ -65,7 +60,7 @@ public class ChatHandler {
                 }
             }
         });
-        this.chatButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+        chatButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 sendMessageFromInputField();
@@ -79,20 +74,8 @@ public class ChatHandler {
         chatTextField.setText("");
     }
 
-    private void setupMessageListener() throws JMSException {
-        jmsTemplate.setPubSubDomain(true);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (Platform.isImplicitExit()) {
-                    final ChatMessage chatMessage = (ChatMessage) jmsTemplate.receiveAndConvert("chat");
-                    displayChatMessage(chatMessage);
-                }
-            }
-        }).start();
-    }
-
-    private void displayChatMessage(final ChatMessage chatMessage) {
+    public static void displayChatMessage(final ChatMessage chatMessage) {
+        // In UI Thread einhaengen und Nachricht in WebView darstellen
         Platform.runLater(new Runnable() {
             @Override
             public void run() {

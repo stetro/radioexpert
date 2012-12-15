@@ -3,12 +3,15 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:jms="http://www.springframework.org/schema/jms"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-3.0.xsd
 http://activemq.apache.org/schema/core
-http://activemq.apache.org/schema/core/activemq-core.xsd">
+http://activemq.apache.org/schema/core/activemq-core.xsd
+http://www.springframework.org/schema/jms
+http://www.springframework.org/schema/jms/spring-jms-3.0.xsd">
 
     <context:component-scan base-package="de.fhkoeln.eis.radioexpert.client"/>
 
@@ -17,5 +20,15 @@ http://activemq.apache.org/schema/core/activemq-core.xsd">
 
     <!-- Topics und Connectionfactory ausgelagert fuer gemeinsame Nutzung-->
     <import resource="jmsConnectionAndTopics.xml"/>
+
+
+    <jms:listener-container connection-factory="jmsConnectionFactory" destination-type="topic">
+        <jms:listener destination="chat" ref="chatHandlerMessageListener"/>
+        <jms:listener destination="facebook" ref="socialMediaListHandlerMessageListener"/>
+        <jms:listener destination="twitter" ref="socialMediaListHandlerMessageListener"/>
+        <jms:listener destination="mail" ref="socialMediaListHandlerMessageListener"/>
+        <jms:listener destination="onlinestatus" ref="onlineStatusHandlerMessageListener"/>
+        <!-- TODO: Zuweisungen vervollständigen -->
+    </jms:listener-container>
 
 </beans>
