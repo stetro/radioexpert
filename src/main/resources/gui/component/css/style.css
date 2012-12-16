@@ -4,7 +4,7 @@
 }
 #timelineComponent div#header{
     
-    background-color: #CCC;
+
     height: 100px;
     padding:5px;
     overflow: hidden;
@@ -21,7 +21,7 @@ div#timeline{
 }
 
 div#timelinegrid{
-    background-image:url(timeline.png);
+    background-image:url(../img/timeline.png);
     background-position: 35px 0;
     background-repeat:repeat-y;
     height: 100%;
@@ -34,7 +34,7 @@ div#timeline span.time{
 }
 
 div#timeline span#timePointer{
-    background-image:url(timelinepointer.png);
+    background-image:url(../img/timelinepointer.png);
     background-repeat:no-repeat;
 
     width:200px;

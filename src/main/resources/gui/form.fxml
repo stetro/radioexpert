@@ -14,8 +14,9 @@
       <menus>
         <Menu mnemonicParsing="false" text="Datei">
           <items>
+            <MenuItem mnemonicParsing="false" text="Neue Sendung" fx:id="newBroadcastMenuItem" />
             <MenuItem mnemonicParsing="false" text="Aktuelle Sendung laden" fx:id="loadCurrentMenuItem" />
-            <MenuItem mnemonicParsing="false" text="Close" />
+            <MenuItem mnemonicParsing="false" text="Close" fx:id="closeMenuItem" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Bearbeiten">
@@ -34,13 +35,17 @@
       <children>
         <WebView fx:id="timeLineWebView" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
           <HBox.margin>
-            <Insets />
+            <Insets fx:id="x2" />
           </HBox.margin>
         </WebView>
-        <VBox minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-          <HBox.margin>
-            <Insets />
-          </HBox.margin>
+        <VBox minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" HBox.margin="$x2">
+          <children>
+            <WebView fx:id="moreInformationWebView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+              <VBox.margin>
+                <Insets fx:id="x2" />
+              </VBox.margin>
+            </WebView>
+          </children>
         </VBox>
         <SplitPane dividerPositions="0.09502262443438914, 0.5294117647058824" focusTraversable="true" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" HBox.hgrow="ALWAYS">
           <items>

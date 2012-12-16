@@ -40,20 +40,21 @@ import java.util.ResourceBundle;
 public class LoginDialogueController implements Initializable {
 
     @FXML
-    public ComboBox<String> roleComboBox;
+    private ComboBox<String> roleComboBox;
     @FXML
-    public TextField nameTextField;
+    private TextField nameTextField;
     @FXML
-    public Button submitButton;
+    private Button submitButton;
     @FXML
-    public Text serverStatusText;
+    private Text serverStatusText;
     @FXML
-    public ImageView logoImageView;
+    private ImageView logoImageView;
 
     private Logger logger = LoggerFactory.getLogger(LoginDialogueController.class);
 
     public void startLoginGui(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/gui/login.fxml"));
+        stage.getIcons().add(new Image("gui/component/img/icon.png"));
         stage.setTitle("Login Dialog");
         stage.setScene(new Scene(root, 400, 300));
         stage.show();
@@ -124,6 +125,4 @@ public class LoginDialogueController implements Initializable {
             serverStatusText.setText(serverStatusText.getText() + " Fehler bei der Verbindung!");
         }
     }
-
-
 }

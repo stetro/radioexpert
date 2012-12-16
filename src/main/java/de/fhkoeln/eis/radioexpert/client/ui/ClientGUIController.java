@@ -1,14 +1,12 @@
 package de.fhkoeln.eis.radioexpert.client.ui;
 
-import de.fhkoeln.eis.radioexpert.client.uihandler.ChatHandler;
-import de.fhkoeln.eis.radioexpert.client.uihandler.OnlineStatusHandler;
-import de.fhkoeln.eis.radioexpert.client.uihandler.SocialMediaListHandler;
-import de.fhkoeln.eis.radioexpert.client.uihandler.TimeLineHandler;
+import de.fhkoeln.eis.radioexpert.client.uihandler.*;
 import de.fhkoeln.eis.radioexpert.client.util.BroadcastLoader;
 import de.fhkoeln.eis.radioexpert.messaging.messages.OnlineStatusMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.SocialMediaMessage;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,6 +28,7 @@ import java.util.ResourceBundle;
 
 /**
  * Verwaltet alle UI Elemente der form.xml View (MVC)
+ * <p/>
  * User: Steffen Tröster
  * Date: 21.11.12
  * Time: 19:08
@@ -42,32 +41,45 @@ public class ClientGUIController implements Initializable {
     TimeLineHandler Variablen
      */
     @FXML
-    public WebView timeLineWebView;
+    private WebView timeLineWebView;
     private TimeLineHandler timeLineHandler;
     /*
     ChatHandler Variablen
      */
     @FXML
-    public TextField chatTextField;
+    private TextField chatTextField;
     @FXML
-    public WebView chatWebView;
+    private WebView chatWebView;
     @FXML
-    public Button chatButton;
+    private Button chatButton;
     private ChatHandler chatHandler;
     @FXML
-    public MenuItem loadCurrentMenuItem;
+    private MenuItem loadCurrentMenuItem;
     /*
     SocialMediaListHandler Variablen
      */
     @FXML
-    public ListView<SocialMediaMessage> socialListView;
+    private ListView<SocialMediaMessage> socialListView;
     private SocialMediaListHandler socialMediaListHandler;
     /*
     OnlineStatusHandler Variablen
     */
     @FXML
-    public ListView<OnlineStatusMessage> onlineStatusListView;
+    private ListView<OnlineStatusMessage> onlineStatusListView;
     private OnlineStatusHandler onlineStatusHandler;
+    /*
+    MoreInformationHandler Variablen (Mittelteil der GUI)
+     */
+    @FXML
+    private WebView moreInformationWebView;
+    private MoreInformationHandler moreInformationHandler;
+    /*
+    Verschiedene GUI Komponenten
+     */
+    @FXML
+    private MenuItem closeMenuItem;
+    @FXML
+    private MenuItem newBroadcastMenuItem;
 
 
     @Override
@@ -77,6 +89,8 @@ public class ClientGUIController implements Initializable {
         socialMediaListHandler = new SocialMediaListHandler(socialListView);
         timeLineHandler = new TimeLineHandler(timeLineWebView);
         onlineStatusHandler = new OnlineStatusHandler(onlineStatusListView);
+        moreInformationHandler = new MoreInformationHandler(moreInformationWebView);
+        setupOtherGUIComponents();
     }
 
     public void startClientGUI(Stage stage) throws IOException {
@@ -85,9 +99,22 @@ public class ClientGUIController implements Initializable {
         stage.setTitle("RadioExpert - Client Anwendung ");
         stage.setScene(new Scene(root, 1000, 700));
         stage.show();
-
         logger.info("Client UI wurde gestartet !");
 
     }
 
+    private void setupOtherGUIComponents() {
+        closeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Platform.exit();
+            }
+        });
+        newBroadcastMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                moreInformationHandler.showNewBroadcast();
+            }
+        });
+    }
 }
