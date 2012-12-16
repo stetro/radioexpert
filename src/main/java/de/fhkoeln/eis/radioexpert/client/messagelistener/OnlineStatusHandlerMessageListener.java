@@ -41,8 +41,10 @@ public class OnlineStatusHandlerMessageListener implements MessageListener {
                 while (Platform.isImplicitExit()) {
                     try {
                         Thread.sleep(seconds * 1000);
-                        OnlineStatusMessage m = new OnlineStatusMessage(ClientApplication.user, ClientApplication.role);
-                        jmsTemplate.convertAndSend("onlinestatus", m);
+                        if (ClientApplication.role != null) {
+                            OnlineStatusMessage m = new OnlineStatusMessage(ClientApplication.user, ClientApplication.role);
+                            jmsTemplate.convertAndSend("onlinestatus", m);
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

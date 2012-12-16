@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
@@ -32,7 +33,7 @@ public class OnlineStatusHandler {
 
     public OnlineStatusHandler(ListView<OnlineStatusMessage> givenOnlineStatusListView) {
         onlineStatusListView = givenOnlineStatusListView;
-        onlineStatusListView.setStyle("background-color:#FFF;");
+        // OnlineStatusCell stellt den Onlinestatus mit Grafik dar
         onlineStatusListView.setCellFactory(new Callback<ListView<OnlineStatusMessage>, ListCell<OnlineStatusMessage>>() {
             @Override
             public ListCell<OnlineStatusMessage> call(ListView<OnlineStatusMessage> stringListView) {
@@ -86,6 +87,9 @@ public class OnlineStatusHandler {
         }
     }
 
+    /**
+     * OnlineStatusCell stellt den Onlinestatus mit Grafik dar
+     */
     private class OnlineStatusCell extends ListCell<OnlineStatusMessage> {
         public void updateItem(OnlineStatusMessage item, boolean empty) {
             super.updateItem(item, empty);

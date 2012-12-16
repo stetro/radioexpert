@@ -7,6 +7,8 @@ import de.fhkoeln.eis.radioexpert.client.uihandler.TimeLineHandler;
 import de.fhkoeln.eis.radioexpert.client.util.BroadcastLoader;
 import de.fhkoeln.eis.radioexpert.messaging.messages.OnlineStatusMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.SocialMediaMessage;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -83,7 +85,8 @@ public class ClientGUIController implements Initializable {
         stage.setTitle("RadioExpert - Client Anwendung ");
         stage.setScene(new Scene(root, 1000, 700));
         stage.show();
-        logger.info("UI wurde gestartet !");
+
+        logger.info("Client UI wurde gestartet !");
 
     }
 

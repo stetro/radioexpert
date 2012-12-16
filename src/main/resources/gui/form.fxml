@@ -8,7 +8,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.web.*?>
 
-<AnchorPane id="AnchorPane" fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.fhkoeln.eis.radioexpert.client.ui.ClientGUIController">
+<AnchorPane id="AnchorPane" fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.fhkoeln.eis.radioexpert.client.ui.ClientGUIController">
   <children>
     <MenuBar prefHeight="25.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <menus>
@@ -37,30 +37,14 @@
             <Insets />
           </HBox.margin>
         </WebView>
-        <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-          <children>
-            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
-                <Tab text="Untitled Tab 1">
-                  <content>
-                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </Tab>
-                <Tab text="Untitled Tab 2">
-                  <content>
-                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </Tab>
-              </tabs>
-            </TabPane>
-          </children>
+        <VBox minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
           <HBox.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" fx:id="x1" />
+            <Insets />
           </HBox.margin>
         </VBox>
-        <SplitPane dividerPositions="0.13606911447084233, 0.47300215982721383" focusTraversable="true" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" HBox.hgrow="ALWAYS" HBox.margin="$x1">
+        <SplitPane dividerPositions="0.09502262443438914, 0.5294117647058824" focusTraversable="true" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" HBox.hgrow="ALWAYS">
           <items>
-            <ListView fx:id="onlineStatusListView" maxHeight="60.0" minHeight="60.0" orientation="HORIZONTAL" prefHeight="60.0" prefWidth="200.0" />
+            <ListView fx:id="onlineStatusListView" disable="true" maxHeight="60.0" minHeight="60.0" opacity="0.9" orientation="HORIZONTAL" prefHeight="60.0" prefWidth="200.0" />
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
               <children>
                 <ListView fx:id="socialListView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
@@ -74,6 +58,9 @@
               </children>
             </AnchorPane>
           </items>
+          <HBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" fx:id="x1" />
+          </HBox.margin>
         </SplitPane>
       </children>
     </HBox>
