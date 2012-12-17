@@ -1,5 +1,6 @@
 package de.fhkoeln.eis.radioexpert.client.uihandler.jshandler;
 
+import de.fhkoeln.eis.radioexpert.messaging.messages.BroadcastMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.ChatMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
@@ -27,7 +28,10 @@ public class NewBroadcastHandler {
     public NewBroadcastHandler() {
     }
 
-    public void newBroadcast() {
-        jmsTemplate.convertAndSend("chat", new ChatMessage("Ich", "Text", new Date()));
+    public void newBroadcast(int givenFrom, int givenTo, String title, String intro, String description) {
+        Date from = new Date(givenFrom);
+        Date to = new Date(givenTo);
+        BroadcastMessage broadcastMessage = new BroadcastMessage(from, to, title, intro, description);
+        jmsTemplate.convertAndSend("broadcast", broadcastMessage);
     }
 }

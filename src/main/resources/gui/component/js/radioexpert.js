@@ -27,5 +27,6 @@ var updateTimeLineSize = function(){
 $(function() {
     buildUpTimeLineTimes(1355583717886, 1355597317886, 10);
     updateTimeLineSize();
+    $("#date").datepicker();
 });
 

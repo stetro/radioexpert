@@ -1,5 +1,6 @@
 package de.fhkoeln.eis.radioexpert.server.messagelistener;
 
+import de.fhkoeln.eis.radioexpert.messaging.messages.BroadcastMessage;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 import org.slf4j.Logger;
@@ -23,6 +24,8 @@ public class DatabaseListener implements MessageListener {
     @Autowired
     SessionFactory sessionFactory;
 
+    private static BroadcastMessage currentBroadcast;
+
     private static final Logger logger = LoggerFactory.getLogger(DatabaseListener.class);
 
     @Override
@@ -30,12 +33,19 @@ public class DatabaseListener implements MessageListener {
         try {
             ObjectMessage objectMessage = (ObjectMessage) message;
             logger.info("Message empfangen !");
+            if (objectMessage instanceof BroadcastMessage) {
+                safeCurrentBroadcastId((BroadcastMessage) objectMessage);
+            }
             Session s = sessionFactory.openSession();
             s.save(objectMessage.getObject());
-        } catch(ClassCastException e ){
+        } catch (ClassCastException e) {
             logger.error("Unbekannte Nachricht wurde verschickt !" + e.getMessage());
-        }catch (Exception e) {
+        } catch (Exception e) {
             logger.error("Fehler beim Speichern in die Datenbank ! " + e.getMessage());
         }
+    }
+
+    private void safeCurrentBroadcastId(BroadcastMessage objectMessage) {
+        currentBroadcast = objectMessage;
     }
 }
