@@ -15,6 +15,7 @@ var addMessage = function(message, sender, time) {
 var buildUpTimeLineTimes = function(from, to, step,size) {
 
     $("div#timeline span.time").remove();
+    $("div#timeline hr").remove();
 
     for(var j = 0, i = from; i < to; i = i +1 * 60 * 1000, j++) {
         if(j%step==0){

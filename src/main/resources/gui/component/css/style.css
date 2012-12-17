@@ -51,6 +51,19 @@ div#timeline hr.fat
     border-color:#555;
 }
 
+
+div#pointer{
+    border-top:1px solid #D00;
+    margin-left:19px;
+}
+div#pointer div{
+    width:10px;
+    height:10px;
+    border-radius: 5px;
+    fx-border-radius: 5px;
+    background-color:#D00;
+    margin-top:-5px;
+}
 div#timeline span#timePointer{
     background-image:url(../img/timelinepointer.png);
     background-repeat:no-repeat;
