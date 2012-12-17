@@ -24,10 +24,13 @@ http://www.springframework.org/schema/jms/spring-jms-3.0.xsd">
 
     <jms:listener-container connection-factory="jmsConnectionFactory" destination-type="topic">
         <jms:listener destination="chat" ref="chatHandlerMessageListener"/>
+
         <jms:listener destination="facebook" ref="socialMediaListHandlerMessageListener"/>
         <jms:listener destination="twitter" ref="socialMediaListHandlerMessageListener"/>
         <jms:listener destination="mail" ref="socialMediaListHandlerMessageListener"/>
+
         <jms:listener destination="onlinestatus" ref="onlineStatusHandlerMessageListener"/>
+        <jms:listener destination="broadcast" ref="broadcastMessageListener"/>
         <!-- TODO: Zuweisungen vervollständigen -->
     </jms:listener-container>
 

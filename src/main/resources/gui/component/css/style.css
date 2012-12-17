@@ -1,18 +1,19 @@
-
 #timelineComponent h1{
     font-size: 18px;
 }
-#timelineComponent div#header{
-    
 
+#timelineComponent div#header{
     height: 100px;
     padding:5px;
     overflow: hidden;
 }
 
+#newBroadcast{
+    background-color:#EEE;
+}
+
 div#timeline{
     margin:10px 0 0 0;
-
     padding:5px 0px 10px 20px;
     position:relative;
     position: relative;
@@ -21,10 +22,7 @@ div#timeline{
 }
 
 div#timelinegrid{
-    background-image:url(../img/timeline.png);
-    background-position: 35px 0;
-    background-repeat:repeat-y;
-    height: 100%;
+
     width: 100px;
 }
 
@@ -33,10 +31,29 @@ div#timeline span.time{
     left: 5px;
 }
 
+div#timeline hr , div#timeline hr.smooth , div#timeline hr.fat
+{
+    left:45px;
+    width:100%;
+    position:absolute;
+}
+
+div#timeline hr
+{
+    border-color:#EEE;
+}
+div#timeline hr.smooth
+{
+    border-color:#AAA;
+}
+div#timeline hr.fat
+{
+    border-color:#555;
+}
+
 div#timeline span#timePointer{
     background-image:url(../img/timelinepointer.png);
     background-repeat:no-repeat;
-
     width:200px;
     height:9px;
     position:absolute;

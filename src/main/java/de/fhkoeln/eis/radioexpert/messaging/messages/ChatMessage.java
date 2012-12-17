@@ -22,6 +22,10 @@ public class ChatMessage implements Serializable {
     @Column(name = "sender")
     private String sender;
 
+
+    public ChatMessage() {
+    }
+
     public ChatMessage(String message, String sender, Date time) {
         this.id = id;
         this.message = message;

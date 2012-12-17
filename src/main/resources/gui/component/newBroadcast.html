@@ -11,10 +11,10 @@
     <link rel="stylesheet" href="css/style.css"/>
 
 </head>
-<body style="padding:8px;">
+<body style="padding:8px;" id="newBroadcast">
 <h4>Neue Sendung erstellen</h4>
 
-<form id="newBroadcast" class="forms" action="#">
+<form class="forms">
     <fieldset>
         <ul>
             <li>
@@ -28,13 +28,13 @@
                 <input type="text" id="date" name="date">
             </li>
             <li>
-                <label for="from" class="bold">Zeitraum</label>
+                <label for="start" class="bold">Zeitraum</label>
                 <ul class="multicolumn">
                     <li>
-                        <input type="text" name="from" id="from" size="5" maxlength="5"> bis
+                        <input type="text" name="start" id="start" size="5" maxlength="5"> bis
                     </li>
                     <li>
-                        <input type="text" name="to" size="5" id="to" maxlength="5">
+                        <input type="text" name="end" size="5" id="end" maxlength="5">
                     </li>
                 </ul>
             </li>
@@ -43,12 +43,11 @@
                 <textarea class="width-100" name="intro" id="intro" style="height: 50px;"></textarea>
             </li>
             <li>
-                <label for="text" class="bold">Informationstext</label>
-                <textarea class="width-100" name="text" id="text" style="height: 100px;"></textarea>
+                <label for="description" class="bold">Informationstext</label>
+                <textarea class="width-100" name="text" id="description" style="height: 100px;"></textarea>
             </li>
             <li>
-                <input type="submit" name="submit" id="submit" value="Sendung erstellen" class="btn"
-                       onclick="window.NewBroadcastHandler.newBroadcast()">
+                <input type="button" name="submit" id="submitBroadcast" value="Sendung erstellen" class="btn">
             </li>
         </ul>
     </fieldset>

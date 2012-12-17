@@ -1,9 +1,10 @@
 package de.fhkoeln.eis.radioexpert.messaging.messages;
 
-import org.hibernate.annotations.Entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -13,16 +14,16 @@ import java.util.Date;
  * Date: 17.12.12
  * Time: 09:29
  */
-@Entity()
+@Entity
 @Table(name = "BroadcastMessage")
-public class BroadcastMessage {
+public class BroadcastMessage implements Serializable {
     @javax.persistence.Id
     @Column(name = "createdAt")
-    private final Date createdAt;
-    @Column(name = "from")
-    private Date from;
-    @Column(name = "to")
-    private Date to;
+    private Date createdAt;
+    @Column(name = "start")
+    private Date start;
+    @Column(name = "end")
+    private Date end;
     @Column(name = "title")
     private String title;
     @Column(name = "intro")
@@ -30,10 +31,14 @@ public class BroadcastMessage {
     @Column(name = "description")
     private String description;
 
-    public BroadcastMessage(Date from, Date to, String title, String intro, String description) {
+
+    public BroadcastMessage() {
+    }
+
+    public BroadcastMessage(Date start, Date end, String title, String intro, String description) {
         createdAt = new Date();
-        this.from = from;
-        this.to = to;
+        this.start = start;
+        this.end = end;
         this.title = title;
         this.intro = intro;
         this.description = description;
@@ -43,20 +48,20 @@ public class BroadcastMessage {
         return createdAt;
     }
 
-    public Date getFrom() {
-        return from;
+    public Date getStart() {
+        return start;
     }
 
-    public void setFrom(Date from) {
-        this.from = from;
+    public void setStart(Date start) {
+        this.start = start;
     }
 
-    public Date getTo() {
-        return to;
+    public Date getEnd() {
+        return end;
     }
 
-    public void setTo(Date to) {
-        this.to = to;
+    public void setEnd(Date end) {
+        this.end = end;
     }
 
     public String getTitle() {

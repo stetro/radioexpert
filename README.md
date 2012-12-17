@@ -5,7 +5,7 @@ Java Client/Server With PubSub and APIs
 
 Installation
 ------------
-To build this project, install jdk7 with javafx support and add a settings.xml for maven in ~/.m2/settings.xml. settings.xml has to contain the following content :
+To build this project, install jdk7 with javafx support and add a settings.xml for maven in ~/.m2/settings.xml. settings.xml has end contain the following content :
 
 
 ```xml

@@ -1,7 +1,8 @@
 package de.fhkoeln.eis.radioexpert.client.uihandler.jshandler;
 
 import de.fhkoeln.eis.radioexpert.messaging.messages.BroadcastMessage;
-import de.fhkoeln.eis.radioexpert.messaging.messages.ChatMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.util.Date;
 @Service
 public class NewBroadcastHandler {
     private static JmsTemplate jmsTemplate;
+    private Logger logger = LoggerFactory.getLogger(NewBroadcastHandler.class);
 
     @Autowired
     public NewBroadcastHandler(JmsTemplate jmsTemplate) {
@@ -28,7 +30,8 @@ public class NewBroadcastHandler {
     public NewBroadcastHandler() {
     }
 
-    public void newBroadcast(int givenFrom, int givenTo, String title, String intro, String description) {
+    public void newBroadcast(long givenFrom, long givenTo, String title, String intro, String description) {
+        logger.info("Sendung wird erzeugt ...");
         Date from = new Date(givenFrom);
         Date to = new Date(givenTo);
         BroadcastMessage broadcastMessage = new BroadcastMessage(from, to, title, intro, description);
