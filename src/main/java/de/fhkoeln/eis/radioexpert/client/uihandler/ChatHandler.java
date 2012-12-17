@@ -38,6 +38,7 @@ public class ChatHandler {
         chatWebView = givenChatWebView;
         chatTextField = givenChatTextField;
         chatButton = givenChatButton;
+        chatWebView.setContextMenuEnabled(false);
         jmsTemplate = ClientApplication.context.getBean(JmsTemplate.class);
         jmsTemplate.setPubSubDomain(true);
         setupKeyListener();
