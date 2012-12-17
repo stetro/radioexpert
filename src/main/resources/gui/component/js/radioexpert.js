@@ -13,26 +13,19 @@ var addMessage = function(message, sender, time) {
  * Timeline Komponenten JavaScirpt
 */
 var buildUpTimeLineTimes = function(from, to, step,size) {
-
     $("div#timeline span.time").remove();
     $("div#timeline hr").remove();
-
     for(var j = 0, i = from; i < to; i = i +1 * 60 * 1000, j++) {
         if(j%step==0){
             var time = new Date(i);
             var minutes = ((time.getMinutes()<10)?"0":"") + time.getMinutes();
             $("div#timeline").append('<span class="time" style="top:' + j * size + 'px">' + time.getHours() + ':' + minutes + '</span>');
             $("div#timeline").append('<hr class="fat" style="top:'+j*size+'px"/>');
-        }
-        else if(j%5==0)
-        {
+        }else if(j%5==0){
             $("div#timeline").append('<hr class="smooth" style="top:'+j*size+'px"/>');
-        }
-        else
-        {
+        }else{
             $("div#timeline").append('<hr style="top:'+j*size+'px"/>');
         }
-
     }
 }
 
@@ -45,6 +38,10 @@ var updateTimeLine = function(title,intro,start,end){
 
 var updateTimeLineSize = function(){
     $("div#timeline").css("height", window.innerHeight-145);
+}
+
+window.onresize = function(event) {
+    updateTimeLineSize();
 }
 
 $(function() {
