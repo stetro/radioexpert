@@ -19,6 +19,7 @@ import java.util.Date;
 @Service
 public class NewBroadcastHandler {
     private static JmsTemplate jmsTemplate;
+    public static BroadcastMessage currentBroadcastMessage;
     private Logger logger = LoggerFactory.getLogger(NewBroadcastHandler.class);
 
     @Autowired

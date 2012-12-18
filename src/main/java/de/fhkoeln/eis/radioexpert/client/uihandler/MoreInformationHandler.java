@@ -24,6 +24,7 @@ public class MoreInformationHandler {
 
     public MoreInformationHandler(WebView moreInformationWebView) {
         this.moreInformationWebView = moreInformationWebView;
+        moreInformationWebView.setContextMenuEnabled(false);
         moreInformationWebView.getEngine().setJavaScriptEnabled(true);
     }
 

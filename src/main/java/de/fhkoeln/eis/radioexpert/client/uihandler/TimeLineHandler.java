@@ -21,6 +21,7 @@ public class TimeLineHandler {
 
     public TimeLineHandler(WebView givenTimeLineWebView) {
         timeLineWebView = givenTimeLineWebView;
+        timeLineWebView.setContextMenuEnabled(false);
         loadLocalTimeLineHtmlComponent();
     }
 
@@ -52,4 +53,5 @@ public class TimeLineHandler {
 
 
     }
+
 }
