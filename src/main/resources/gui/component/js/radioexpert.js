@@ -12,7 +12,15 @@ var addMessage = function(message, sender, time) {
 /*
  * Timeline Komponenten JavaScirpt
 */
+
+var timeLineFrom;
+var timeLineTo;
+var timeLineSize;
+
 var buildUpTimeLineTimes = function(from, to, step,size) {
+    timeLineFrom = from;
+    timeLineTo = to;
+    timeLineSize = size;
 
     $("div#timeline span.time").remove();
     $("div#timeline hr").remove();
@@ -36,11 +44,30 @@ var buildUpTimeLineTimes = function(from, to, step,size) {
     }
 }
 
+/*testfunktion*/
+var starter = function(){
+       updateTimeLine("hallo", "hhh", new Date().getTime(), new Date().setHours(18));
+       //setModule("test", "lorem ipsum solorem maota lakjsdfaslkdfjöl lkasdfkjasiejksdf jfie asdf", new Date(2012, 11, 17, 16, 0, 0, 0), new Date(2012, 11, 17, 16, 30, 0, 0));
+}
+
+var setModule = function(name, infotext, start, end){
+       beginning = Math.round((start - timeLineFrom)/1000/60)
+       ending = Math.round((end - timeLineFrom)/1000/60)
+       $("#timelineComponent #timeline").append('<div id="modules"><div class="module" style="' +
+                                                'background-color: rgba(150, 150, 150, 0.7);' +
+                                                'height: ' + (ending - beginning) * timeLineSize + 'px;' +
+                                                'top:'+ beginning * timeLineSize+'px">' +
+                                                '<h5>' + name + '</h5>'+
+                                                '<p>'+infotext + '</p></div></div>')
+
+}
+
 var updateTimeLine = function(title,intro,start,end){
     $("div#header h4").empty().append(title);
     $("div#header blockquote").empty().append(intro);
-
     buildUpTimeLineTimes(start,end,10,10);
+    setModule("Moderation mit Werner", "lorem ipsum solorem maota lakjsdfaslkdfjöl lkasdfkjasiejksdf jfie asdf", new Date(2012, 11, 18, 16, 0, 0, 0), new Date(2012, 11, 18, 16, 30, 0, 0));
+
 }
 
 var updateTimeLineSize = function(){
@@ -60,6 +87,7 @@ $(function() {
         to.setMinutes($("#end").val().match(/[0-9]{1,2}$/));
         console.log(to.getTime())
         console.log(from.getTime())
+
 
         window.NewBroadcastHandler.newBroadcast(
             from.getTime(),

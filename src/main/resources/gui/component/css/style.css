@@ -74,3 +74,17 @@ div#timeline span#timePointer{
     left:5px;
     opacity:0.4;
 }
+/*************timeline Elemente************/
+div#module  {
+position:relative;
+
+}
+
+div#modules div.module{
+     position:absolute;
+     left:45px;
+     width:100%;
+     padding: 15px;
+
+
+}
