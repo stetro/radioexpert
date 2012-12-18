@@ -43,6 +43,7 @@ http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
         <jms:listener destination="facebook" ref="databaseListener"/>
         <jms:listener destination="mail" ref="databaseListener"/>
         <jms:listener destination="broadcast" ref="databaseListener"/>
+        <jms:listener destination="interviewelement" ref="databaseListener"/>
         <!-- TODO: TOPICS -->
     </jms:listener-container>
     <!-- Services fuer queues abbonieren -->

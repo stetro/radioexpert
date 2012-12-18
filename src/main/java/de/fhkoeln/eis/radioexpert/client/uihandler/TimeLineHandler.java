@@ -1,6 +1,7 @@
 package de.fhkoeln.eis.radioexpert.client.uihandler;
 
 import de.fhkoeln.eis.radioexpert.messaging.messages.BroadcastMessage;
+import de.fhkoeln.eis.radioexpert.messaging.messages.InterviewElementMessage;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
@@ -54,4 +55,16 @@ public class TimeLineHandler {
 
     }
 
+    public static void updateElement(final InterviewElementMessage object) {
+        if (timeLineWebView == null) return;
+        //var setModule = function(name, infotext, type, start, end)
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                timeLineWebView.getEngine().executeScript("setModule('" + object.getTitle() + "','" + object.getInfo()
+                        + "','interview'," + object.getStart().getTime() + "," + object.getEnd().getTime() + ")");
+            }
+        });
+    }
 }

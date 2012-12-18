@@ -48,7 +48,7 @@ var buildUpTimeLineTimes = function(from, to, step,size) {
 var setModule = function(name, infotext, type, start, end){
        beginning = Math.round((start - timeLineFrom)/1000/60);
        ending = Math.round((end - timeLineFrom)/1000/60);
-       $("#timelineComponent #timeline").append('<div class="module '+type+''" style="' +
+       $("#timelineComponent #timeline #modules").append('<div class="module '+type+'" style="' +
                                                 'background-color: rgba(150, 150, 150, 0.7);' +
                                                 'height: ' + (ending - beginning) * timeLineSize + 'px;' +
                                                 'top:'+ beginning * timeLineSize+'px">' +

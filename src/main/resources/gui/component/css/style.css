@@ -85,6 +85,5 @@ div#modules div.module{
      left:45px;
      width:100%;
      padding: 15px;
-
-
+     z-index:10;
 }

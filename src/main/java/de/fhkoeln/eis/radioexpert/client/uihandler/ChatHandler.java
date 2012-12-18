@@ -2,6 +2,7 @@ package de.fhkoeln.eis.radioexpert.client.uihandler;
 
 import de.fhkoeln.eis.radioexpert.client.ClientApplication;
 import de.fhkoeln.eis.radioexpert.messaging.messages.ChatMessage;
+import de.fhkoeln.eis.radioexpert.messaging.messages.InterviewElementMessage;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
