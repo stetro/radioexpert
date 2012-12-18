@@ -12,7 +12,16 @@ var addMessage = function(message, sender, time) {
 /*
  * Timeline Komponenten JavaScirpt
 */
+
+var timeLineFrom;
+var timeLineTo;
+var timeLineSize;
+
 var buildUpTimeLineTimes = function(from, to, step,size) {
+
+    timeLineFrom = from;
+    timeLineTo = to;
+    timeLineSize = size;
 
     $("div#timeline span.time").remove();
     $("div#timeline hr").remove();
@@ -34,6 +43,18 @@ var buildUpTimeLineTimes = function(from, to, step,size) {
         }
 
     }
+}
+
+var setModule = function(name, infotext, type, start, end){
+       beginning = Math.round((start - timeLineFrom)/1000/60);
+       ending = Math.round((end - timeLineFrom)/1000/60);
+       $("#timelineComponent #timeline").append('<div class="module '+type+''" style="' +
+                                                'background-color: rgba(150, 150, 150, 0.7);' +
+                                                'height: ' + (ending - beginning) * timeLineSize + 'px;' +
+                                                'top:'+ beginning * timeLineSize+'px">' +
+                                                '<h5>' + name + '</h5>'+
+                                                '<p>'+infotext + '</p></div>');
+
 }
 
 var updateTimeLine = function(title,intro,start,end){
