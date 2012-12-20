@@ -6,10 +6,19 @@
     height: 100px;
     padding:5px;
     overflow: hidden;
+    z-index:10;
+    background-color:#EEE;
+    margin-right:50px;
+}
+#timelineComponent div#header.active{
+    margin-right:0px;
 }
 
 #newBroadcast{
     background-color:#EEE;
+}
+#newAudio{
+    background-color:#DEE0BF;
 }
 
 div#timeline{
@@ -19,6 +28,7 @@ div#timeline{
     position: relative;
     overflow-x:hidden;
     overflow-y:  scroll;
+    z-index:2;
 }
 
 div#timelinegrid{
@@ -51,12 +61,14 @@ div#timeline hr.fat
     border-color:#555;
 }
 
-
 div#pointer{
     border-top:1px solid #D00;
     margin-left:19px;
+    width:100%;
+    position:absolute;
 }
 div#pointer div{
+    position:relative;
     width:10px;
     height:10px;
     border-radius: 5px;
@@ -74,16 +86,20 @@ div#timeline span#timePointer{
     left:5px;
     opacity:0.4;
 }
+
 /*************timeline Elemente************/
 div#module  {
-position:relative;
+    position:relative;
 
 }
-
+div#modules div.module.active{
+    margin-right:0px;
+}
 div#modules div.module{
      position:absolute;
      left:45px;
      width:100%;
+     margin-right:50px;
      padding: 15px;
      z-index:10;
 }

@@ -6,6 +6,8 @@ var timeLineFrom;
 var timeLineTo;
 var timeLineSize;
 
+var Active = {"broadcast":{"class":"broadcast"},"song":{"class":"broadcast"}}
+
 var buildUpTimeLineTimes = function(from, to, step, size) {
         timeLineFrom = from;
         timeLineTo = to;
@@ -26,6 +28,13 @@ var buildUpTimeLineTimes = function(from, to, step, size) {
         }
     }
 
+var updatePointer = function(time){
+    $("#pointer").animate({
+        top: Math.round((time - timeLineFrom) / 1000 / 60)*timeLineSize
+    },'fast');
+
+}
+
 var setModule = function(name, infotext, type, start, end) {
         beginning = Math.round((start - timeLineFrom) / 1000 / 60);
         ending = Math.round((end - timeLineFrom) / 1000 / 60);
@@ -33,22 +42,41 @@ var setModule = function(name, infotext, type, start, end) {
 
     }
 
+var selectElement = function(active, start, end){
+    $("#timelineComponent svg").empty();
+
+    positionX=window.innerWidth;
+    positionY=0;
+
+    width=100;
+    height=150;
+
+    points = ""+positionX - width+","+positionY+height+" ";
+    points += ""+positionX+","+positionY+height+" ";
+    points += ""+positionX+","+positionY+" ";
+    points += ""+positionX - width+","+positionY+"";
+
+    $("svg").append("<polygon class=\""+active.class+"\" points=\""+points+"\"/>")
+
+}
+
 var updateTimeLine = function(title, intro, start, end) {
         $("div#header h4").empty().append(title).append("&nbsp;<span class=\"descr\">" + printDate(start) + "</span>");
-        console.log("<span>" + printDate(start) + "</span>");
         $("div#header blockquote").empty().append(intro);
         buildUpTimeLineTimes(start, end, 10, 10);
+        $("div#header").addClass("active");
     }
 
 var updateTimeLineSize = function() {
         $("div#timeline").css("height", window.innerHeight - 145);
-        console.log("foo")
     }
 
 $(function() {
     window.onresize = updateTimeLineSize;
     updateTimeLineSize();
 });
+
+
 
 
 /* HILFSMETHODEN */

@@ -19,11 +19,11 @@ import java.net.URL;
  * Time: 12:18
  */
 public class MoreInformationHandler {
-    private final WebView moreInformationWebView;
-    private Logger logger = LoggerFactory.getLogger(MoreInformationHandler.class);
+    private static WebView moreInformationWebView;
+    private static Logger logger = LoggerFactory.getLogger(MoreInformationHandler.class);
 
-    public MoreInformationHandler(WebView moreInformationWebView) {
-        this.moreInformationWebView = moreInformationWebView;
+    public MoreInformationHandler(WebView givenMoreInformationWebView) {
+        moreInformationWebView = givenMoreInformationWebView;
         moreInformationWebView.setContextMenuEnabled(false);
         moreInformationWebView.getEngine().setJavaScriptEnabled(true);
     }
@@ -41,6 +41,24 @@ public class MoreInformationHandler {
         URL url = getClass().getResource("/gui/component/newBroadcast.html");
         moreInformationWebView.getEngine().load(url.toExternalForm());
         logger.info("Neue Sendung anlegen UI wird geladen ...");
+    }
+
+    public static void createNewAudioDialog() {
+        URL url = MoreInformationHandler.class.getResource("/gui/component/newAudio.html");
+        moreInformationWebView.getEngine().load(url.toExternalForm());
+        logger.info("Neues Audio anlegen UI wird geladen ...");
+    }
+
+    public static void createNewInterviewDialog() {
+        System.out.println("new Interview");
+    }
+
+    public static void createNewModerationDialog() {
+        System.out.println("new Moderation");
+    }
+
+    public static void createNewArticleDialog() {
+        System.out.println("new dialog");
     }
 }
 

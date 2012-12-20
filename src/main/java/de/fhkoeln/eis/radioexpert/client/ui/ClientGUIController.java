@@ -86,12 +86,12 @@ public class ClientGUIController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadCurrentMenuItem.setOnAction(new BroadcastLoader());
+        timeLineHandler = new TimeLineHandler(timeLineWebView);
         chatHandler = new ChatHandler(chatWebView, chatTextField, chatButton);
         socialMediaListHandler = new SocialMediaListHandler(socialListView);
-        timeLineHandler = new TimeLineHandler(timeLineWebView);
         onlineStatusHandler = new OnlineStatusHandler(onlineStatusListView);
         moreInformationHandler = new MoreInformationHandler(moreInformationWebView);
+        loadCurrentMenuItem.setOnAction(new BroadcastLoader());
         setupOtherGUIComponents();
     }
 
@@ -101,10 +101,8 @@ public class ClientGUIController implements Initializable {
         stage.setTitle("RadioExpert - Client Anwendung ");
         Scene scene = new Scene(root, 1000, 700);
         stage.setScene(scene);
-
         stage.show();
         logger.info("Client UI wurde gestartet !");
-
     }
 
     private void setupOtherGUIComponents() {
