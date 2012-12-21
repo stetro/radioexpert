@@ -10,6 +10,7 @@ library/
 
 # Package Files #
 *.iml
+*.iml
 *.jar
 *.war
 *.ear
