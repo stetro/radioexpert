@@ -13,16 +13,13 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "AudioMessage")
-public class AudioMessage implements Serializable {
+public class AudioMessage implements Serializable, TimeLineElement {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private long id;
-    @Column(name = "createdAt")
     private Date createdAt;
-    @Column(name = "start")
     private Date start;
-    @Column(name = "end")
     private Date end;
     private String title;
     private Date broadcastCreatedAt;

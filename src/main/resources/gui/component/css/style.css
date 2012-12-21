@@ -95,11 +95,24 @@ div#module  {
 div#modules div.module.active{
     margin-right:0px;
 }
+div#modules div.module h5{
+    display:inline;
+
+    font-size:14px;
+}
 div#modules div.module{
      position:absolute;
      left:45px;
      width:100%;
      margin-right:50px;
-     padding: 15px;
+     padding: 3px;
      z-index:10;
+     background-color: rgba(150, 150, 150, 0.7);
+     margin:3px;
+     border-radius:5px;
+     box-shadow: 0 0 2px 2px #DDD;
+}
+div#modules div.module.audio{
+    background-color: rgba(222, 224, 191, 0.7);
+
 }

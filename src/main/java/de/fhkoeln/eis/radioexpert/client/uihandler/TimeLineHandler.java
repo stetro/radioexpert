@@ -4,7 +4,8 @@ import de.fhkoeln.eis.radioexpert.client.ClientApplication;
 import de.fhkoeln.eis.radioexpert.client.util.UserRole;
 import de.fhkoeln.eis.radioexpert.messaging.messages.AudioMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.BroadcastMessage;
-import de.fhkoeln.eis.radioexpert.messaging.messages.InterviewElementMessage;
+import de.fhkoeln.eis.radioexpert.messaging.messages.InterviewMessage;
+import de.fhkoeln.eis.radioexpert.messaging.messages.TimeLineElement;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,6 +21,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * TimeLine Funktionalität mit WebView Komponente
@@ -31,15 +34,18 @@ import java.net.URL;
 public class TimeLineHandler {
     private static WebView timeLineWebView;
     private static Logger logger = LoggerFactory.getLogger(TimeLineHandler.class);
+    private static List<TimeLineElement> timeLineElements = new ArrayList<TimeLineElement>();
 
     public TimeLineHandler(WebView givenTimeLineWebView) {
 
-        URL url = getClass().getResource("/gui/component/timeline.html");
-        givenTimeLineWebView.getEngine().load(url.toExternalForm());
-
         timeLineWebView = givenTimeLineWebView;
-        timeLineWebView.setContextMenuEnabled(false);
+        // Seite Aufrufen
+
         timeLineWebView.getEngine().setJavaScriptEnabled(true);
+        URL url = TimeLineHandler.class.getResource("/gui/component/timeline.html");
+        timeLineWebView.getEngine().load(url.toExternalForm());
+        //timeLineWebView.getEngine().load("http://google.de");
+        timeLineWebView.setContextMenuEnabled(false);
         timeLineWebView.getEngine().setOnResized(new EventHandler<WebEvent<Rectangle2D>>() {
             @Override
             public void handle(WebEvent<Rectangle2D> rectangle2DWebEvent) {
@@ -51,10 +57,11 @@ public class TimeLineHandler {
 
     public static void setBroadcast(final BroadcastMessage broadcastMessage) {
         if (timeLineWebView == null) return;
+
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                System.out.println(broadcastMessage.getEnd().getTime());
+                // Script ausfuehren
                 timeLineWebView.getEngine().executeScript("updateTimeLine('" +
                         broadcastMessage.getTitle() + "','" +
                         broadcastMessage.getIntro() + "'," +
@@ -64,29 +71,27 @@ public class TimeLineHandler {
         });
     }
 
-    public static void updateElement(final InterviewElementMessage object) {
+    public static void updateElement(final InterviewMessage object) {
         if (timeLineWebView == null) return;
-        //var setModule = function(name, infotext, type, start, end)
-
+        logger.info("interview wird aktualisiert oder hinzugefuegt");
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                timeLineWebView.getEngine().executeScript("setModule('" + object.getTitle() + "','" + object.getInfo()
-                        + "','interview'," + object.getStart().getTime() + "," + object.getEnd().getTime() + ")");
+                timeLineWebView.getEngine().executeScript("setModule('" + object.getTitle() + "','" + object.getInfo() + "','interview'," + object.getStart().getTime() + "," + object.getEnd().getTime() + ")");
             }
         });
     }
 
-
     public static void updateElement(final AudioMessage object) {
         if (timeLineWebView == null) return;
+        logger.info("audio wird aktualisiert oder hinzugefuegt");
+        // function(name, infotext, type, start, end) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                timeLineWebView.getEngine().executeScript("setModule('" + object.getTitle() + "','audio','interview'," + object.getStart().getTime() + "," + object.getEnd().getTime() + ")");
+                timeLineWebView.getEngine().executeScript("setModule('Audiobeitrag','" + object.getTitle() + "','audio'," + object.getStart().getTime() + "," + object.getEnd().getTime() + ")");
             }
         });
-
     }
 
     /**

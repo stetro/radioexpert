@@ -20,15 +20,10 @@ public class BroadcastMessage implements Serializable {
     @javax.persistence.Id
     @Column(name = "createdAt")
     private Date createdAt;
-    @Column(name = "start")
     private Date start;
-    @Column(name = "end")
     private Date end;
-    @Column(name = "title")
     private String title;
-    @Column(name = "intro")
     private String intro;
-    @Column(name = "description")
     private String description;
     public static Date lastCreatedBroadcastDate;
 

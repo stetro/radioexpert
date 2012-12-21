@@ -13,8 +13,8 @@ import java.util.Date;
  */
 
 @Entity
-@Table(name = "InterviewElementMessage")
-public class InterviewElementMessage implements Serializable {
+@Table(name = "InterviewMessage")
+public class InterviewMessage implements Serializable,TimeLineElement {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -48,10 +48,10 @@ public class InterviewElementMessage implements Serializable {
     @Column(name = "quotes")
     private String quotes;
 
-    public InterviewElementMessage() {
+    public InterviewMessage() {
     }
 
-    public InterviewElementMessage(Date createdAt, Date start, Date end, String title, String phone, String street, String town, String email, String name, String info, String talkInfo, String questions, String socialMedia, String quotes) {
+    public InterviewMessage(Date createdAt, Date start, Date end, String title, String phone, String street, String town, String email, String name, String info, String talkInfo, String questions, String socialMedia, String quotes) {
         this.createdAt = createdAt;
         this.start = start;
         this.end = end;

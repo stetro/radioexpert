@@ -36,9 +36,12 @@ var updatePointer = function(time){
 }
 
 var setModule = function(name, infotext, type, start, end) {
+        a=new Date(start);
+        b=new Date(end);
+
         beginning = Math.round((start - timeLineFrom) / 1000 / 60);
         ending = Math.round((end - timeLineFrom) / 1000 / 60);
-        $("#timelineComponent #timeline #modules").append('<div class="module ' + type + '" style="' + 'background-color: rgba(150, 150, 150, 0.7);' + 'height: ' + (ending - beginning) * timeLineSize + 'px;' + 'top:' + beginning * timeLineSize + 'px">' + '<h5>' + name + '</h5>' + '<p>' + infotext + '</p></div>');
+        $("#timelineComponent #timeline #modules").append('<div class="module ' + type + '" style="' + 'height: ' + ((ending - beginning) * timeLineSize - 12) + 'px;' + 'top:' + (beginning * timeLineSize+6) + 'px">' + '<h5>' + name + '</h5>&nbsp;' + '<span>' + infotext + '</span></div>');
 
     }
 
