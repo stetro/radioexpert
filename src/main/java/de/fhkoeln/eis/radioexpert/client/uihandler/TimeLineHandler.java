@@ -2,6 +2,7 @@ package de.fhkoeln.eis.radioexpert.client.uihandler;
 
 import de.fhkoeln.eis.radioexpert.client.ClientApplication;
 import de.fhkoeln.eis.radioexpert.client.util.UserRole;
+import de.fhkoeln.eis.radioexpert.messaging.messages.AudioMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.BroadcastMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.InterviewElementMessage;
 import javafx.application.Platform;
@@ -15,6 +16,8 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebEvent;
 import javafx.scene.web.WebView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 
@@ -27,14 +30,15 @@ import java.net.URL;
  */
 public class TimeLineHandler {
     private static WebView timeLineWebView;
+    private static Logger logger = LoggerFactory.getLogger(TimeLineHandler.class);
 
     public TimeLineHandler(WebView givenTimeLineWebView) {
 
         URL url = getClass().getResource("/gui/component/timeline.html");
         givenTimeLineWebView.getEngine().load(url.toExternalForm());
 
-        timeLineWebView.setContextMenuEnabled(false);
         timeLineWebView = givenTimeLineWebView;
+        timeLineWebView.setContextMenuEnabled(false);
         timeLineWebView.getEngine().setJavaScriptEnabled(true);
         timeLineWebView.getEngine().setOnResized(new EventHandler<WebEvent<Rectangle2D>>() {
             @Override
@@ -73,6 +77,17 @@ public class TimeLineHandler {
         });
     }
 
+
+    public static void updateElement(final AudioMessage object) {
+        if (timeLineWebView == null) return;
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                timeLineWebView.getEngine().executeScript("setModule('" + object.getTitle() + "','audio','interview'," + object.getStart().getTime() + "," + object.getEnd().getTime() + ")");
+            }
+        });
+
+    }
 
     /**
      * Baut ein Kontextmenue auf (bei Rechtsklick auf Timeline):
@@ -130,5 +145,4 @@ public class TimeLineHandler {
             }
         });
     }
-
 }

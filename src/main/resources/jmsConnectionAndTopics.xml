@@ -12,6 +12,8 @@ http://activemq.apache.org/schema/core/activemq-core.xsd">
     <amq:topic id="director" physicalName="director"/>
     <amq:topic id="chat" physicalName="chat"/>
     <amq:topic id="broadcast" physicalName="broadcast"/>
+    <amq:topic id="interview" physicalName="interview"/>
+    <amq:topic id="audio" physicalName="audio"/>
 
     <amq:topic id="mail" physicalName="mail"/>
     <amq:topic id="twitter" physicalName="twitter"/>

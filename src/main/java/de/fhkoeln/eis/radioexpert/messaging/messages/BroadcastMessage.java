@@ -30,6 +30,7 @@ public class BroadcastMessage implements Serializable {
     private String intro;
     @Column(name = "description")
     private String description;
+    public static Date lastCreatedBroadcastDate;
 
 
     public BroadcastMessage() {
@@ -37,6 +38,7 @@ public class BroadcastMessage implements Serializable {
 
     public BroadcastMessage(Date start, Date end, String title, String intro, String description) {
         createdAt = new Date();
+        lastCreatedBroadcastDate = createdAt;
         this.start = start;
         this.end = end;
         this.title = title;

@@ -1,6 +1,7 @@
 package de.fhkoeln.eis.radioexpert.client.messagelistener;
 
 import de.fhkoeln.eis.radioexpert.client.uihandler.TimeLineHandler;
+import de.fhkoeln.eis.radioexpert.messaging.messages.AudioMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.InterviewElementMessage;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +22,12 @@ public class TimeLineElementMessageListener implements MessageListener {
 
     @Override
     public void onMessage(Message message) {
-        ObjectMessage objectMessage = (ObjectMessage)message;
+        ObjectMessage objectMessage = (ObjectMessage) message;
         try {
-            if(objectMessage.getObject() instanceof InterviewElementMessage)
-            {
-                TimeLineHandler.updateElement((InterviewElementMessage)objectMessage.getObject());
+            if (objectMessage.getObject() instanceof InterviewElementMessage) {
+                TimeLineHandler.updateElement((InterviewElementMessage) objectMessage.getObject());
+            } else if (objectMessage.getObject() instanceof AudioMessage) {
+                TimeLineHandler.updateElement((AudioMessage) objectMessage.getObject());
             }
         } catch (JMSException e) {
             e.printStackTrace();
