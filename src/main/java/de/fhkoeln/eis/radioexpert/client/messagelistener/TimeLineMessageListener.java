@@ -18,7 +18,7 @@ import javax.jms.ObjectMessage;
  * Time: 09:51
  */
 @Service
-public class TimeLineElementMessageListener implements MessageListener {
+public class TimeLineMessageListener implements MessageListener {
 
     @Override
     public void onMessage(Message message) {
