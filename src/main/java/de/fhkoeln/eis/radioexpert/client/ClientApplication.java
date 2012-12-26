@@ -9,6 +9,7 @@ import org.apache.xbean.spring.context.ClassPathXmlApplicationContext;
 import org.springframework.context.ApplicationContext;
 
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Hauptklasse fuer die Clientseite mit GUI und ActiveMQ Anbindung

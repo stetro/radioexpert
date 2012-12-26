@@ -26,8 +26,10 @@ $(function(){
         var to = new Date();
         from.setHours($("#start").val().match(/^[0-9]{1,2}/));
         from.setMinutes($("#start").val().match(/[0-9]{1,2}$/));
+        from.setSeconds(0);
         to.setHours($("#end").val().match(/^[0-9]{1,2}/));
         to.setMinutes($("#end").val().match(/[0-9]{1,2}$/));
+        to.setSeconds(0);
         window.NewElementHandler.newAudio($("#title").val(),from,to);
     });
 });

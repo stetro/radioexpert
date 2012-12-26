@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Audio</title>
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/jquery-ui.js" type="text/javascript"></script>
+    <script src="js/component.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="css/kube.min.css"/>
+    <link rel="stylesheet" href="css/smoothness/jquery-ui-1.9.2.custom.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+
+</head>
+<body style="padding:8px;" id="audio">
+<h4>Audiobeitrag</h4>
+
+<form class="forms">
+    <fieldset>
+        <ul>
+            <li>
+                <label for="title" class="bold">Titel</label>
+                <input type="text" name="title" id="title" size="35"/>
+            </li>
+            <li>
+                <label for="start" class="bold">Zeitraum</label>
+                <ul class="multicolumn">
+                    <li>
+                        <input type="text" name="start" id="start" size="5" maxlength="5"> bis
+                    </li>
+                    <li>
+                        <input type="text" name="end" size="5" id="end" maxlength="5">
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <input type="button" name="submit" id="submitAudio" value="Audio aktualisieren" class="btn">
+            </li>
+        </ul>
+    </fieldset>
+</form>
+</body>
+</html>

@@ -34,29 +34,17 @@ var updatePointer = function(time){
     },'fast');
 }
 
-var setModule = function(name, infotext, type, start, end) {
-
+var setModule = function(name, infotext, type, start, end, createdat) {
         beginning = Math.round((start - timeLineFrom) / 1000 / 60);
         ending = Math.round((end - timeLineFrom) / 1000 / 60);
-        $("#timelineComponent #timeline #modules").append('<div class="module ' + type + '" style="' + 'height: ' + ((ending - beginning) * timeLineSize - 12) + 'px;' + 'top:' + (beginning * timeLineSize+6) + 'px">' + '<h5>' + name + '</h5>&nbsp;' + '<span>' + infotext + '</span></div>');
+        $("#timelineComponent #timeline #modules").append('<div data-createdat="'+createdat+'" class="module ' + type + '" style="' + 'height: ' + ((ending - beginning) * timeLineSize - 12) + 'px;' + 'top:' + (beginning * timeLineSize+6) + 'px">' + '<h5>' + name + '</h5>&nbsp;' + '<span>' + infotext + '</span></div>');
+        $("#modules .module").unbind('click').bind({click:selectModule});
     }
 
-var selectElement = function(active, start, end){
-    $("#timelineComponent svg").empty();
-
-    positionX=window.innerWidth;
-    positionY=0;
-
-    width=100;
-    height=150;
-
-    points = ""+positionX - width+","+positionY+height+" ";
-    points += ""+positionX+","+positionY+height+" ";
-    points += ""+positionX+","+positionY+" ";
-    points += ""+positionX - width+","+positionY+"";
-
-    $("svg").append("<polygon class=\""+active.class+"\" points=\""+points+"\"/>")
-
+var selectModule = function (event){
+    window.SelectElementHandler.showElement($(this).attr("data-createdat"));
+    $(".active").removeClass("active");
+    $(this).addClass("active");
 }
 
 var updateTimeLine = function(title, intro, start, end) {

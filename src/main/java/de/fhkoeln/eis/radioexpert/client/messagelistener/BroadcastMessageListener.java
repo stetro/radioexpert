@@ -2,6 +2,7 @@ package de.fhkoeln.eis.radioexpert.client.messagelistener;
 
 
 import de.fhkoeln.eis.radioexpert.client.uihandler.TimeLineHandler;
+import de.fhkoeln.eis.radioexpert.client.uihandler.jshandler.NewElementHandler;
 import de.fhkoeln.eis.radioexpert.messaging.messages.BroadcastMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +31,7 @@ public class BroadcastMessageListener implements MessageListener {
         try {
             BroadcastMessage broadcastMessage = (BroadcastMessage) objectMessage.getObject();
             logger.info("Broadcastmessage Erhalten + " + broadcastMessage.getTitle());
+            NewElementHandler.currentBroadcastMessage = broadcastMessage;
             TimeLineHandler.setBroadcast(broadcastMessage);
         } catch (JMSException e) {
             e.printStackTrace();

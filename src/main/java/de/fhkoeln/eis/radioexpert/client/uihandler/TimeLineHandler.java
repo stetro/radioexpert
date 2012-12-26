@@ -2,22 +2,25 @@ package de.fhkoeln.eis.radioexpert.client.uihandler;
 
 import de.fhkoeln.eis.radioexpert.client.ClientApplication;
 import de.fhkoeln.eis.radioexpert.client.uihandler.jshandler.NewElementHandler;
+import de.fhkoeln.eis.radioexpert.client.uihandler.jshandler.SelectElementHandler;
 import de.fhkoeln.eis.radioexpert.client.util.UserRole;
 import de.fhkoeln.eis.radioexpert.messaging.messages.AudioMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.BroadcastMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.InterviewMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.TimeLineElement;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.web.WebEvent;
 import javafx.scene.web.WebView;
+import netscape.javascript.JSObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,22 +38,21 @@ import java.util.List;
 public class TimeLineHandler {
     private static WebView timeLineWebView;
     private static Logger logger = LoggerFactory.getLogger(TimeLineHandler.class);
-    private static List<TimeLineElement> timeLineElements = new ArrayList<TimeLineElement>();
+    public static List<TimeLineElement> timeLineElements = new ArrayList<TimeLineElement>();
 
     public TimeLineHandler(WebView givenTimeLineWebView) {
-
         timeLineWebView = givenTimeLineWebView;
-        // Seite Aufrufen
-
         timeLineWebView.getEngine().setJavaScriptEnabled(true);
         URL url = TimeLineHandler.class.getResource("/gui/component/timeline.html");
         timeLineWebView.getEngine().load(url.toExternalForm());
-        //timeLineWebView.getEngine().load("http://google.de");
         timeLineWebView.setContextMenuEnabled(false);
-        timeLineWebView.getEngine().setOnResized(new EventHandler<WebEvent<Rectangle2D>>() {
+        timeLineWebView.getEngine().getLoadWorker().stateProperty().addListener(new ChangeListener<Worker.State>() {
             @Override
-            public void handle(WebEvent<Rectangle2D> rectangle2DWebEvent) {
-                timeLineWebView.getEngine().executeScript("updateTimeLineSize()");
+            public void changed(ObservableValue<? extends Worker.State> observableValue, Worker.State oldState, Worker.State newState) {
+                if (newState == Worker.State.SUCCEEDED) {
+                    JSObject jsObject = (JSObject) timeLineWebView.getEngine().executeScript("window");
+                    jsObject.setMember("SelectElementHandler", new SelectElementHandler());
+                }
             }
         });
         buildAndBindContextMenu();
@@ -72,28 +74,38 @@ public class TimeLineHandler {
         });
     }
 
-    public static void updateElement(final InterviewMessage object) {
-        if (timeLineWebView == null) return;
-        logger.info("interview wird aktualisiert oder hinzugefuegt");
+    private static void displayAllElements() {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                timeLineWebView.getEngine().executeScript("setModule('" + object.getTitle() + "','" + object.getInfo() + "','interview'," + object.getStart().getTime() + "," + object.getEnd().getTime() + ")");
+                timeLineWebView.getEngine().executeScript("$(\".module\").remove();");
             }
         });
+        for (final TimeLineElement e : timeLineElements) {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    // Javascript: function(name, infotext, type, start, end)
+                    timeLineWebView.getEngine().executeScript("setModule('" + e.getTitle() + "','" + e.getInfo() + "','" + e.getType() + "'," + e.getStart().getTime() + "," + e.getEnd().getTime() + "," + e.getCreatedAt().getTime() + ")");
+                }
+            });
+        }
     }
 
-    public static void updateElement(final AudioMessage object) {
+    public static void updateElement(final TimeLineElement object) {
         if (timeLineWebView == null) return;
-        logger.info("audio wird aktualisiert oder hinzugefuegt");
-
-        // function(name, infotext, type, start, end) {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                timeLineWebView.getEngine().executeScript("setModule('Audiobeitrag','" + object.getTitle() + "','audio'," + object.getStart().getTime() + "," + object.getEnd().getTime() + ")");
+        logger.info("Element wird aktualisiert oder hinzugefuegt");
+        TimeLineElement tmp = null;
+        for (TimeLineElement e : timeLineElements) {
+            if (e.getCreatedAt().equals(object.getCreatedAt())) {
+                tmp = e;
             }
-        });
+        }
+        if (tmp != null) {
+            timeLineElements.remove(tmp);
+        }
+        timeLineElements.add(object);
+        displayAllElements();
     }
 
     /**

@@ -36,7 +36,17 @@ public class AudioMessage implements Serializable, TimeLineElement {
     }
 
     public String getTitle() {
+        return "Audiobeitrag";
+    }
+
+    @Override
+    public String getInfo() {
         return title;
+    }
+
+    @Override
+    public String getType() {
+        return "audio";
     }
 
     public void setTitle(String title) {

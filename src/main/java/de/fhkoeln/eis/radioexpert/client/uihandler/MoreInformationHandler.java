@@ -1,6 +1,9 @@
 package de.fhkoeln.eis.radioexpert.client.uihandler;
 
 import de.fhkoeln.eis.radioexpert.client.uihandler.jshandler.NewElementHandler;
+import de.fhkoeln.eis.radioexpert.messaging.messages.AudioMessage;
+import de.fhkoeln.eis.radioexpert.messaging.messages.InterviewMessage;
+import de.fhkoeln.eis.radioexpert.messaging.messages.TimeLineElement;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
@@ -21,6 +24,7 @@ import java.net.URL;
 public class MoreInformationHandler {
     private static WebView moreInformationWebView;
     private static Logger logger = LoggerFactory.getLogger(MoreInformationHandler.class);
+    public static TimeLineElement currentSelectedElement;
 
     public MoreInformationHandler(WebView givenMoreInformationWebView) {
         moreInformationWebView = givenMoreInformationWebView;
@@ -45,7 +49,7 @@ public class MoreInformationHandler {
     }
 
     public static void createNewAudioDialog() {
-        if(moreInformationWebView==null)return;
+        if (moreInformationWebView == null) return;
 
         URL url = MoreInformationHandler.class.getResource("/gui/component/newAudio.html");
         moreInformationWebView.getEngine().load(url.toExternalForm());
@@ -53,7 +57,7 @@ public class MoreInformationHandler {
     }
 
     public static void createNewInterviewDialog() {
-        if(moreInformationWebView==null)return;
+        if (moreInformationWebView == null) return;
 
         URL url = MoreInformationHandler.class.getResource("/gui/component/newAudio.html");
         moreInformationWebView.getEngine().load(url.toExternalForm());
@@ -61,15 +65,27 @@ public class MoreInformationHandler {
     }
 
     public static void createNewModerationDialog() {
-        if(moreInformationWebView==null)return;
+        if (moreInformationWebView == null) return;
 
         System.out.println("new Moderation");
     }
 
     public static void createNewArticleDialog() {
-        if(moreInformationWebView==null)return;
+        if (moreInformationWebView == null) return;
 
         System.out.println("new dialog");
+    }
+
+    public static void showElement(AudioMessage e) {
+        URL url = MoreInformationHandler.class.getResource("/gui/component/audio.html");
+        String resource = url.toExternalForm() + "?title=" + e.getInfo() + "&from=" + e.getStart().getTime() + "&to=" + e.getEnd().getTime();
+        moreInformationWebView.getEngine().load(resource);
+        currentSelectedElement = e;
+        logger.info("Audio Anzeige UI wird geladen ...");
+    }
+
+    public static void showElement(InterviewMessage e) {
+
     }
 }
 

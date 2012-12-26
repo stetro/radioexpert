@@ -1,5 +1,6 @@
 package de.fhkoeln.eis.radioexpert.client.uihandler.jshandler;
 
+import de.fhkoeln.eis.radioexpert.client.uihandler.MoreInformationHandler;
 import de.fhkoeln.eis.radioexpert.messaging.messages.AudioMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.BroadcastMessage;
 import org.slf4j.Logger;
@@ -33,30 +34,49 @@ public class NewElementHandler {
     public NewElementHandler() {
     }
 
+    public void newAudio(String title, long givenFrom, long givenTo) {
+        logger.info("Audio wird erzeugt ...");
+
+        // Korrektes Datum einsetzen
+        Calendar cFrom = Calendar.getInstance();
+        Calendar cTo = Calendar.getInstance();
+        getGivenTimes(givenFrom, givenTo, cFrom, cTo);
+
+        // Nachricht senden
+        AudioMessage audioMessage = new AudioMessage(title, cFrom.getTime(), cTo.getTime());
+        audioMessage.setCreatedAt(new Date());
+        jmsTemplate.convertAndSend("audio", audioMessage);
+    }
+
+    public void updateAudio(String title, long givenFrom, long givenTo) {
+        logger.info("Audio wird aktualiert ...");
+        // Korrektes Datum einsetzen
+        Calendar cFrom = Calendar.getInstance();
+        Calendar cTo = Calendar.getInstance();
+        getGivenTimes(givenFrom, givenTo, cFrom, cTo);
+
+        // Nachricht senden
+        AudioMessage audioMessage = (AudioMessage) MoreInformationHandler.currentSelectedElement;
+        audioMessage.setTitle(title);
+        audioMessage.setStart(cFrom.getTime());
+        audioMessage.setEnd(cTo.getTime());
+        jmsTemplate.convertAndSend("audio", audioMessage);
+    }
+
     public void newBroadcast(long givenFrom, long givenTo, String title, String intro, String description) {
         logger.info("Sendung wird erzeugt ...");
         Date from = new Date(givenFrom);
         Date to = new Date(givenTo);
         BroadcastMessage broadcastMessage = new BroadcastMessage(from, to, title, intro, description);
-        currentBroadcastMessage = broadcastMessage;
         jmsTemplate.convertAndSend("broadcast", broadcastMessage);
     }
 
-    public void newAudio(String title, long givenFrom, long givenTo) {
-        logger.info("Audio wird erzeugt ...");
-
-        Calendar cFrom = Calendar.getInstance();
-        Calendar cTo = Calendar.getInstance();
+    private void getGivenTimes(long givenFrom, long givenTo, Calendar cFrom, Calendar cTo) {
         cFrom.setTime(new Date(givenFrom));
         cTo.setTime(new Date(givenTo));
-
         Calendar cStart = Calendar.getInstance();
         cStart.setTime(currentBroadcastMessage.getStart());
-
         cFrom.set(cStart.get(Calendar.YEAR), cStart.get(Calendar.MONTH), cStart.get(Calendar.DATE));
         cTo.set(cStart.get(Calendar.YEAR), cStart.get(Calendar.MONTH), cStart.get(Calendar.DATE));
-
-        AudioMessage audioMessage = new AudioMessage(title, cFrom.getTime(), cTo.getTime());
-        jmsTemplate.convertAndSend("audio", audioMessage);
     }
 }

@@ -8,16 +8,17 @@
     overflow: hidden;
     z-index:10;
     background-color:#EEE;
-    margin-right:50px;
+
+    width:80%;
 }
 #timelineComponent div#header.active{
-    margin-right:0px;
+    width:100%;
 }
 
 #newBroadcast{
     background-color:#EEE;
 }
-#newAudio{
+#newAudio,#audio{
     background-color:#DEE0BF;
 }
 
@@ -93,7 +94,7 @@ div#module  {
 
 }
 div#modules div.module.active{
-    margin-right:0px;
+    width:100%;
 }
 div#modules div.module h5{
     display:inline;
@@ -103,8 +104,7 @@ div#modules div.module h5{
 div#modules div.module{
      position:absolute;
      left:45px;
-     width:100%;
-     margin-right:50px;
+     width:80%;
      padding: 3px;
      z-index:10;
      background-color: rgba(150, 150, 150, 0.7);
@@ -114,5 +114,4 @@ div#modules div.module{
 }
 div#modules div.module.audio{
     background-color: rgba(222, 224, 191, 0.7);
-
 }

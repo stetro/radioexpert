@@ -14,7 +14,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "InterviewMessage")
-public class InterviewMessage implements Serializable,TimeLineElement {
+public class InterviewMessage implements Serializable, TimeLineElement {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -142,6 +142,11 @@ public class InterviewMessage implements Serializable,TimeLineElement {
 
     public String getInfo() {
         return info;
+    }
+
+    @Override
+    public String getType() {
+        return "interview";
     }
 
     public void setInfo(String info) {
