@@ -32,17 +32,13 @@ var updatePointer = function(time){
     $("#pointer").animate({
         top: Math.round((time - timeLineFrom) / 1000 / 60)*timeLineSize
     },'fast');
-
 }
 
 var setModule = function(name, infotext, type, start, end) {
-        a=new Date(start);
-        b=new Date(end);
 
         beginning = Math.round((start - timeLineFrom) / 1000 / 60);
         ending = Math.round((end - timeLineFrom) / 1000 / 60);
         $("#timelineComponent #timeline #modules").append('<div class="module ' + type + '" style="' + 'height: ' + ((ending - beginning) * timeLineSize - 12) + 'px;' + 'top:' + (beginning * timeLineSize+6) + 'px">' + '<h5>' + name + '</h5>&nbsp;' + '<span>' + infotext + '</span></div>');
-
     }
 
 var selectElement = function(active, start, end){

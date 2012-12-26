@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -37,14 +38,25 @@ public class NewElementHandler {
         Date from = new Date(givenFrom);
         Date to = new Date(givenTo);
         BroadcastMessage broadcastMessage = new BroadcastMessage(from, to, title, intro, description);
+        currentBroadcastMessage = broadcastMessage;
         jmsTemplate.convertAndSend("broadcast", broadcastMessage);
     }
 
     public void newAudio(String title, long givenFrom, long givenTo) {
         logger.info("Audio wird erzeugt ...");
-        Date from = new Date(givenFrom);
-        Date to = new Date(givenTo);
-        AudioMessage audioMessage = new AudioMessage(title, from, to);
+
+        Calendar cFrom = Calendar.getInstance();
+        Calendar cTo = Calendar.getInstance();
+        cFrom.setTime(new Date(givenFrom));
+        cTo.setTime(new Date(givenTo));
+
+        Calendar cStart = Calendar.getInstance();
+        cStart.setTime(currentBroadcastMessage.getStart());
+
+        cFrom.set(cStart.get(Calendar.YEAR), cStart.get(Calendar.MONTH), cStart.get(Calendar.DATE));
+        cTo.set(cStart.get(Calendar.YEAR), cStart.get(Calendar.MONTH), cStart.get(Calendar.DATE));
+
+        AudioMessage audioMessage = new AudioMessage(title, cFrom.getTime(), cTo.getTime());
         jmsTemplate.convertAndSend("audio", audioMessage);
     }
 }

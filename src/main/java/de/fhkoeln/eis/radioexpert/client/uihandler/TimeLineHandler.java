@@ -1,6 +1,7 @@
 package de.fhkoeln.eis.radioexpert.client.uihandler;
 
 import de.fhkoeln.eis.radioexpert.client.ClientApplication;
+import de.fhkoeln.eis.radioexpert.client.uihandler.jshandler.NewElementHandler;
 import de.fhkoeln.eis.radioexpert.client.util.UserRole;
 import de.fhkoeln.eis.radioexpert.messaging.messages.AudioMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.BroadcastMessage;
@@ -85,6 +86,7 @@ public class TimeLineHandler {
     public static void updateElement(final AudioMessage object) {
         if (timeLineWebView == null) return;
         logger.info("audio wird aktualisiert oder hinzugefuegt");
+
         // function(name, infotext, type, start, end) {
         Platform.runLater(new Runnable() {
             @Override
@@ -119,7 +121,7 @@ public class TimeLineHandler {
                 new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent e) {
-                        if (e.getButton() == MouseButton.SECONDARY)
+                        if (e.getButton() == MouseButton.SECONDARY && NewElementHandler.currentBroadcastMessage != null)
                             cm.show(timeLineWebView, e.getScreenX(), e.getScreenY());
                         if (e.getButton() == MouseButton.PRIMARY)
                             cm.hide();

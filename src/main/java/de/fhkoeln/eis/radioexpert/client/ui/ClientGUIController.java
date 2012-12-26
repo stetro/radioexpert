@@ -1,12 +1,12 @@
 package de.fhkoeln.eis.radioexpert.client.ui;
 
+import de.fhkoeln.eis.radioexpert.client.ClientApplication;
 import de.fhkoeln.eis.radioexpert.client.uihandler.*;
 import de.fhkoeln.eis.radioexpert.client.util.BroadcastLoader;
+import de.fhkoeln.eis.radioexpert.client.util.UserRole;
 import de.fhkoeln.eis.radioexpert.messaging.messages.OnlineStatusMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.SocialMediaMessage;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -112,11 +112,17 @@ public class ClientGUIController implements Initializable {
                 Platform.exit();
             }
         });
-        newBroadcastMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                moreInformationHandler.showNewBroadcast();
-            }
-        });
+
+        // Nur Redaktion darf Sendung und Elemente hinzufuegen
+        if (ClientApplication.role == UserRole.REDAKTEUR) {
+            newBroadcastMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    moreInformationHandler.showNewBroadcast();
+                }
+            });
+        } else {
+            newBroadcastMenuItem.setVisible(false);
+        }
     }
 }
