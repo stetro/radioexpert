@@ -12,7 +12,7 @@
     width:80%;
 }
 #timelineComponent div#header.active{
-    width:100%;
+    width:auto;
 }
 
 #newBroadcast{
