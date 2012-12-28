@@ -87,4 +87,14 @@ public class ChatHandler {
             }
         });
     }
+
+    public static void clearMessages() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                String script = "removeAllChatMessages();";
+                chatWebView.getEngine().executeScript(script);
+            }
+        });
+    }
 }

@@ -12,7 +12,7 @@ import java.util.Date;
  * Facebook Message POJO speichert Daten fuer die letzte Facebookkommunikation
  */
 @Entity
-@Table(name = "FacebookMessages")
+@Table(name = "FacebookMessage")
 public class FacebookMessage implements Serializable, SocialMediaMessage {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)

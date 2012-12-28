@@ -54,6 +54,8 @@ public class DatabaseListener implements MessageListener {
         if (object instanceof BroadcastMessage) {
             currentBroadcast = (BroadcastMessage) object;
             logger.info("Neue Sendung wurde erzeugt !");
+        } else if (currentBroadcast == null) {
+            logger.error("keine Sendung wurde erzeugt !");
         }
 
         // Referenzierung erzeugen

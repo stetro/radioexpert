@@ -8,3 +8,7 @@ var addMessage = function(message, sender, time) {
         scrollTop: $(document).height()
     }, "fast");
 }
+
+var removeAllChatMessages = function(){
+    $("#messages .message").remove();
+}

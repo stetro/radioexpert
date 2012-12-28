@@ -33,11 +33,14 @@
     </MenuBar>
     <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
       <children>
-        <WebView fx:id="timeLineWebView" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-          <HBox.margin>
-            <Insets fx:id="x2" />
-          </HBox.margin>
-        </WebView>
+        <VBox minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+          <children>
+            <WebView fx:id="timeLineWebView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+
+            </WebView>
+          </children>
+
+        </VBox>
         <VBox minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" HBox.margin="$x2">
           <children>
             <WebView fx:id="moreInformationWebView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">

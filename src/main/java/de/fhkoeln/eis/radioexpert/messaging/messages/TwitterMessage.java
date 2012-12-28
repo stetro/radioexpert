@@ -11,7 +11,7 @@ import java.util.Date;
  * Einfache Twitternachricht die vom TwitterService gesendet werden kann
  */
 @Entity
-@Table(name = "TwitterMessages")
+@Table(name = "TwitterMessage")
 public class TwitterMessage implements Serializable, SocialMediaMessage {
     @Column(name = "message")
     private String message;

@@ -46,6 +46,10 @@ public class SocialMediaListHandler {
         });
     }
 
+    public static void clearMessages() {
+        socialListView.getItems().clear();
+    }
+
     private class SocialMediaCell extends ListCell<SocialMediaMessage> {
         public void updateItem(SocialMediaMessage item, boolean empty) {
             super.updateItem(item, empty);

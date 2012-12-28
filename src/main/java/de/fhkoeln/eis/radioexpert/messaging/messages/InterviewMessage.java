@@ -47,11 +47,13 @@ public class InterviewMessage implements Serializable, TimeLineElement {
     private String socialMedia;
     @Column(name = "quotes")
     private String quotes;
+    @Column(name = "broadcastCreatedAt")
+    private Date broadcastCreatedAt;
 
     public InterviewMessage() {
     }
 
-    public InterviewMessage(Date createdAt, Date start, Date end, String title, String phone, String street, String town, String email, String name, String info, String talkInfo, String questions, String socialMedia, String quotes) {
+    public InterviewMessage(Date createdAt, Date start, Date end, String title, String phone, String street, String town, String email, String name, String info, String talkInfo, String questions, String socialMedia, String quotes, Date broadcastCreatedAt) {
         this.createdAt = createdAt;
         this.start = start;
         this.end = end;
@@ -66,6 +68,7 @@ public class InterviewMessage implements Serializable, TimeLineElement {
         this.questions = questions;
         this.socialMedia = socialMedia;
         this.quotes = quotes;
+        this.broadcastCreatedAt = broadcastCreatedAt;
     }
 
     public long getId() {
@@ -187,5 +190,13 @@ public class InterviewMessage implements Serializable, TimeLineElement {
 
     public Date getCreatedAt() {
         return createdAt;
+    }
+
+    public Date getBroadcastCreatedAt() {
+        return broadcastCreatedAt;
+    }
+
+    public void setBroadcastCreatedAt(Date broadcastCreatedAt) {
+        this.broadcastCreatedAt = broadcastCreatedAt;
     }
 }
