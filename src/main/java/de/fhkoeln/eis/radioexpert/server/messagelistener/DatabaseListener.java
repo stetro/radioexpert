@@ -24,7 +24,7 @@ public class DatabaseListener implements MessageListener {
     @Autowired
     SessionFactory sessionFactory;
 
-    private static BroadcastMessage currentBroadcast;
+    public static BroadcastMessage currentBroadcast;
 
     private static final Logger logger = LoggerFactory.getLogger(DatabaseListener.class);
 
@@ -38,6 +38,7 @@ public class DatabaseListener implements MessageListener {
             }
             Session s = sessionFactory.openSession();
             s.save(objectMessage.getObject());
+            s.close();
         } catch (ClassCastException e) {
             logger.error("Unbekannte Nachricht wurde verschickt !" + e.getMessage());
         } catch (Exception e) {

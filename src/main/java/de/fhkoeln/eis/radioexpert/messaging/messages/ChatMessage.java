@@ -21,6 +21,8 @@ public class ChatMessage implements Serializable {
     private String message;
     @Column(name = "sender")
     private String sender;
+    @Column(name = "broadcastCreatedAt")
+    private Date broadcastCreatedAt;
 
 
     public ChatMessage() {
@@ -66,5 +68,13 @@ public class ChatMessage implements Serializable {
 
     public void setSender(String sender) {
         this.sender = sender;
+    }
+
+    public Date getBroadcastCreatedAt() {
+        return broadcastCreatedAt;
+    }
+
+    public void setBroadcastCreatedAt(Date broadcastCreatedAt) {
+        this.broadcastCreatedAt = broadcastCreatedAt;
     }
 }
