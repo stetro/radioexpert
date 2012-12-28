@@ -25,6 +25,18 @@ public class TwitterMessage implements Serializable, SocialMediaMessage {
     @Column(name = "id")
     private long id;
 
+    @Column(name = "broadcastCreatedAt")
+    private Date broadcastCreatedAt;
+
+
+    public TwitterMessage(String message, String user, Date time, long id, Date broadcastCreatedAt) {
+        this.message = message;
+        this.user = user;
+        this.time = time;
+        this.id = id;
+        this.broadcastCreatedAt = broadcastCreatedAt;
+    }
+
     public TwitterMessage(String message, String user, Date time) {
         this.message = message;
         this.user = user;
@@ -69,5 +81,13 @@ public class TwitterMessage implements Serializable, SocialMediaMessage {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Date getBroadcastCreatedAt() {
+        return broadcastCreatedAt;
+    }
+
+    public void setBroadcastCreatedAt(Date broadcastCreatedAt) {
+        this.broadcastCreatedAt = broadcastCreatedAt;
     }
 }

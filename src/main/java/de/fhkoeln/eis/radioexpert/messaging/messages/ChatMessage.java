@@ -11,7 +11,7 @@ import java.util.Date;
  * Time: 10:38
  */
 @Entity
-@Table(name = "ChatMessages")
+@Table(name = "ChatMessage")
 public class ChatMessage implements Serializable {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,6 +32,14 @@ public class ChatMessage implements Serializable {
         this.id = id;
         this.message = message;
         this.sender = sender;
+        this.time = time;
+    }
+
+    public ChatMessage(long id, String message, String sender, Date broadcastCreatedAt, Date time) {
+        this.id = id;
+        this.message = message;
+        this.sender = sender;
+        this.broadcastCreatedAt = broadcastCreatedAt;
         this.time = time;
     }
 

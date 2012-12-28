@@ -1,6 +1,6 @@
 package de.fhkoeln.eis.radioexpert.server.messagelistener;
 
-import de.fhkoeln.eis.radioexpert.messaging.messages.BroadcastMessage;
+import de.fhkoeln.eis.radioexpert.messaging.messages.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 import org.slf4j.Logger;
@@ -11,10 +11,12 @@ import org.springframework.stereotype.Service;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
+import java.io.Serializable;
 
 /**
  * Datenbank Listener hat alle Topics Abboniert und speichert die Nachrichten in
- * die Datenbank ab.
+ * die Datenbank ab. Zusätzlich verknüpft der Listener alle eingehenden Nachrichten
+ * mit der aktuellen Sendung.
  *
  * @author Steffen Troester
  */
@@ -33,11 +35,10 @@ public class DatabaseListener implements MessageListener {
         try {
             ObjectMessage objectMessage = (ObjectMessage) message;
             logger.info("Message empfangen !");
-            if (objectMessage instanceof BroadcastMessage) {
-                safeCurrentBroadcastId((BroadcastMessage) objectMessage);
-            }
+            Serializable object = objectMessage.getObject();
+            manageMessages(object);
             Session s = sessionFactory.openSession();
-            s.save(objectMessage.getObject());
+            s.save(object);
             s.close();
         } catch (ClassCastException e) {
             logger.error("Unbekannte Nachricht wurde verschickt !" + e.getMessage());
@@ -46,7 +47,33 @@ public class DatabaseListener implements MessageListener {
         }
     }
 
-    private void safeCurrentBroadcastId(BroadcastMessage objectMessage) {
-        currentBroadcast = objectMessage;
+    private void manageMessages(Serializable object) {
+
+        //TODO: Wenn currentBroadcast == null muss eine instanz aus der Datenbank geladen werden !
+
+        if (object instanceof BroadcastMessage) {
+            currentBroadcast = (BroadcastMessage) object;
+            logger.info("Neue Sendung wurde erzeugt !");
+        }
+
+        // Referenzierung erzeugen
+        if (object instanceof ChatMessage && currentBroadcast != null) {
+            ChatMessage chatMessage = (ChatMessage) object;
+            chatMessage.setBroadcastCreatedAt(currentBroadcast.getCreatedAt());
+        }
+        if (object instanceof TwitterMessage && currentBroadcast != null) {
+            TwitterMessage twitterMessage = (TwitterMessage) object;
+            twitterMessage.setBroadcastCreatedAt(currentBroadcast.getCreatedAt());
+        }
+        if (object instanceof FacebookMessage && currentBroadcast != null) {
+            FacebookMessage facebookMessage = (FacebookMessage) object;
+            facebookMessage.setBroadcastCreatedAt(currentBroadcast.getCreatedAt());
+        }
+        if (object instanceof MailMessage && currentBroadcast != null) {
+            MailMessage mailMessage = (MailMessage) object;
+            mailMessage.setBroadcastCreatedAt(currentBroadcast.getCreatedAt());
+        }
     }
+
+
 }

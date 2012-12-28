@@ -1,6 +1,7 @@
 package de.fhkoeln.eis.radioexpert.messaging.messages;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,10 +12,11 @@ import java.util.List;
  * Time: 09:25
  */
 public class BroadcastResponse implements Serializable {
+
     private BroadcastMessage broadcastMessage;
-    private List<SocialMediaMessage> socialMediaMessages;
-    private List<ChatMessage> chatMessages;
-    private List<TimeLineElement> timeLineElements;
+    private List<SocialMediaMessage> socialMediaMessages = new ArrayList<SocialMediaMessage>();
+    private List<ChatMessage> chatMessages = new ArrayList<ChatMessage>();
+    private List<TimeLineElement> timeLineElements = new ArrayList<TimeLineElement>();
 
     public BroadcastResponse() {
     }

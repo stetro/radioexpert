@@ -1,6 +1,6 @@
 package de.fhkoeln.eis.radioexpert.server.messagelistener;
 
-import de.fhkoeln.eis.radioexpert.messaging.messages.BroadcastResponse;
+import de.fhkoeln.eis.radioexpert.messaging.messages.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.classic.Session;
 import org.slf4j.Logger;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.jms.Message;
 import javax.jms.MessageListener;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,18 +34,35 @@ public class DatabaseController implements MessageListener {
     @Override
     public void onMessage(Message message) {
         Session s = sessionFactory.openSession();
-        BroadcastResponse broadcastResponse = new BroadcastResponse();
-        broadcastResponse.setBroadcastMessage(DatabaseListener.currentBroadcast);
-        if (broadcastResponse.getBroadcastMessage() != null) {
-            Date createdAt = broadcastResponse.getBroadcastMessage().getCreatedAt();
-            List chatMessages = s.createQuery("from ChatMessages where broadcastCreatedAt = ? ").setDate(0, createdAt).list();
-            broadcastResponse.setChatMessages(chatMessages);
-        }
+        BroadcastResponse broadcastResponse = buildUpBroadcastResponse(s);
         s.close();
 
         jmsTemplate.setPubSubDomain(false);
         jmsTemplate.convertAndSend("persistenceResponse", broadcastResponse);
         jmsTemplate.setPubSubDomain(true);
         logger.info("Abfragenachricht wurde empfangen  !!");
+    }
+
+    private BroadcastResponse buildUpBroadcastResponse(Session s) {
+        BroadcastResponse broadcastResponse = new BroadcastResponse();
+        broadcastResponse.setBroadcastMessage(DatabaseListener.currentBroadcast);
+        if (broadcastResponse.getBroadcastMessage() != null) {
+            Date createdAt = broadcastResponse.getBroadcastMessage().getCreatedAt();
+
+            List chatMessages = s.createQuery("from ChatMessage where broadcastCreatedAt = :date").setTimestamp("date", createdAt).list();
+            List twitterMessages = s.createQuery("from TwitterMessage where broadcastCreatedAt = :date").setTimestamp("date", createdAt).list();
+            List facebookMessages = s.createQuery("from FacebookMessage where broadcastCreatedAt = :date").setTimestamp("date", createdAt).list();
+            List mailMessages = s.createQuery("from MailMessage where broadcastCreatedAt = :date").setTimestamp("date", createdAt).list();
+
+            List socialMediaMessages = new ArrayList<SocialMediaMessage>();
+            socialMediaMessages.addAll(twitterMessages);
+            socialMediaMessages.addAll(facebookMessages);
+            socialMediaMessages.addAll(mailMessages);
+
+
+            broadcastResponse.setChatMessages(chatMessages);
+            broadcastResponse.setSocialMediaMessages(socialMediaMessages);
+        }
+        return broadcastResponse;
     }
 }

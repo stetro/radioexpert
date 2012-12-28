@@ -25,6 +25,7 @@ public class BroadcastLoader implements EventHandler<ActionEvent> {
         jmsTemplate = ClientApplication.context.getBean(JmsTemplate.class);
         jmsTemplate.setPubSubDomain(false);
         sendBroadcastRequest();
+        jmsTemplate.setPubSubDomain(true);
     }
 
     /**

@@ -29,6 +29,19 @@ public class FacebookMessage implements Serializable, SocialMediaMessage {
     @Column(name = "likes")
     private int likes;
 
+    @Column(name = "broadcastCreatedAt")
+    private Date broadcastCreatedAt;
+
+    public FacebookMessage(long id, String facebookId, Date updatedTime, String message, String user, int likes, Date broadcastCreatedAt) {
+        this.id = id;
+        this.facebookId = facebookId;
+        this.updatedTime = updatedTime;
+        this.message = message;
+        this.user = user;
+        this.likes = likes;
+        this.broadcastCreatedAt = broadcastCreatedAt;
+    }
+
     public FacebookMessage() {
     }
 
@@ -87,5 +100,13 @@ public class FacebookMessage implements Serializable, SocialMediaMessage {
 
     public void setLikes(int likes) {
         this.likes = likes;
+    }
+
+    public Date getBroadcastCreatedAt() {
+        return broadcastCreatedAt;
+    }
+
+    public void setBroadcastCreatedAt(Date broadcastCreatedAt) {
+        this.broadcastCreatedAt = broadcastCreatedAt;
     }
 }
