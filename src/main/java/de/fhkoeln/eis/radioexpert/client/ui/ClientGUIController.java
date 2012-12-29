@@ -103,7 +103,6 @@ public class ClientGUIController implements Initializable {
         moreInformationHandler = new MoreInformationHandler(moreInformationWebView);
         loadCurrentMenuItem.setOnAction(new BroadcastLoader());
         InfoBox.setVariables(infoText, infoRectangle);
-        InfoBox.showMessage("Alles geladen !");
         setupOtherGUIComponents();
     }
 

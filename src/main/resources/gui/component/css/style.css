@@ -9,7 +9,7 @@
     z-index:10;
     background-color:#EEE;
 
-    width:80%;
+    width:auto;
 }
 #timelineComponent div#header.active{
     width:auto;

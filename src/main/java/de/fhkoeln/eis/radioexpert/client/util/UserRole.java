@@ -9,9 +9,9 @@ package de.fhkoeln.eis.radioexpert.client.util;
  */
 public enum UserRole {
 
+    REDAKTEUR("gui/component/img/redaktion.png", "r", "Redakteur"),
     MODERATOR("gui/component/img/moderation.png", "m", "Moderator"),
-    TECHIKER("gui/component/img/technik.png", "t", "Techniker"),
-    REDAKTEUR("gui/component/img/redaktion.png", "r", "Redakteur");
+    TECHIKER("gui/component/img/technik.png", "t", "Techniker");
 
 
     private final String imagePath;

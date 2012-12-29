@@ -56,7 +56,7 @@
         <DropShadow color="#0000003b" />
       </effect>
     </Rectangle>
-    <Text fx:id="infoText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" AnchorPane.leftAnchor="403.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="-25.0" />
+    <Text fx:id="infoText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="JUSTIFY" textOrigin="CENTER" wrappingWidth="265.0" AnchorPane.leftAnchor="403.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="-25.0" />
     <MenuBar prefHeight="25.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <menus>
         <Menu mnemonicParsing="false" text="Datei">
