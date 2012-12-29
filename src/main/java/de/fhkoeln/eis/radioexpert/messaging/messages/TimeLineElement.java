@@ -1,6 +1,7 @@
 package de.fhkoeln.eis.radioexpert.messaging.messages;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Gemeinschaft von TimeLine Elementen, dazu gehoeren:
@@ -25,4 +26,8 @@ public interface TimeLineElement {
     Date getStart();
 
     Date getEnd();
+
+    void addMessage(String message);
+
+    List<String> getMessages();
 }

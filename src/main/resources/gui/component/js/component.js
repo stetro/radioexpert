@@ -21,6 +21,14 @@ $(function(){
     });
 });
 
+var highlightSocialMedia = function(){
+    $("#socialMedia").css("border","3px solid #0F0");
+}
+
+var unHighlightSocialMedia = function(){
+    $("#socialMedia").css("border","none");
+}
+
 $.extend({
   getUrlVars: function(){
     var vars = [], hash;

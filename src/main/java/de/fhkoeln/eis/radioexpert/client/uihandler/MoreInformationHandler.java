@@ -4,9 +4,13 @@ import de.fhkoeln.eis.radioexpert.client.uihandler.jshandler.NewElementHandler;
 import de.fhkoeln.eis.radioexpert.messaging.messages.AudioMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.InterviewMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.TimeLineElement;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
+import javafx.event.EventHandler;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.web.WebView;
 import netscape.javascript.JSObject;
 import org.slf4j.Logger;
@@ -40,9 +44,60 @@ public class MoreInformationHandler {
                 }
             }
         });
+
+        moreInformationWebView.setOnDragExited(new EventHandler<DragEvent>() {
+            @Override
+            public void handle(DragEvent dragEvent) {
+                if (currentSelectedElement == null) return;
+                if (dragEvent.getGestureSource() != moreInformationWebView &&
+                        dragEvent.getDragboard().hasString()) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            moreInformationWebView.getEngine().executeScript("unHighlightSocialMedia()");
+                        }
+                    });
+                }
+                dragEvent.consume();
+            }
+        });
+
+        moreInformationWebView.setOnDragEntered(new EventHandler<DragEvent>() {
+            @Override
+            public void handle(DragEvent dragEvent) {
+                if (currentSelectedElement == null) return;
+                if (dragEvent.getGestureSource() != moreInformationWebView &&
+                        dragEvent.getDragboard().hasString()) {
+
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            moreInformationWebView.getEngine().executeScript("highlightSocialMedia()");
+                        }
+                    });
+
+                    dragEvent.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                    moreInformationWebView.setStyle("border:30px solid #F00");
+                }
+                dragEvent.consume();
+            }
+        });
+
+        moreInformationWebView.setOnDragDropped(new EventHandler<DragEvent>() {
+            @Override
+            public void handle(DragEvent dragEvent) {
+                if (currentSelectedElement != null && dragEvent.getDragboard().hasString()) {
+                    currentSelectedElement.addMessage(dragEvent.getDragboard().getString());
+                    // TODO: jmsTemplate.convertAndSend("audio", currentSelectedElement);
+                }
+            }
+        });
     }
 
     public void showNewBroadcast() {
+        if (moreInformationWebView == null) return;
+
+        currentSelectedElement = null;
         URL url = getClass().getResource("/gui/component/newBroadcast.html");
         moreInformationWebView.getEngine().load(url.toExternalForm());
         logger.info("Neue Sendung anlegen UI wird geladen ...");
@@ -51,6 +106,7 @@ public class MoreInformationHandler {
     public static void createNewAudioDialog() {
         if (moreInformationWebView == null) return;
 
+        currentSelectedElement = null;
         URL url = MoreInformationHandler.class.getResource("/gui/component/newAudio.html");
         moreInformationWebView.getEngine().load(url.toExternalForm());
         logger.info("Neues Audio anlegen UI wird geladen ...");
@@ -59,6 +115,7 @@ public class MoreInformationHandler {
     public static void createNewInterviewDialog() {
         if (moreInformationWebView == null) return;
 
+        currentSelectedElement = null;
         URL url = MoreInformationHandler.class.getResource("/gui/component/newAudio.html");
         moreInformationWebView.getEngine().load(url.toExternalForm());
         logger.info("Neues Audio anlegen UI wird geladen ...");
@@ -67,12 +124,14 @@ public class MoreInformationHandler {
     public static void createNewModerationDialog() {
         if (moreInformationWebView == null) return;
 
+        currentSelectedElement = null;
         System.out.println("new Moderation");
     }
 
     public static void createNewArticleDialog() {
         if (moreInformationWebView == null) return;
 
+        currentSelectedElement = null;
         System.out.println("new dialog");
     }
 
@@ -85,7 +144,7 @@ public class MoreInformationHandler {
     }
 
     public static void showElement(InterviewMessage e) {
-
+        currentSelectedElement = e;
     }
 }
 

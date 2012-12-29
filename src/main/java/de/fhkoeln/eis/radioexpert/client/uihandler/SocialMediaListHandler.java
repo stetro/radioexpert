@@ -37,6 +37,18 @@ public class SocialMediaListHandler {
                 return new SocialMediaCell();
             }
         });
+        socialListView.setOnDragDetected(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (socialListView.getItems().size() == 0) return;
+
+                Dragboard db = socialListView.startDragAndDrop(TransferMode.COPY);
+                ClipboardContent content = new ClipboardContent();
+                content.putString(socialListView.getSelectionModel().getSelectedItem().getMessage());
+                db.setContent(content);
+                mouseEvent.consume();
+            }
+        });
     }
 
     public static void displayMessage(final SocialMediaMessage mediaMessage) {

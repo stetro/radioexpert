@@ -2,7 +2,9 @@ package de.fhkoeln.eis.radioexpert.messaging.messages;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Repraesentiert ein Audioinhalt auf der Timeline (zB einen Song ect.)
@@ -23,6 +25,8 @@ public class AudioMessage implements Serializable, TimeLineElement {
     private Date end;
     private String title;
     private Date broadcastCreatedAt;
+    @ElementCollection
+    private List<String> messages = new ArrayList<String>();
 
     public AudioMessage() {
     }
@@ -63,6 +67,16 @@ public class AudioMessage implements Serializable, TimeLineElement {
 
     public Date getEnd() {
         return end;
+    }
+
+    @Override
+    public void addMessage(String message) {
+        this.messages.add(message);
+    }
+
+    @Override
+    public List<String> getMessages() {
+        return messages;
     }
 
     public void setEnd(Date end) {
