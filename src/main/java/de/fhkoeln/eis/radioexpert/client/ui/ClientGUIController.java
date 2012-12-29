@@ -3,6 +3,7 @@ package de.fhkoeln.eis.radioexpert.client.ui;
 import de.fhkoeln.eis.radioexpert.client.ClientApplication;
 import de.fhkoeln.eis.radioexpert.client.uihandler.*;
 import de.fhkoeln.eis.radioexpert.client.util.BroadcastLoader;
+import de.fhkoeln.eis.radioexpert.client.util.InfoBox;
 import de.fhkoeln.eis.radioexpert.client.util.UserRole;
 import de.fhkoeln.eis.radioexpert.messaging.messages.OnlineStatusMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.SocialMediaMessage;
@@ -18,6 +19,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
@@ -82,6 +85,13 @@ public class ClientGUIController implements Initializable {
     private MenuItem closeMenuItem;
     @FXML
     private MenuItem newBroadcastMenuItem;
+    /*
+    Infoboxvariablen
+    */
+    @FXML
+    private Text infoText;
+    @FXML
+    private Rectangle infoRectangle;
 
 
     @Override
@@ -92,6 +102,8 @@ public class ClientGUIController implements Initializable {
         onlineStatusHandler = new OnlineStatusHandler(onlineStatusListView);
         moreInformationHandler = new MoreInformationHandler(moreInformationWebView);
         loadCurrentMenuItem.setOnAction(new BroadcastLoader());
+        InfoBox.setVariables(infoText, infoRectangle);
+        InfoBox.showMessage("Alles geladen !");
         setupOtherGUIComponents();
     }
 

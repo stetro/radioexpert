@@ -4,42 +4,21 @@
 <?import java.util.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.web.*?>
 
 <AnchorPane id="AnchorPane" fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml" fx:controller="de.fhkoeln.eis.radioexpert.client.ui.ClientGUIController">
   <children>
-    <MenuBar prefHeight="25.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <menus>
-        <Menu mnemonicParsing="false" text="Datei">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Neue Sendung" fx:id="newBroadcastMenuItem" />
-            <MenuItem mnemonicParsing="false" text="Aktuelle Sendung laden" fx:id="loadCurrentMenuItem" />
-            <MenuItem mnemonicParsing="false" text="Close" fx:id="closeMenuItem" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Bearbeiten">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Einstellungen" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Hilfe">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Über" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
     <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
       <children>
         <VBox minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
           <children>
-            <WebView fx:id="timeLineWebView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-
-            </WebView>
+            <WebView fx:id="timeLineWebView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
           </children>
-
         </VBox>
         <VBox minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" HBox.margin="$x2">
           <children>
@@ -72,5 +51,32 @@
         </SplitPane>
       </children>
     </HBox>
+    <Rectangle fx:id="infoRectangle" arcHeight="5.0" arcWidth="5.0" fill="#fffdcc" height="40.0" stroke="TRANSPARENT" strokeType="INSIDE" width="270.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="-25.0">
+      <effect>
+        <DropShadow color="#0000003b" />
+      </effect>
+    </Rectangle>
+    <Text fx:id="infoText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" AnchorPane.leftAnchor="403.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="-25.0" />
+    <MenuBar prefHeight="25.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <menus>
+        <Menu mnemonicParsing="false" text="Datei">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Neue Sendung" fx:id="newBroadcastMenuItem" />
+            <MenuItem mnemonicParsing="false" text="Aktuelle Sendung laden" fx:id="loadCurrentMenuItem" />
+            <MenuItem mnemonicParsing="false" text="Close" fx:id="closeMenuItem" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Bearbeiten">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Einstellungen" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Hilfe">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Über" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
   </children>
 </AnchorPane>

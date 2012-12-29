@@ -164,6 +164,6 @@ public class TimeLineHandler {
     }
 
     public static void clearElements() {
-        timeLineElements.clear();
+        timeLineElements = new ArrayList<TimeLineElement>();
     }
 }

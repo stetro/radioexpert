@@ -11,6 +11,7 @@ import de.fhkoeln.eis.radioexpert.messaging.messages.SocialMediaMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.TimeLineElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import javafx.stage.Popup;
 import org.springframework.jms.core.JmsTemplate;
 
 import javax.jms.*;
@@ -26,8 +27,6 @@ import javax.jms.*;
 public class LoadBroadcastMessageListener implements MessageListener {
 
     private Logger logger = LoggerFactory.getLogger(LoadBroadcastMessageListener.class);
-
-
 
     @Override
     public void onMessage(Message message) {
@@ -51,8 +50,7 @@ public class LoadBroadcastMessageListener implements MessageListener {
             TimeLineHandler.setBroadcast(response.getBroadcastMessage());
             logger.info("Response erhalten !!");
         } catch (JMSException e) {
-            e.printStackTrace();
-        }
 
+        }
     }
 }
