@@ -18,6 +18,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 
+import java.util.Date;
+
 /**
  * Abboniert die Social Topics und stellt diese in der ListView dar
  * <p/>
@@ -42,7 +44,7 @@ public class SocialMediaListHandler {
             public void handle(MouseEvent mouseEvent) {
                 if (socialListView.getItems().size() == 0) return;
 
-                Dragboard db = socialListView.startDragAndDrop(TransferMode.COPY);
+                Dragboard db = socialListView.startDragAndDrop(TransferMode.ANY);
                 ClipboardContent content = new ClipboardContent();
                 content.putString(socialListView.getSelectionModel().getSelectedItem().getMessage());
                 db.setContent(content);
@@ -65,6 +67,8 @@ public class SocialMediaListHandler {
 
     public static void clearMessages() {
         socialListView.getItems().clear();
+        TwitterMessage message = new TwitterMessage("Halloo Test", "stetro", new Date());
+        socialListView.getItems().add(message);
     }
 
     private class SocialMediaCell extends ListCell<SocialMediaMessage> {

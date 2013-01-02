@@ -34,7 +34,6 @@ public class MoreInformationHandler {
         moreInformationWebView = givenMoreInformationWebView;
         moreInformationWebView.setContextMenuEnabled(false);
         moreInformationWebView.getEngine().setJavaScriptEnabled(true);
-
         moreInformationWebView.getEngine().getLoadWorker().stateProperty().addListener(new ChangeListener<Worker.State>() {
             @Override
             public void changed(ObservableValue<? extends Worker.State> observableValue, Worker.State oldState, Worker.State newState) {
@@ -44,13 +43,28 @@ public class MoreInformationHandler {
                 }
             }
         });
-
+        // DRAG AND DROP ->
+        // Highlighting beim ueberfliegen
+        moreInformationWebView.setOnDragEntered(new EventHandler<DragEvent>() {
+            @Override
+            public void handle(DragEvent dragEvent) {
+                if (currentSelectedElement == null) return;
+                if (dragEvent.getGestureSource() != moreInformationWebView) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            moreInformationWebView.getEngine().executeScript("highlightSocialMedia()");
+                        }
+                    });
+                }
+                dragEvent.consume();
+            }
+        });
         moreInformationWebView.setOnDragExited(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent dragEvent) {
                 if (currentSelectedElement == null) return;
-                if (dragEvent.getGestureSource() != moreInformationWebView &&
-                        dragEvent.getDragboard().hasString()) {
+                if (dragEvent.getGestureSource() != moreInformationWebView) {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
@@ -61,35 +75,24 @@ public class MoreInformationHandler {
                 dragEvent.consume();
             }
         });
-
-        moreInformationWebView.setOnDragEntered(new EventHandler<DragEvent>() {
+        // Copy Symbol bei korrekter Eigenschaft darstellen
+        moreInformationWebView.setOnDragOver(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent dragEvent) {
                 if (currentSelectedElement == null) return;
-                if (dragEvent.getGestureSource() != moreInformationWebView &&
-                        dragEvent.getDragboard().hasString()) {
-
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            moreInformationWebView.getEngine().executeScript("highlightSocialMedia()");
-                        }
-                    });
-
-                    dragEvent.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-                    moreInformationWebView.setStyle("border:30px solid #F00");
-                }
-                dragEvent.consume();
+                dragEvent.acceptTransferModes(TransferMode.COPY_OR_MOVE);
             }
         });
-
+        // Drag and Drop druchfuehren
         moreInformationWebView.setOnDragDropped(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent dragEvent) {
                 if (currentSelectedElement != null && dragEvent.getDragboard().hasString()) {
                     currentSelectedElement.addMessage(dragEvent.getDragboard().getString());
-                    // TODO: jmsTemplate.convertAndSend("audio", currentSelectedElement);
+                    logger.info("SocialMediaElement " + dragEvent.getDragboard().getString());
                 }
+                dragEvent.setDropCompleted(true);
+                dragEvent.consume();
             }
         });
     }
