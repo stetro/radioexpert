@@ -111,6 +111,7 @@ public class ClientGUIController implements Initializable {
         stage.hide();
         stage.setTitle("RadioExpert - Client Anwendung ");
         Scene scene = new Scene(root, 1000, 700);
+        scene.getStylesheets().add("gui/style.css");
         stage.setScene(scene);
         stage.show();
         logger.info("Client UI wurde gestartet !");

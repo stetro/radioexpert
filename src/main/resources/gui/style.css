@@ -1,0 +1,6 @@
+.root{
+    -fx-focus-color: #A9B882;
+    -fx-accent: #A9B882;
+    -fx-cell-hover-color:#B0C088;
+    -fx-cell-padding:5px;
+}

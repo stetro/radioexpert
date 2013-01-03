@@ -58,6 +58,8 @@ var updateTimeLineSize = function() {
         $("div#timeline").css("height", window.innerHeight - 145);
     }
 
+
+
 $(function() {
     window.onresize = updateTimeLineSize;
     updateTimeLineSize();
