@@ -15,10 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
@@ -47,6 +44,8 @@ public class ClientGUIController implements Initializable {
      */
     @FXML
     private WebView timeLineWebView;
+    @FXML
+    private MenuButton addElementDropDownMenuButton;
     private TimeLineHandler timeLineHandler;
     /*
     ChatHandler Variablen
@@ -96,7 +95,7 @@ public class ClientGUIController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        timeLineHandler = new TimeLineHandler(timeLineWebView);
+        timeLineHandler = new TimeLineHandler(timeLineWebView,addElementDropDownMenuButton);
         chatHandler = new ChatHandler(chatWebView, chatTextField, chatButton);
         socialMediaListHandler = new SocialMediaListHandler(socialListView);
         onlineStatusHandler = new OnlineStatusHandler(onlineStatusListView);

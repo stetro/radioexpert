@@ -17,7 +17,15 @@
       <children>
         <VBox minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
           <children>
-            <WebView fx:id="timeLineWebView" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+              <children>
+                <WebView fx:id="timeLineWebView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <MenuButton fx:id="addElementDropDownMenuButton" mnemonicParsing="false" text="+" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="85.0" />
+              </children>
+              <VBox.margin>
+                <Insets fx:id="x2" />
+              </VBox.margin>
+            </AnchorPane>
           </children>
         </VBox>
         <VBox minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" HBox.margin="$x2">

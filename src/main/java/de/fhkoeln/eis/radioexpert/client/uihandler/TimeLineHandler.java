@@ -4,8 +4,8 @@ import de.fhkoeln.eis.radioexpert.client.ClientApplication;
 import de.fhkoeln.eis.radioexpert.client.uihandler.jshandler.NewElementHandler;
 import de.fhkoeln.eis.radioexpert.client.uihandler.jshandler.SelectElementHandler;
 import de.fhkoeln.eis.radioexpert.client.util.UserRole;
-import de.fhkoeln.eis.radioexpert.messaging.messages.BroadcastMessage;
 import de.fhkoeln.eis.radioexpert.messaging.TimeLineElement;
+import de.fhkoeln.eis.radioexpert.messaging.messages.BroadcastMessage;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -37,8 +38,11 @@ public class TimeLineHandler {
     private static WebView timeLineWebView;
     private static Logger logger = LoggerFactory.getLogger(TimeLineHandler.class);
     public static List<TimeLineElement> timeLineElements = new ArrayList<TimeLineElement>();
+    private static ContextMenu cm;
+    private static MenuButton addElementDropDownMenuButton;
 
-    public TimeLineHandler(WebView givenTimeLineWebView) {
+    public TimeLineHandler(WebView givenTimeLineWebView, MenuButton givenAddElementDropDownMenuButton) {
+        addElementDropDownMenuButton = givenAddElementDropDownMenuButton;
         timeLineWebView = givenTimeLineWebView;
         timeLineWebView.getEngine().setJavaScriptEnabled(true);
         URL url = TimeLineHandler.class.getResource("/gui/component/timeline.html");
@@ -119,12 +123,14 @@ public class TimeLineHandler {
     private void buildAndBindContextMenu() {
         if (ClientApplication.role != UserRole.REDAKTEUR) return;
 
-        final ContextMenu cm = new ContextMenu();
+        this.cm = new ContextMenu();
         Menu newElement = new Menu("Neuer Beitrag");
         MenuItem newSong = new MenuItem("Audio anlegen");
         MenuItem newInterview = new MenuItem("Interview anlegen");
         MenuItem newModeration = new MenuItem("Moderation anlegen");
         MenuItem newArticle = new MenuItem("Beitrag anlegen");
+
+        addElementDropDownMenuButton.getItems().addAll(newSong, newInterview, newModeration, newArticle);
         newElement.getItems().addAll(newSong, newInterview, newModeration, newArticle);
         cm.getItems().add(newElement);
         timeLineWebView.addEventHandler(MouseEvent.MOUSE_CLICKED,
