@@ -1,9 +1,9 @@
 package de.fhkoeln.eis.radioexpert.client.uihandler;
 
 import de.fhkoeln.eis.radioexpert.client.uihandler.jshandler.NewElementHandler;
+import de.fhkoeln.eis.radioexpert.messaging.TimeLineElement;
 import de.fhkoeln.eis.radioexpert.messaging.messages.AudioMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.InterviewMessage;
-import de.fhkoeln.eis.radioexpert.messaging.messages.TimeLineElement;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

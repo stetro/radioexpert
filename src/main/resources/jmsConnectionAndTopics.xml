@@ -29,6 +29,6 @@ http://activemq.apache.org/schema/core/activemq-core.xsd">
     <!-- jmsTemplate fuer Spring verknuepfen -->
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
         <property name="connectionFactory" ref="jmsConnectionFactory"/>
-        <property name="defaultDestination" ref="director"/>
+        <property name="defaultDestination" ref="chat"/>
     </bean>
 </beans>

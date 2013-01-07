@@ -2,9 +2,9 @@ package de.fhkoeln.eis.radioexpert.client.uihandler.jshandler;
 
 import de.fhkoeln.eis.radioexpert.client.uihandler.MoreInformationHandler;
 import de.fhkoeln.eis.radioexpert.client.uihandler.TimeLineHandler;
+import de.fhkoeln.eis.radioexpert.messaging.TimeLineElement;
 import de.fhkoeln.eis.radioexpert.messaging.messages.AudioMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.InterviewMessage;
-import de.fhkoeln.eis.radioexpert.messaging.messages.TimeLineElement;
 import javafx.application.Platform;
 
 import java.util.Date;

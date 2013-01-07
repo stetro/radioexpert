@@ -1,5 +1,7 @@
 package de.fhkoeln.eis.radioexpert.messaging.messages;
 
+import de.fhkoeln.eis.radioexpert.messaging.TimeLineElement;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;

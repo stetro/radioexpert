@@ -1,5 +1,8 @@
 package de.fhkoeln.eis.radioexpert.messaging.messages;
 
+import de.fhkoeln.eis.radioexpert.messaging.SocialMediaMessage;
+import de.fhkoeln.eis.radioexpert.messaging.TimeLineElement;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

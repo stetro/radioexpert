@@ -1,7 +1,7 @@
 package de.fhkoeln.eis.radioexpert.client.uihandler;
 
 import de.fhkoeln.eis.radioexpert.messaging.messages.FacebookMessage;
-import de.fhkoeln.eis.radioexpert.messaging.messages.SocialMediaMessage;
+import de.fhkoeln.eis.radioexpert.messaging.SocialMediaMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.TwitterMessage;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;

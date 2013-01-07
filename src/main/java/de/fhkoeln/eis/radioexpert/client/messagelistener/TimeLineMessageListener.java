@@ -1,8 +1,7 @@
 package de.fhkoeln.eis.radioexpert.client.messagelistener;
 
 import de.fhkoeln.eis.radioexpert.client.uihandler.TimeLineHandler;
-import de.fhkoeln.eis.radioexpert.messaging.messages.AudioMessage;
-import de.fhkoeln.eis.radioexpert.messaging.messages.TimeLineElement;
+import de.fhkoeln.eis.radioexpert.messaging.TimeLineElement;
 import org.springframework.stereotype.Service;
 
 import javax.jms.JMSException;

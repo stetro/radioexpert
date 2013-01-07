@@ -5,10 +5,10 @@ import de.fhkoeln.eis.radioexpert.client.uihandler.SocialMediaListHandler;
 import de.fhkoeln.eis.radioexpert.client.uihandler.TimeLineHandler;
 import de.fhkoeln.eis.radioexpert.client.uihandler.jshandler.NewElementHandler;
 import de.fhkoeln.eis.radioexpert.client.util.InfoBox;
+import de.fhkoeln.eis.radioexpert.messaging.SocialMediaMessage;
+import de.fhkoeln.eis.radioexpert.messaging.TimeLineElement;
 import de.fhkoeln.eis.radioexpert.messaging.messages.BroadcastResponse;
 import de.fhkoeln.eis.radioexpert.messaging.messages.ChatMessage;
-import de.fhkoeln.eis.radioexpert.messaging.messages.SocialMediaMessage;
-import de.fhkoeln.eis.radioexpert.messaging.messages.TimeLineElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
