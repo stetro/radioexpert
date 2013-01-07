@@ -1,4 +1,4 @@
-package de.fhkoeln.eis.radioexpert.messaging.messages;
+package de.fhkoeln.eis.radioexpert.messaging;
 
 /**
  * Basis Interface für eine globale getMessage Methode

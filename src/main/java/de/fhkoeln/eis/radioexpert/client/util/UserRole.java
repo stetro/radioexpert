@@ -1,7 +1,7 @@
 package de.fhkoeln.eis.radioexpert.client.util;
 
 /**
- * Repraesentiert die Rollen
+ * Repraesentiert die möglichen Nutzer Rollen
  * <p/>
  * User: Steffen Tröster
  * Date: 15.12.12

@@ -13,7 +13,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Handler fuer JavaScript Komponente
+ * Handler fuer JavaScript Komponente bei neuen Elementen aus Formularen
  * <p/>
  * User: Steffen Tröster
  * Date: 16.12.12
