@@ -39,10 +39,11 @@ public class TimeLineHandler {
     private static Logger logger = LoggerFactory.getLogger(TimeLineHandler.class);
     public static List<TimeLineElement> timeLineElements = new ArrayList<TimeLineElement>();
     private static ContextMenu cm;
-    private static MenuButton addElementDropDownMenuButton;
+    public static MenuButton addElementDropDownMenuButton;
 
     public TimeLineHandler(WebView givenTimeLineWebView, MenuButton givenAddElementDropDownMenuButton) {
         addElementDropDownMenuButton = givenAddElementDropDownMenuButton;
+        addElementDropDownMenuButton.setVisible(false);
         timeLineWebView = givenTimeLineWebView;
         timeLineWebView.getEngine().setJavaScriptEnabled(true);
         URL url = TimeLineHandler.class.getResource("/gui/component/timeline.html");

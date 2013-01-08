@@ -38,7 +38,17 @@
     background-color:#EEE;
 }
 #newAudio,#audio{
-    background-color:#DEE0BF;
+    background-color:#DBB675;
+    color:#FEFEFE;
+    text-shadow:1px 1px 0 #000;
+}
+#newInterview,#interview{
+    background-color:#D0F3FB;
+    color:#555;
+}
+
+textarea{
+    height:100px;
 }
 
 div#timeline{
@@ -132,5 +142,12 @@ div#modules div.module{
      box-shadow: 0 0 2px 2px #DDD;
 }
 div#modules div.module.audio{
-    background-color: rgba(222, 224, 191, 0.7);
+    background-color: rgba(219, 182, 117, 0.7);
+    color:#FEFEFE;
+    text-shadow:1px 1px 0 #000;
+}
+div#modules div.module.interview{
+    background-color: rgba(208, 243, 251, 0.7);
+    color:#555;
+
 }

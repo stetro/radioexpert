@@ -3,6 +3,7 @@ package de.fhkoeln.eis.radioexpert.client.uihandler.jshandler;
 import de.fhkoeln.eis.radioexpert.client.uihandler.MoreInformationHandler;
 import de.fhkoeln.eis.radioexpert.messaging.messages.AudioMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.BroadcastMessage;
+import de.fhkoeln.eis.radioexpert.messaging.messages.InterviewMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,50 @@ public class NewElementHandler {
     }
 
     public NewElementHandler() {
+    }
+
+    public void newInterview(String thema, long start, long end, String name, String phone, String mail, String street, String city, String questions, String infotext) {
+        logger.info("Interview wird erzeugt ...");
+        Calendar cFrom = Calendar.getInstance();
+        Calendar cTo = Calendar.getInstance();
+        getGivenTimes(start, end, cFrom, cTo);
+
+        InterviewMessage interviewMessage = new InterviewMessage();
+        interviewMessage.setTitle(thema);
+        interviewMessage.setStart(cFrom.getTime());
+        interviewMessage.setEnd(cTo.getTime());
+        interviewMessage.setName(name);
+        interviewMessage.setPhone(phone);
+        interviewMessage.setMail(mail);
+        interviewMessage.setStreet(street);
+        interviewMessage.setCity(city);
+        interviewMessage.setQuestions(questions);
+        interviewMessage.setInfo(infotext);
+        interviewMessage.setBroadcastCreatedAt(currentBroadcastMessage.getCreatedAt());
+
+        jmsTemplate.convertAndSend("interview", interviewMessage);
+    }
+
+    public void updateInterview(String thema, long start, long end, String name, String phone, String mail, String street, String city, String questions, String infotext) {
+        logger.info("Interview wird erzeugt ...");
+        Calendar cFrom = Calendar.getInstance();
+        Calendar cTo = Calendar.getInstance();
+        getGivenTimes(start, end, cFrom, cTo);
+
+        InterviewMessage interviewMessage = (InterviewMessage) MoreInformationHandler.currentSelectedElement;
+        interviewMessage.setTitle(thema);
+        interviewMessage.setStart(cFrom.getTime());
+        interviewMessage.setEnd(cTo.getTime());
+        interviewMessage.setName(name);
+        interviewMessage.setPhone(phone);
+        interviewMessage.setMail(mail);
+        interviewMessage.setStreet(street);
+        interviewMessage.setCity(city);
+        interviewMessage.setQuestions(questions);
+        interviewMessage.setInfo(infotext);
+        interviewMessage.setBroadcastCreatedAt(currentBroadcastMessage.getCreatedAt());
+
+        jmsTemplate.convertAndSend("interview", interviewMessage);
     }
 
     public void newAudio(String title, long givenFrom, long givenTo) {

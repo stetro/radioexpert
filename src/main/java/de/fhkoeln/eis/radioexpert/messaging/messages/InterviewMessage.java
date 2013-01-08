@@ -35,43 +35,39 @@ public class InterviewMessage implements Serializable, TimeLineElement {
     private String phone;
     @Column(name = "street")
     private String street;
-    @Column(name = "town")
-    private String town;
-    @Column(name = "email")
-    private String email;
     @Column(name = "name")
     private String name;
     @Column(name = "info")
     private String info;
-    @Column(name = "talkInfo")
-    private String talkInfo;
     @Column(name = "questions")
     private String questions;
     @Column(name = "socialMedia")
-    private String socialMedia;
+    private String socialMedia = "";
     @Column(name = "quotes")
-    private String quotes;
+    private String quotes = "";
     @Column(name = "broadcastCreatedAt")
     private Date broadcastCreatedAt;
-
+    @Column(name = "mail")
+    private String mail;
+    @Column(name = "city")
+    private String city;
     @ElementCollection
     private List<String> messages = new ArrayList<String>();
 
     public InterviewMessage() {
+        this.createdAt = new Date();
     }
 
-    public InterviewMessage(Date createdAt, Date start, Date end, String title, String phone, String street, String town, String email, String name, String info, String talkInfo, String questions, String socialMedia, String quotes, Date broadcastCreatedAt) {
-        this.createdAt = createdAt;
-        this.start = start;
+    public InterviewMessage(Date start, Date end, String title, String phone, String street, String name, String info, String talkInfo, String questions, String socialMedia, String quotes, Date broadcastCreatedAt) {
+        this();
+        broadcastCreatedAt =
+                this.start = start;
         this.end = end;
         this.title = title;
         this.phone = phone;
         this.street = street;
-        this.town = town;
-        this.email = email;
         this.name = name;
         this.info = info;
-        this.talkInfo = talkInfo;
         this.questions = questions;
         this.socialMedia = socialMedia;
         this.quotes = quotes;
@@ -113,7 +109,7 @@ public class InterviewMessage implements Serializable, TimeLineElement {
     }
 
     public String getTitle() {
-        return title;
+        return "Interview";
     }
 
     public void setTitle(String title) {
@@ -136,22 +132,6 @@ public class InterviewMessage implements Serializable, TimeLineElement {
         this.street = street;
     }
 
-    public String getTown() {
-        return town;
-    }
-
-    public void setTown(String town) {
-        this.town = town;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getName() {
         return name;
     }
@@ -161,7 +141,7 @@ public class InterviewMessage implements Serializable, TimeLineElement {
     }
 
     public String getInfo() {
-        return info;
+        return title;
     }
 
     @Override
@@ -171,14 +151,6 @@ public class InterviewMessage implements Serializable, TimeLineElement {
 
     public void setInfo(String info) {
         this.info = info;
-    }
-
-    public String getTalkInfo() {
-        return talkInfo;
-    }
-
-    public void setTalkInfo(String talkInfo) {
-        this.talkInfo = talkInfo;
     }
 
     public String getQuestions() {
@@ -215,5 +187,25 @@ public class InterviewMessage implements Serializable, TimeLineElement {
 
     public void setBroadcastCreatedAt(Date broadcastCreatedAt) {
         this.broadcastCreatedAt = broadcastCreatedAt;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCreatedAt(Date t) {
+        this.createdAt = t;
     }
 }

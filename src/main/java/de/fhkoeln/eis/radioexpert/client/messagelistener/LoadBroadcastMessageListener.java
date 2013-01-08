@@ -1,10 +1,12 @@
 package de.fhkoeln.eis.radioexpert.client.messagelistener;
 
+import de.fhkoeln.eis.radioexpert.client.ClientApplication;
 import de.fhkoeln.eis.radioexpert.client.uihandler.ChatHandler;
 import de.fhkoeln.eis.radioexpert.client.uihandler.SocialMediaListHandler;
 import de.fhkoeln.eis.radioexpert.client.uihandler.TimeLineHandler;
 import de.fhkoeln.eis.radioexpert.client.uihandler.jshandler.NewElementHandler;
 import de.fhkoeln.eis.radioexpert.client.util.InfoBox;
+import de.fhkoeln.eis.radioexpert.client.util.UserRole;
 import de.fhkoeln.eis.radioexpert.messaging.SocialMediaMessage;
 import de.fhkoeln.eis.radioexpert.messaging.TimeLineElement;
 import de.fhkoeln.eis.radioexpert.messaging.messages.BroadcastResponse;
@@ -51,6 +53,10 @@ public class LoadBroadcastMessageListener implements MessageListener {
                 TimeLineHandler.updateElement(e);
             }
             NewElementHandler.currentBroadcastMessage = response.getBroadcastMessage();
+
+            if (ClientApplication.role == UserRole.REDAKTEUR) {
+                TimeLineHandler.addElementDropDownMenuButton.setVisible(true);
+            }
 
             TimeLineHandler.setBroadcast(response.getBroadcastMessage());
             logger.info("Response erhalten !!");

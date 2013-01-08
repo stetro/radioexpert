@@ -119,9 +119,9 @@ public class MoreInformationHandler {
         if (moreInformationWebView == null) return;
 
         currentSelectedElement = null;
-        URL url = MoreInformationHandler.class.getResource("/gui/component/newAudio.html");
+        URL url = MoreInformationHandler.class.getResource("/gui/component/newInterview.html");
         moreInformationWebView.getEngine().load(url.toExternalForm());
-        logger.info("Neues Audio anlegen UI wird geladen ...");
+        logger.info("Neues Interview anlegen UI wird geladen ...");
     }
 
     public static void createNewModerationDialog() {
@@ -147,7 +147,13 @@ public class MoreInformationHandler {
     }
 
     public static void showElement(InterviewMessage e) {
+        URL url = MoreInformationHandler.class.getResource("/gui/component/interview.html");
+        String resource = url.toExternalForm() + "?title=" + e.getInfo() + "&from=" + e.getStart().getTime() + "&to=" + e.getEnd().getTime() + "&thma=" + e.getTitle()
+                + "&name=" + e.getName() + "&phone=" + e.getPhone() + "&mail=" + e.getMail() + "&street=" + e.getStreet() + "&city=" + e.getCity() + "&questions=" + e.getQuestions() + "&infotext=" + e.getInfo();
+        System.out.println(resource);
+        moreInformationWebView.getEngine().load(resource);
         currentSelectedElement = e;
+        logger.info("Interview Anzeige UI wird geladen ...");
     }
 }
 

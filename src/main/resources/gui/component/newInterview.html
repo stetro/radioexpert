@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Neues Interview anlegen</title>
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/jquery-ui.js" type="text/javascript"></script>
+    <script src="js/newComponents.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="css/kube.min.css"/>
+    <link rel="stylesheet" href="css/smoothness/jquery-ui-1.9.2.custom.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+
+</head>
+<body style="padding:8px;" id="newInterview">
+<h4>Neues Interview anlegen</h4>
+
+<form class="forms">
+    <fieldset>
+        <ul>
+            <li>
+                <label for="thema" class="bold">Thema</label>
+                <input type="text" name="thema" id="thema" size="35"/>
+            </li>
+            <li>
+                <label for="start" class="bold">Zeitraum</label>
+                <ul class="multicolumn">
+                    <li>
+                        <input type="text" name="start" id="start" size="5" maxlength="5"> bis
+                    </li>
+                    <li>
+                        <input type="text" name="end" size="5" id="end" maxlength="5">
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <h4>Interviewpartner</h4>
+                <label for="name" class="bold">Name: </label>
+                <input type="text" name="name" id="name" size="35"/>
+            </li>
+            <li>
+                <label for="phone" class="bold">Telefonnummer: </label>
+                <input type="text" name="phone" id="phone" size="35"/>
+            </li>
+            <li>
+                <label for="mail" class="bold">Mail: </label>
+                <input type="text" name="mail" id="mail" size="35"/>
+            </li>
+            <li>
+                <label for="street" class="bold">Adresse: </label>
+                <input type="text" name="street" id="street" size="35"/><br/><br/>
+                <input type="text" name="city" id="city" size="35"/>
+            </li>
+            <li>
+                <label for="questions" class="bold">M&ouml;gliche Fragen: </label>
+                <textarea name="questions" id="questions" rows="5" cols="33"></textarea>
+            </li>
+            <li>
+                <label for="infotext" class="bold">Weitere Informationen: </label>
+                <textarea name="infotext" id="infotext" rows="5" cols="33"></textarea>
+            </li>
+            <li>
+                <input type="button" name="submit" id="submitInterview" value="Interview anlegen" class="btn">
+            </li>
+        </ul>
+    </fieldset>
+</form>
+</body>
+</html>

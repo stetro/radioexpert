@@ -31,7 +31,7 @@ http://www.springframework.org/schema/jms/spring-jms-3.0.xsd">
 
         <jms:listener destination="onlinestatus" ref="onlineStatusHandlerMessageListener"/>
         <jms:listener destination="broadcast" ref="broadcastMessageListener"/>
-        <jms:listener destination="interviewelement" ref="timeLineMessageListener"/>
+        <jms:listener destination="interview" ref="timeLineMessageListener"/>
         <jms:listener destination="audio" ref="timeLineMessageListener"/>
 
         <!-- TODO: Zuweisungen vervollständigen -->
