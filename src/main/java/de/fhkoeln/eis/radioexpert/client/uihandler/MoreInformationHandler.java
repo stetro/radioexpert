@@ -86,10 +86,17 @@ public class MoreInformationHandler {
         // Drag and Drop druchfuehren
         moreInformationWebView.setOnDragDropped(new EventHandler<DragEvent>() {
             @Override
-            public void handle(DragEvent dragEvent) {
+            public void handle(final DragEvent dragEvent) {
                 if (currentSelectedElement != null && dragEvent.getDragboard().hasString()) {
                     currentSelectedElement.addMessage(dragEvent.getDragboard().getString());
-                    logger.info("SocialMediaElement " + dragEvent.getDragboard().getString());
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            String script = "addMessage(\"" + dragEvent.getDragboard().getString().replace("\r\n", "<br/>").replace("\n", "<br/>") + "\")";
+                            System.out.println(script);
+                            moreInformationWebView.getEngine().executeScript(script);
+                        }
+                    });
                 }
                 dragEvent.setDropCompleted(true);
                 dragEvent.consume();

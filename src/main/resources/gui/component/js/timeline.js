@@ -37,7 +37,7 @@ var updatePointer = function(time){
 var setModule = function(name, infotext, type, start, end, createdat) {
         beginning = Math.round((start - timeLineFrom) / 1000 / 60);
         ending = Math.round((end - timeLineFrom) / 1000 / 60);
-        $("#timelineComponent #timeline #modules").append('<div data-createdat="'+createdat+'" class="module ' + type + '" style="' + 'height: ' + ((ending - beginning) * timeLineSize - 12) + 'px;' + 'top:' + (beginning * timeLineSize+6) + 'px">' + '<h5>' + name + '</h5>&nbsp;' + '<span>' + infotext + '</span></div>');
+        $("#timelineComponent #timeline #modules").append('<div data-createdat="'+createdat+'" class="module ' + type + '" style="' + 'height: ' + ((ending - beginning) * timeLineSize - 12) + 'px;' + 'top:' + (beginning * timeLineSize+6) + 'px">' + '' + name + '&nbsp;' + '<span>' + infotext + '</span></div>');
         $("#modules .module").unbind('click').bind({click:selectModule});
     }
 
@@ -63,6 +63,13 @@ var updateTimeLineSize = function() {
 $(function() {
     window.onresize = updateTimeLineSize;
     updateTimeLineSize();
+    window.setInterval(function(){
+        now = new Date();
+        if(timeLineTo > now && now > timeLineFrom){
+            top = (now - timeLineFrom) / 1000 / 60;
+            $("#pointer").css("top",top * timeLineSize);
+        }
+    },1000);
 });
 
 

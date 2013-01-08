@@ -109,7 +109,7 @@ public class InterviewMessage implements Serializable, TimeLineElement {
     }
 
     public String getTitle() {
-        return "Interview";
+        return "<img src=\"img/phone.png\"/>";
     }
 
     public void setTitle(String title) {

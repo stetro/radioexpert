@@ -47,6 +47,10 @@ $(function(){
     });
 });
 
+var addMessage = function(message){
+    $("#socialMedia ul ").append("<li>"+unescape(message)+"</li>")
+}
+
 var highlightSocialMedia = function(){
     $("#socialMedia").css("border","3px solid #0F0");
 }
@@ -56,18 +60,18 @@ var unHighlightSocialMedia = function(){
 }
 
 $.extend({
-  getUrlVars: function(){
-    var vars = [], hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for(var i = 0; i < hashes.length; i++)
-    {
-      hash = hashes[i].split('=');
-      vars.push(hash[0]);
-      vars[hash[0]] = hash[1];
+    getUrlVars: function(){
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    },
+        getUrlVar: function(name){
+            return $.getUrlVars()[name];
     }
-    return vars;
-  },
-  getUrlVar: function(name){
-    return $.getUrlVars()[name];
-  }
 });

@@ -9,6 +9,19 @@
     background-image: url(../img/dark.png);
 }
 
+#timelineComponent div#header img{
+    width:20px;
+    position:absolute;
+    top:5px;
+    right:5px;
+    opacity:0.65;
+}
+
+#timelineComponent div#header img:hover{
+    opacity:1;
+    cursor:pointer;
+}
+
 #timelineComponent div#header{
     height: 100px;
     padding:5px;
@@ -96,6 +109,7 @@ div#pointer{
     margin-left:19px;
     width:100%;
     position:absolute;
+    z-index:8;
 }
 div#pointer div{
     position:relative;
@@ -127,12 +141,11 @@ div#modules div.module.active{
 }
 div#modules div.module h5{
     display:inline;
-
     font-size:14px;
 }
 div#modules div.module{
      position:absolute;
-     left:45px;
+     left:55px;
      width:80%;
      padding: 3px;
      z-index:10;
@@ -141,13 +154,33 @@ div#modules div.module{
      border-radius:5px;
      box-shadow: 0 0 2px 2px #DDD;
 }
+
+div#modules div.module.audio.active{
+    background-color: rgba(219, 182, 117, 1);
+}
+
+div#modules div.module.interview.active{
+    background-color: rgba(208, 243, 251, 1);
+}
 div#modules div.module.audio{
     background-color: rgba(219, 182, 117, 0.7);
     color:#FEFEFE;
     text-shadow:1px 1px 0 #000;
 }
+div#modules div.module img{
+    opacity:0.5;
+    padding:5px 5px 0px 5px;
+    width:16px;
+}
 div#modules div.module.interview{
     background-color: rgba(208, 243, 251, 0.7);
     color:#555;
+}
 
+div#modules div.module:hover{
+    cursor:pointer;
+}
+
+div#modules div.module.active img,div#modules div.module:hover img{
+    opacity:1;
 }

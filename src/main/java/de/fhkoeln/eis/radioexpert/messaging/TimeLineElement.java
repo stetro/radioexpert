@@ -15,6 +15,8 @@ import java.util.List;
  * Time: 13:22
  */
 public interface TimeLineElement {
+    public final String CUTTER = "#CUTTER4567890#";
+
     Date getCreatedAt();
 
     String getTitle();

@@ -64,7 +64,23 @@ public class MailService implements RadioExpertService {
         System.out.println("reading messages..");
         Message[] messages = folder.getMessages();
         for (Message m : messages) {
-            MailMessage mailMessage = new MailMessage(m.getContent().toString(), m.getFrom()[0].toString(), new Date());
+            MailMessage mailMessage;
+            if (m.getContent() instanceof Multipart) {
+                String content = "";
+                Multipart mu = (Multipart) m.getContent();
+                for (int x = 0; x < mu.getCount(); x++) {
+                    BodyPart bodyPart = mu.getBodyPart(x);
+                    String disposition = bodyPart.getDisposition();
+                    if (disposition != null && (disposition.equals(BodyPart.ATTACHMENT))) {
+                        // Mit Anhang
+                    } else {
+                        content += bodyPart.getContent();
+                    }
+                }
+                mailMessage = new MailMessage(content, m.getFrom()[0].toString(), new Date());
+            } else {
+                mailMessage = new MailMessage(m.getContent().toString(), m.getFrom()[0].toString(), new Date());
+            }
             jmsTemplate.convertAndSend("mail", mailMessage);
             logger.info("Nachricht !!" + mailMessage.getMessage());
         }

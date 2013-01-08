@@ -4,9 +4,10 @@ import de.fhkoeln.eis.radioexpert.messaging.TimeLineElement;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static java.util.Arrays.asList;
 
 /**
  * Repraesentiert ein Audioinhalt auf der Timeline (zB einen Song ect.)
@@ -27,8 +28,7 @@ public class AudioMessage implements Serializable, TimeLineElement {
     private Date end;
     private String title;
     private Date broadcastCreatedAt;
-    @ElementCollection
-    private List<String> messages = new ArrayList<String>();
+    private String messages = "";
 
     public AudioMessage() {
     }
@@ -42,7 +42,7 @@ public class AudioMessage implements Serializable, TimeLineElement {
     }
 
     public String getTitle() {
-        return "Audiobeitrag";
+        return "<img src=\"img/audio.png\" />";
     }
 
     @Override
@@ -73,12 +73,12 @@ public class AudioMessage implements Serializable, TimeLineElement {
 
     @Override
     public void addMessage(String message) {
-        this.messages.add(message);
+        this.messages = message + TimeLineElement.CUTTER;
     }
 
     @Override
     public List<String> getMessages() {
-        return messages;
+        return asList(messages.split(TimeLineElement.CUTTER));
     }
 
     public void setEnd(Date end) {
