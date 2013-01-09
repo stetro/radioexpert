@@ -1,7 +1,8 @@
 package de.fhkoeln.eis.radioexpert.client.uihandler;
 
-import de.fhkoeln.eis.radioexpert.messaging.messages.FacebookMessage;
 import de.fhkoeln.eis.radioexpert.messaging.SocialMediaMessage;
+import de.fhkoeln.eis.radioexpert.messaging.messages.FacebookMessage;
+import de.fhkoeln.eis.radioexpert.messaging.messages.MailMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.TwitterMessage;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -15,9 +16,11 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -76,17 +79,41 @@ public class SocialMediaListHandler {
             super.updateItem(item, empty);
             if (item != null) {
                 ImageView i = new ImageView();
-                if (item instanceof TwitterMessage) {
-                    i.setImage(new Image("gui/component/img/twitter.png"));
-                } else if (item instanceof FacebookMessage) {
-                    i.setImage(new Image("gui/component/img/facebook.png"));
-                } else {
-                    i.setImage(new Image("gui/component/img/mail.png"));
-                }
                 HBox box = new HBox();
                 box.setSpacing(10.0);
                 box.getChildren().add(i);
-                box.getChildren().add(new Text(this.getItem().getMessage()));
+                if (item instanceof TwitterMessage) {
+                    i.setImage(new Image("gui/component/img/twitter.png"));
+                    VBox vbox = new VBox();
+                    TwitterMessage tm = (TwitterMessage) this.getItem();
+                    Text e = new Text("@" + tm.getUser());
+                    e.setStyle("-fx-font-weight:bold;");
+                    vbox.getChildren().add(e);
+                    SimpleDateFormat format = new SimpleDateFormat("d.M.Y h:m:s");
+                    Text date = new Text(format.format(tm.getTime()));
+                    date.setStyle("-fx-font-weight:lighter;");
+                    vbox.getChildren().add(date);
+                    vbox.getChildren().add(new Text(tm.getMessage()));
+                    box.getChildren().add(vbox);
+                } else if (item instanceof FacebookMessage) {
+                    i.setImage(new Image("gui/component/img/facebook.png"));
+                    box.getChildren().add(new Text(this.getItem().getMessage()));
+                } else {
+                    i.setImage(new Image("gui/component/img/mail.png"));
+                    VBox vbox = new VBox();
+                    MailMessage mm = (MailMessage) this.getItem();
+                    Text sender = new Text(mm.getSender());
+                    sender.setStyle("-fx-font-weight:bold;");
+                    vbox.getChildren().add(sender);
+                    SimpleDateFormat format = new SimpleDateFormat("d.m.Y h:m:s");
+                    Text time = new Text(format.format(mm.getTimestamp()));
+                    vbox.getChildren().add(time);
+                    Text e = new Text(mm.getTitle());
+                    e.setStyle("-fx-font-weight:bold;");
+                    vbox.getChildren().add(e);
+                    vbox.getChildren().add(new Text(mm.getMessage()));
+                    box.getChildren().add(vbox);
+                }
                 setGraphic(box);
 
             }
