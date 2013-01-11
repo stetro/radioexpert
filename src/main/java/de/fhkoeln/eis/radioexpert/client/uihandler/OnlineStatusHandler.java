@@ -19,7 +19,6 @@ import java.util.*;
 /**
  * Verwaltet den OnlineStatus der Nutzer in der GUI
  * <p/>
- * User: Steffen Tröster
  * Date: 15.12.12
  * Time: 10:09
  */

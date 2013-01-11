@@ -16,7 +16,6 @@ import java.util.List;
  * Persistenz Service, den Message Broker und die Application Services wie
  * Facebookanbindung und Twitteranbindung.
  *
- * @author Steffen Troester
  */
 @Service
 public class ServerInstance {

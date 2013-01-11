@@ -13,7 +13,6 @@ import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
- * User: Steffen Tröster
  * Date: 13.11.12
  * Time: 11:12
  * Fragt aktuelle Mails ab
@@ -64,6 +63,8 @@ public class MailService implements RadioExpertService {
         System.out.println("reading messages..");
         Message[] messages = folder.getMessages();
         for (Message m : messages) {
+            String sender;
+            sender = m.getFrom()[0].toString();
             MailMessage mailMessage;
             if (m.getContent() instanceof Multipart) {
                 String content = "";
@@ -79,8 +80,9 @@ public class MailService implements RadioExpertService {
                 }
                 mailMessage = new MailMessage(content, m.getFrom()[0].toString(), new Date());
             } else {
-                mailMessage = new MailMessage(m.getContent().toString(), m.getFrom()[0].toString(), new Date());
+                mailMessage = new MailMessage(m.getContent().toString(), sender, new Date());
             }
+            mailMessage.setTitle(m.getSubject());
             jmsTemplate.convertAndSend("mail", mailMessage);
             logger.info("Nachricht !!" + mailMessage.getMessage());
         }

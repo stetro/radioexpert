@@ -21,7 +21,6 @@ import java.util.Date;
 /**
  * Abboniert chat und Stellt Nachrichten in WebView dar
  * <p/>
- * User: Steffen Tröster
  * Date: 26.11.12
  * Time: 10:38
  */

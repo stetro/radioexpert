@@ -14,7 +14,6 @@ import java.io.Serializable;
  * Uebernimmt das Empfangen der SocialMedia Messages und stellt diese im Handler dar
  * (definiert im applicationContext)
  * <p/>
- * User: Steffen Tröster
  * Date: 14.12.12
  * Time: 12:05
  */

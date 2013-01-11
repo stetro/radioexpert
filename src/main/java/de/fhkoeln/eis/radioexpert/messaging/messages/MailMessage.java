@@ -29,6 +29,7 @@ public class MailMessage implements Serializable, SocialMediaMessage {
 
     @Column(name = "broadcastCreatedAt")
     private Date broadcastCreatedAt;
+    private String title;
 
     public MailMessage(long id, String message, String sender, Date timestamp, Date broadcastCreatedAt) {
         this.id = id;
@@ -85,5 +86,13 @@ public class MailMessage implements Serializable, SocialMediaMessage {
 
     public void setBroadcastCreatedAt(Date broadcastCreatedAt) {
         this.broadcastCreatedAt = broadcastCreatedAt;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

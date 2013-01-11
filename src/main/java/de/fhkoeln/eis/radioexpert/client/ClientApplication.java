@@ -14,7 +14,6 @@ import java.util.Date;
 /**
  * Hauptklasse fuer die Clientseite mit GUI und ActiveMQ Anbindung
  * <p/>
- * User: Steffen Tröster
  * Date: 21.11.12
  * Time: 19:08
  */

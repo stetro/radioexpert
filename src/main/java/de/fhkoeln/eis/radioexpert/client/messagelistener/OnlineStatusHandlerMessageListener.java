@@ -22,7 +22,6 @@ import java.io.Serializable;
  * Sendet alle n Sekunden einen Onlinestatus und uebergibt username
  * und timestamp um die Online stehenden Nutzer anzeigen zu koennen
  * <p/>
- * User: Steffen Tröster
  * Date: 15.12.12
  * Time: 10:09
  */

@@ -12,7 +12,6 @@ import javax.jms.ObjectMessage;
 /**
  * Empfängt Blöcke wie "Mederation" und "Songs" ect.
  * <p/>
- * User: Steffen Tröster
  * Date: 18.12.12
  * Time: 09:51
  */

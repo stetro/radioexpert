@@ -7,6 +7,17 @@ $(function(){
         end = new Date(parseInt($.getUrlVar("to")));
         $("#start").val(start.getHours()+":"+start.getMinutes());
         $("#end").val(end.getHours()+":"+end.getMinutes());
+        var i =0;
+        while(true)
+        {
+            if($.getUrlVar("smsg["+i+"]") == undefined)
+            {
+                break;
+            }
+            var msg = unescape($.getUrlVar("smsg["+i+"]"));
+            addMessage(msg);
+            // TODO: CALLBACK definieren
+        }
         $("#submitAudio").click(function(){
             var from = new Date();
             var to = new Date();
@@ -16,10 +27,12 @@ $(function(){
             to.setHours($("#end").val().match(/^[0-9]{1,2}/));
             to.setMinutes($("#end").val().match(/[0-9]{1,2}$/));
             to.setSeconds(0);
+
             window.NewElementHandler.updateAudio($("#title").val(),from,to);
         });
     });
     $("#interview").each(function(){
+
         $("#thema").val(unescape($.getUrlVar("title")));
         $("#name").val(unescape($.getUrlVar("name")));
         $("#phone").val(unescape($.getUrlVar("phone")));
@@ -28,10 +41,13 @@ $(function(){
         $("#city").val(unescape($.getUrlVar("city")));
         $("#questions").val(unescape($.getUrlVar("questions")));
         $("#infotext").val(unescape($.getUrlVar("infotext")));
+
         start = new Date(parseInt($.getUrlVar("from")));
         end = new Date(parseInt($.getUrlVar("to")));
+
         $("#start").val(start.getHours()+":"+start.getMinutes());
         $("#end").val(end.getHours()+":"+end.getMinutes());
+
         $("#submitInterview").click(function(){
             var from = new Date();
             var to = new Date();

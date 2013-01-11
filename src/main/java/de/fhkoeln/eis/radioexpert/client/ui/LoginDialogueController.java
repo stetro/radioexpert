@@ -32,7 +32,6 @@ import java.util.ResourceBundle;
 /**
  * Managed LoginDialogue mit Serverstatus Funktion
  * <p/>
- * User: Steffen Tröster
  * Date: 15.12.12
  * Time: 15:02
  */

@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 /**
  * Facebook Service soll aktuelle Facebook Chronik Eintraege in das System speisen.
  * <p/>
- * User: Steffen Tröster
  * Date: 12.11.12
  * Time: 11:04
  */

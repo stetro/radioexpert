@@ -20,7 +20,6 @@ import java.util.List;
 /**
  * DatabaseController ist ein Service der auf die MessageQueue persistence.request horcht und
  * die Antwort auf persistence.response schickt.
- * User: Steffen Tröster
  * Date: 21.11.12
  * Time: 14:17
  */

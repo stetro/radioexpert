@@ -18,7 +18,6 @@ import javax.jms.ObjectMessage;
 /**
  * Empfängt neu erstellte Sendungen
  * <p/>
- * User: Steffen Tröster
  * Date: 17.12.12
  * Time: 11:03
  */

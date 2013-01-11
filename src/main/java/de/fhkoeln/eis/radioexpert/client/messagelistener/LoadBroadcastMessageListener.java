@@ -22,7 +22,6 @@ import javax.jms.ObjectMessage;
 /**
  * Empfaengt den Response vom DatabaseController der ServerInstance
  * <p/>
- * User: Steffen Tröster
  * Date: 16.12.12
  * Time: 12:38
  */

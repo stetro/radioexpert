@@ -12,7 +12,6 @@ import javax.jms.ObjectMessage;
 /**
  * Message Listener für den ChatHandler (definiert im applicationContext)
  * <p/>
- * User: Steffen Tröster
  * Date: 14.12.12
  * Time: 12:02
  */

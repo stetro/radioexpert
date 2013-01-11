@@ -17,11 +17,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.URL;
+import java.util.List;
 
 /**
  * Repraesentiert den Mittelteil der UI mit WebView Elementen
  * <p/>
- * User: Steffen Tröster
  * Date: 16.12.12
  * Time: 12:18
  */
@@ -148,16 +148,26 @@ public class MoreInformationHandler {
     public static void showElement(AudioMessage e) {
         URL url = MoreInformationHandler.class.getResource("/gui/component/audio.html");
         String resource = url.toExternalForm() + "?title=" + e.getInfo() + "&from=" + e.getStart().getTime() + "&to=" + e.getEnd().getTime();
+        appendSocialMediaMessages(e.getMessages(), resource);
         moreInformationWebView.getEngine().load(resource);
         currentSelectedElement = e;
         logger.info("Audio Anzeige UI wird geladen ...");
+    }
+
+    private static void appendSocialMediaMessages(List<String> messages, String resource) {
+        int i = 0;
+        for (String s : messages) {
+            i++;
+            resource += "&smsg[" + i + "]=" + s;
+        }
     }
 
     public static void showElement(InterviewMessage e) {
         URL url = MoreInformationHandler.class.getResource("/gui/component/interview.html");
         String resource = url.toExternalForm() + "?title=" + e.getInfo() + "&from=" + e.getStart().getTime() + "&to=" + e.getEnd().getTime() + "&thma=" + e.getTitle()
                 + "&name=" + e.getName() + "&phone=" + e.getPhone() + "&mail=" + e.getMail() + "&street=" + e.getStreet() + "&city=" + e.getCity() + "&questions=" + e.getQuestions() + "&infotext=" + e.getInfo();
-        System.out.println(resource);
+        appendSocialMediaMessages(e.getMessages(), resource);
+
         moreInformationWebView.getEngine().load(resource);
         currentSelectedElement = e;
         logger.info("Interview Anzeige UI wird geladen ...");

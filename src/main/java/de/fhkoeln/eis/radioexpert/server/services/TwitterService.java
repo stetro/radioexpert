@@ -15,7 +15,6 @@ import java.util.List;
  * Twitter Service der in regelmaessiegen Abstaenden die TwitterAPI abfragt ob
  * nach dem bestimmten Suchkretaerium neue Tweets in der Timeline stehen
  *
- * @author Steffen Troester
  */
 
 @Service

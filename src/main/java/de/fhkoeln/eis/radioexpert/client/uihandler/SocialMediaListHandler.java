@@ -26,7 +26,6 @@ import java.util.Date;
 /**
  * Abboniert die Social Topics und stellt diese in der ListView dar
  * <p/>
- * User: Steffen Tröster
  * Date: 04.12.12
  * Time: 15:26
  * TODO: Bessere Darstellung der Social Media Elemenete in der ListView

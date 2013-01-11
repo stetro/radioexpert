@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
@@ -31,7 +32,6 @@ import java.util.ResourceBundle;
 /**
  * Verwaltet alle UI Elemente der form.xml View (MVC)
  * <p/>
- * User: Steffen Tröster
  * Date: 21.11.12
  * Time: 19:08
  */
@@ -64,6 +64,8 @@ public class ClientGUIController implements Initializable {
      */
     @FXML
     private ListView<SocialMediaMessage> socialListView;
+    @FXML
+    private AnchorPane socialAnchorPane;
     private SocialMediaListHandler socialMediaListHandler;
     /*
     OnlineStatusHandler Variablen
@@ -95,7 +97,7 @@ public class ClientGUIController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        timeLineHandler = new TimeLineHandler(timeLineWebView,addElementDropDownMenuButton);
+        timeLineHandler = new TimeLineHandler(timeLineWebView, addElementDropDownMenuButton);
         chatHandler = new ChatHandler(chatWebView, chatTextField, chatButton);
         socialMediaListHandler = new SocialMediaListHandler(socialListView);
         onlineStatusHandler = new OnlineStatusHandler(onlineStatusListView);
@@ -123,6 +125,11 @@ public class ClientGUIController implements Initializable {
                 Platform.exit();
             }
         });
+        if (ClientApplication.role != UserRole.REDAKTEUR && socialAnchorPane != null) {
+
+            socialAnchorPane.setPrefHeight(0);
+            socialAnchorPane.setVisible(false);
+        }
 
         // Nur Redaktion darf Sendung und Elemente hinzufuegen
         if (ClientApplication.role == UserRole.REDAKTEUR) {

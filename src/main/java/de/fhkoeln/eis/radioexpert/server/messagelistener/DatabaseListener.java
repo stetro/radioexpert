@@ -18,7 +18,6 @@ import java.io.Serializable;
  * die Datenbank ab. Zusätzlich verknüpft der Listener alle eingehenden Nachrichten
  * mit der aktuellen Sendung.
  *
- * @author Steffen Troester
  */
 @Service
 public class DatabaseListener implements MessageListener {

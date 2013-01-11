@@ -10,7 +10,6 @@ import java.util.List;
  * -> ...
  * TODO: Auffüllen
  * <p/>
- * User: Steffen Tröster
  * Date: 21.12.12
  * Time: 13:22
  */

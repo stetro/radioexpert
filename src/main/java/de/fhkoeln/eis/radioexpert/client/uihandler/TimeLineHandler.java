@@ -30,7 +30,6 @@ import java.util.List;
 /**
  * TimeLine Funktionalität mit WebView Komponente
  * <p/>
- * User: Steffen Tröster
  * Date: 10.12.12
  * Time: 09:19
  */

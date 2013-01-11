@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 /**
  * Prueft ob die Serververbindung funktionstuechtig ist
  * <p/>
- * User: Steffen Tröster
  * Date: 15.12.12
  * Time: 16:10
  */
