@@ -3,10 +3,24 @@
 $(function(){
     $("#audio").each(function(){
         $("#title").val(unescape($.getUrlVar("title")));
+        $("#title-text").text(unescape($.getUrlVar("title")));
+
         start = new Date(parseInt($.getUrlVar("from")));
         end = new Date(parseInt($.getUrlVar("to")));
+
         $("#start").val(start.getHours()+":"+start.getMinutes());
         $("#end").val(end.getHours()+":"+end.getMinutes());
+
+        $("#start-text").text(start.getHours()+":"+start.getMinutes());
+        $("#end-text").text(end.getHours()+":"+end.getMinutes());
+
+        $("input,textarea").hide();
+
+        $("#audio img").click(function(){
+            $("#title-text, #start-text, #end-text").hide();
+            $("input,textarea").show();
+        });
+
         var i =0;
         while(true)
         {
@@ -34,19 +48,40 @@ $(function(){
     $("#interview").each(function(){
 
         $("#thema").val(unescape($.getUrlVar("title")));
+        $("#thema-text").text(unescape($.getUrlVar("title")));
         $("#name").val(unescape($.getUrlVar("name")));
+        $("#name-text").text(unescape($.getUrlVar("name")));
         $("#phone").val(unescape($.getUrlVar("phone")));
+        $("#phone-text").text(unescape($.getUrlVar("phone")));
         $("#mail").val(unescape($.getUrlVar("mail")));
+        $("#mail-text").text(unescape($.getUrlVar("mail")));
         $("#street").val(unescape($.getUrlVar("street")));
+        $("#street-text").text(unescape($.getUrlVar("street")));
         $("#city").val(unescape($.getUrlVar("city")));
+        $("#city-text").text(unescape($.getUrlVar("city")));
         $("#questions").val(unescape($.getUrlVar("questions")));
+        $("#questions-text").text(unescape($.getUrlVar("questions")));
         $("#infotext").val(unescape($.getUrlVar("infotext")));
+        $("#infotext-text").text(unescape($.getUrlVar("infotext")));
 
         start = new Date(parseInt($.getUrlVar("from")));
         end = new Date(parseInt($.getUrlVar("to")));
 
         $("#start").val(start.getHours()+":"+start.getMinutes());
         $("#end").val(end.getHours()+":"+end.getMinutes());
+
+        $("#start-text").text(start.getHours()+":"+start.getMinutes());
+        $("#end-text").text(end.getHours()+":"+end.getMinutes());
+
+        $("input, .input").hide();
+        $("#interviewpartner").show();
+        $("#thema-text, #start-text, #end-text").show();
+
+        $("#interview img").click(function(){
+            $("#thema-text, #start-text, #end-text").hide();
+            $("#interviewpartner").hide();
+            $("input,textarea, .input").show();
+        });
 
         $("#submitInterview").click(function(){
             var from = new Date();

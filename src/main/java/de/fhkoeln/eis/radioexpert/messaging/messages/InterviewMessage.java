@@ -4,9 +4,10 @@ import de.fhkoeln.eis.radioexpert.messaging.TimeLineElement;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static java.util.Arrays.asList;
 
 /**
  * Repräsentiert die Timeline Elemente in der UI
@@ -51,8 +52,7 @@ public class InterviewMessage implements Serializable, TimeLineElement {
     private String mail;
     @Column(name = "city")
     private String city;
-    @ElementCollection
-    private List<String> messages = new ArrayList<String>();
+    private String messages = "";
 
     public InterviewMessage() {
         this.createdAt = new Date();
@@ -96,12 +96,12 @@ public class InterviewMessage implements Serializable, TimeLineElement {
 
     @Override
     public void addMessage(String message) {
-        this.messages.add(message);
+        this.messages = message + TimeLineElement.CUTTER;
     }
 
     @Override
     public List<String> getMessages() {
-        return messages;
+        return asList(messages.split(TimeLineElement.CUTTER));
     }
 
     public void setEnd(Date end) {

@@ -11,22 +11,22 @@
 </head>
 <body style="padding:8px;" id="audio">
 <h4>Audiobeitrag</h4>
-
+<img src="img/wheel.png" />
 <form class="forms">
     <fieldset>
         <ul>
             <li>
                 <label for="title" class="bold">Titel</label>
-                <input type="text" name="title" id="title" size="35"/>
+                <div id="title-text"></div></div><input type="text" name="title" id="title" size="35"/>
             </li>
             <li>
                 <label for="start" class="bold">Zeitraum</label>
                 <ul class="multicolumn">
                     <li>
-                        <input type="text" name="start" id="start" size="5" maxlength="5"> bis
+                        <span id="start-text"></span><input type="text" name="start" id="start" size="5" maxlength="5"> bis
                     </li>
                     <li>
-                        <input type="text" name="end" size="5" id="end" maxlength="5">
+                        <span id="end-text"></span><input type="text" name="end" size="5" id="end" maxlength="5">
                     </li>
                 </ul>
             </li>
@@ -39,7 +39,7 @@
 <div id="socialMedia">
     <h3>Social Media Nachrichten</h3>
     <ul>
-        <li><strong>Title</strong><p>Foo</p></li>
+
     </ul>
 </div>
 </body>
