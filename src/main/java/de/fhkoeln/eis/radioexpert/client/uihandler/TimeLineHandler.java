@@ -60,6 +60,11 @@ public class TimeLineHandler {
         buildAndBindContextMenu();
     }
 
+    /**
+     * Setzt eine Neue Sendung in die Timeline
+     *
+     * @param broadcastMessage
+     */
     public static void setBroadcast(final BroadcastMessage broadcastMessage) {
         if (timeLineWebView == null) return;
 
@@ -76,6 +81,9 @@ public class TimeLineHandler {
         });
     }
 
+    /**
+     * Aktualisiert alle Timeline Elemente
+     */
     private static void displayAllElements() {
         Platform.runLater(new Runnable() {
             @Override
@@ -94,6 +102,11 @@ public class TimeLineHandler {
         }
     }
 
+    /**
+     * Wenn ein neues Element eintrifft werden alle Nachrichten aktualisiert
+     *
+     * @param object
+     */
     public static void updateElement(final TimeLineElement object) {
         if (timeLineWebView == null) return;
         logger.info("Element wird aktualisiert oder hinzugefuegt");
@@ -169,6 +182,9 @@ public class TimeLineHandler {
         });
     }
 
+    /**
+     * Löscht alle Elemente
+     */
     public static void clearElements() {
         timeLineElements = new ArrayList<TimeLineElement>();
     }

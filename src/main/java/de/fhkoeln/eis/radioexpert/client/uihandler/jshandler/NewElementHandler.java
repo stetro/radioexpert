@@ -35,6 +35,20 @@ public class NewElementHandler {
     public NewElementHandler() {
     }
 
+    /**
+     * Erstellt ein neues Interview mit folgenden Eigenschaften (aus JavaScript)
+     *
+     * @param thema
+     * @param start
+     * @param end
+     * @param name
+     * @param phone
+     * @param mail
+     * @param street
+     * @param city
+     * @param questions
+     * @param infotext
+     */
     public void newInterview(String thema, long start, long end, String name, String phone, String mail, String street, String city, String questions, String infotext) {
         logger.info("Interview wird erzeugt ...");
         Calendar cFrom = Calendar.getInstance();
@@ -57,6 +71,20 @@ public class NewElementHandler {
         jmsTemplate.convertAndSend("interview", interviewMessage);
     }
 
+    /**
+     * Aktualisiert ein neues Interview mit folgenden Eigenschaften (aus JavaScript)
+     *
+     * @param thema
+     * @param start
+     * @param end
+     * @param name
+     * @param phone
+     * @param mail
+     * @param street
+     * @param city
+     * @param questions
+     * @param infotext
+     */
     public void updateInterview(String thema, long start, long end, String name, String phone, String mail, String street, String city, String questions, String infotext) {
         logger.info("Interview wird erzeugt ...");
         Calendar cFrom = Calendar.getInstance();
@@ -79,6 +107,13 @@ public class NewElementHandler {
         jmsTemplate.convertAndSend("interview", interviewMessage);
     }
 
+    /**
+     * Erstellt ein neues Audio mit folgenden Eigenschaften (aus JavaScript)
+     *
+     * @param title
+     * @param givenFrom
+     * @param givenTo
+     */
     public void newAudio(String title, long givenFrom, long givenTo) {
         logger.info("Audio wird erzeugt ...");
 
@@ -93,6 +128,13 @@ public class NewElementHandler {
         jmsTemplate.convertAndSend("audio", audioMessage);
     }
 
+    /**
+     * Aktualisiert ein neues Audio mit folgenden Eigenschaften (aus JavaScript)
+     *
+     * @param title
+     * @param givenFrom
+     * @param givenTo
+     */
     public void updateAudio(String title, long givenFrom, long givenTo) {
         logger.info("Audio wird aktualiert ...");
         // Korrektes Datum einsetzen
@@ -108,6 +150,15 @@ public class NewElementHandler {
         jmsTemplate.convertAndSend("audio", audioMessage);
     }
 
+    /**
+     * Erstellen einer Neuen Sendung (aus JavaScript)
+     *
+     * @param givenFrom
+     * @param givenTo
+     * @param title
+     * @param intro
+     * @param description
+     */
     public void newBroadcast(long givenFrom, long givenTo, String title, String intro, String description) {
         logger.info("Sendung wird erzeugt ...");
         Date from = new Date(givenFrom);
@@ -116,6 +167,14 @@ public class NewElementHandler {
         jmsTemplate.convertAndSend("broadcast", broadcastMessage);
     }
 
+    /**
+     * rechnet Zeiten azf das korrekte Datum um
+     *
+     * @param givenFrom
+     * @param givenTo
+     * @param cFrom
+     * @param cTo
+     */
     private void getGivenTimes(long givenFrom, long givenTo, Calendar cFrom, Calendar cTo) {
         cFrom.setTime(new Date(givenFrom));
         cTo.setTime(new Date(givenTo));

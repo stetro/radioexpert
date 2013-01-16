@@ -104,6 +104,9 @@ public class MoreInformationHandler {
         });
     }
 
+    /**
+     * Stellt den Dialog zum erzeugen einer neuen Sendung dar
+     */
     public void showNewBroadcast() {
         if (moreInformationWebView == null) return;
 
@@ -113,6 +116,9 @@ public class MoreInformationHandler {
         logger.info("Neue Sendung anlegen UI wird geladen ...");
     }
 
+    /**
+     * Stellt den Dialog zum erzeugen eines neuen Audios dar
+     */
     public static void createNewAudioDialog() {
         if (moreInformationWebView == null) return;
 
@@ -122,6 +128,9 @@ public class MoreInformationHandler {
         logger.info("Neues Audio anlegen UI wird geladen ...");
     }
 
+    /**
+     * Stellt den Dialog zum erzeugen eines neuen Interviews dar
+     */
     public static void createNewInterviewDialog() {
         if (moreInformationWebView == null) return;
 
@@ -131,6 +140,9 @@ public class MoreInformationHandler {
         logger.info("Neues Interview anlegen UI wird geladen ...");
     }
 
+    /**
+     * Stellt den Dialog zum erzeugen einer neuen Moderation dar
+     */
     public static void createNewModerationDialog() {
         if (moreInformationWebView == null) return;
 
@@ -138,6 +150,9 @@ public class MoreInformationHandler {
         System.out.println("new Moderation");
     }
 
+    /**
+     * Stellt den Dialog zum erzeugen eines neuen Artikels dar
+     */
     public static void createNewArticleDialog() {
         if (moreInformationWebView == null) return;
 
@@ -145,6 +160,11 @@ public class MoreInformationHandler {
         System.out.println("new dialog");
     }
 
+    /**
+     * Weitere Informationen über das selektierte Audio Element
+     *
+     * @param e
+     */
     public static void showElement(AudioMessage e) {
         URL url = MoreInformationHandler.class.getResource("/gui/component/audio.html");
         String resource = url.toExternalForm() + "?title=" + e.getInfo() + "&from=" + e.getStart().getTime() + "&to=" + e.getEnd().getTime();
@@ -154,6 +174,12 @@ public class MoreInformationHandler {
         logger.info("Audio Anzeige UI wird geladen ...");
     }
 
+    /**
+     * Hinzufügen der Nachrichten beim Laden
+     *
+     * @param messages
+     * @param resource
+     */
     private static void appendSocialMediaMessages(List<String> messages, String resource) {
         int i = 0;
         for (String s : messages) {
@@ -162,6 +188,11 @@ public class MoreInformationHandler {
         }
     }
 
+    /**
+     * Zeigt das selektierte Interview Element dar
+     *
+     * @param e
+     */
     public static void showElement(InterviewMessage e) {
         URL url = MoreInformationHandler.class.getResource("/gui/component/interview.html");
         String resource = url.toExternalForm() + "?title=" + e.getInfo() + "&from=" + e.getStart().getTime() + "&to=" + e.getEnd().getTime() + "&thma=" + e.getTitle()

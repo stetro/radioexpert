@@ -44,13 +44,18 @@ public class ChatHandler {
         loadLocalChatHtmlComponent();
     }
 
+    /**
+     * Lädt die HTML Seite chat.xml
+     */
     private void loadLocalChatHtmlComponent() {
         chatWebView.getEngine().setJavaScriptEnabled(true);
         URL url = getClass().getResource("/gui/component/chat.html");
         chatWebView.getEngine().load(url.toExternalForm());
     }
 
-
+    /**
+     * Erstellt das Keybinding (Eingabetaste oder Senden Button)
+     */
     private void setupKeyListener() {
         chatTextField.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
             @Override
@@ -68,12 +73,20 @@ public class ChatHandler {
         });
     }
 
+    /**
+     * Abschicken der Nachricht aus dem Inputfield, Inhalt wird nach dem Senden gelöscht
+     */
     private void sendMessageFromInputField() {
         jmsTemplate.convertAndSend("chat", new ChatMessage(chatTextField.getText(), ClientApplication.user, new Date()));
         logger.info("Nachricht " + chatTextField.getText() + " gesendet");
         chatTextField.setText("");
     }
 
+    /**
+     * Zeigt eine neue Nachricht an
+     *
+     * @param chatMessage
+     */
     public static void displayChatMessage(final ChatMessage chatMessage) {
         if (chatWebView == null) return;
         // In UI Thread einhaengen und Nachricht in WebView darstellen
@@ -87,6 +100,9 @@ public class ChatHandler {
         });
     }
 
+    /**
+     * Löscht alle Nachrichten aus der HTML View
+     */
     public static void clearMessages() {
         Platform.runLater(new Runnable() {
             @Override

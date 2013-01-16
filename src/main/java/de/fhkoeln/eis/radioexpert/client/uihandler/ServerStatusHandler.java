@@ -20,6 +20,12 @@ public class ServerStatusHandler {
         ServerStatusHandler.jmsTemplate = jmsTemplate;
     }
 
+    /**
+     * Testet die Serververbindung mit einer Testnachricht. Exception Kontollfluss
+     * ist hier erlaubt, da keine bekannte andere Möglichkeit gefunden!
+     *
+     * @return serverStatus
+     */
     public static boolean serverIsAvailable() {
         try {
             jmsTemplate.setPubSubDomain(true);

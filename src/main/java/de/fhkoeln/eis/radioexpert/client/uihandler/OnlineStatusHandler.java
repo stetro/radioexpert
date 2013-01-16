@@ -12,7 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
-import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
@@ -42,11 +41,19 @@ public class OnlineStatusHandler {
         onlineStatus = new HashMap<String, OnlineStatusMessage>();
     }
 
+    /**
+     * Fügt die Person der Liste aller Online Users hinzu
+     *
+     * @param onlineStatusMessage
+     */
     public static void signPersonAsOnline(OnlineStatusMessage onlineStatusMessage) {
         if (onlineStatus == null) return;
         onlineStatus.put(onlineStatusMessage.getUser(), onlineStatusMessage);
     }
 
+    /**
+     * aktualisiert die Liste des Onlinestatus
+     */
     public static void updateOnlineStatus() {
         if (onlineStatusListView == null) return;
 
@@ -58,6 +65,11 @@ public class OnlineStatusHandler {
         updateListInOnlineStatusListView(onlineList);
     }
 
+    /**
+     * Aktualisiert die Anzeige (Thread im UI)
+     *
+     * @param onlineList
+     */
     private static void updateListInOnlineStatusListView(final List<OnlineStatusMessage> onlineList) {
         Platform.runLater(new Runnable() {
             @Override
@@ -68,12 +80,23 @@ public class OnlineStatusHandler {
         });
     }
 
+    /**
+     * Löscht offline User aus der Liste der onlineuser
+     *
+     * @param offlineList
+     */
     private static void removeOfflineUser(List<String> offlineList) {
         for (String user : offlineList) {
             onlineStatus.remove(user);
         }
     }
 
+    /**
+     * Suche nach einem Timeout eines Users
+     *
+     * @param offlineList
+     * @param onlineList
+     */
     private static void findOfflineAndOnlineUser(List<String> offlineList, List<OnlineStatusMessage> onlineList) {
         Date lastTime = new Date();
         lastTime.setTime(lastTime.getTime() - delaySeconds * 1000);

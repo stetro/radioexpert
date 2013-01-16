@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.Date;
 
 /**
- * Created with IntelliJ IDEA.
+ * Mail Service der alle 20 Sekunden Email Abruft vom definierten IMAP Server
  * Date: 13.11.12
  * Time: 11:12
  * Fragt aktuelle Mails ab

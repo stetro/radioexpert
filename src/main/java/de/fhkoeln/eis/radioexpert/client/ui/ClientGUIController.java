@@ -107,6 +107,11 @@ public class ClientGUIController implements Initializable {
         setupOtherGUIComponents();
     }
 
+    /**
+     * Zeigt die User-Client GUI durch den javaFX Stage
+     * @param stage
+     * @throws IOException
+     */
     public void startClientGUI(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/gui/form.fxml"));
         stage.hide();
@@ -118,13 +123,18 @@ public class ClientGUIController implements Initializable {
         logger.info("Client UI wurde gestartet !");
     }
 
+    /**
+     * Fügt den UI Elementen weitere Funktionalität hinzu.
+     */
     private void setupOtherGUIComponents() {
+        // Schließen
         closeMenuItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Platform.exit();
             }
         });
+
         if (ClientApplication.role != UserRole.REDAKTEUR && socialAnchorPane != null) {
 
             socialAnchorPane.setPrefHeight(0);

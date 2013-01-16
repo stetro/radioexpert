@@ -19,6 +19,11 @@ public class InfoBox {
     private static Text infoText;
     private static Rectangle infoRectangle;
 
+    /**
+     * Zeigt einen Informationsdialog in der GUI
+     *
+     * @param message
+     */
     public static void showMessage(String message) {
         infoText.setText(message);
         Animation a = new Transition() {
@@ -49,6 +54,9 @@ public class InfoBox {
         }).start();
     }
 
+    /**
+     * schließt den Dialog
+     */
     private static void hideMessage() {
         Animation a = new Transition() {
             {

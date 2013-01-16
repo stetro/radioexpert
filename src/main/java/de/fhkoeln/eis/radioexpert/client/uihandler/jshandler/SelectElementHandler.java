@@ -18,6 +18,10 @@ import java.util.Date;
  */
 public class SelectElementHandler {
 
+    /**
+     * Stellt ein Element mit dem Primärschlüssel dar (Erstelldatum)
+     * @param createdAt
+     */
     public void showElement(long createdAt) {
         Date b = new Date(createdAt);
         b.setTime(createdAt);

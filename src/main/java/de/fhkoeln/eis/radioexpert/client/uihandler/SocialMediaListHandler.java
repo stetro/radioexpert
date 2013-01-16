@@ -55,6 +55,11 @@ public class SocialMediaListHandler {
         });
     }
 
+    /**
+     * Fügt eine Nachricht der Liste hinzu
+     *
+     * @param mediaMessage
+     */
     public static void displayMessage(final SocialMediaMessage mediaMessage) {
         if (socialListView == null) return;
         // In UI Thread einhaengen und Nachricht in ListView darstellen
@@ -67,12 +72,18 @@ public class SocialMediaListHandler {
         });
     }
 
+    /**
+     * Löscht alle Nachrichten und
+     */
     public static void clearMessages() {
         socialListView.getItems().clear();
-        TwitterMessage message = new TwitterMessage("Halloo Test", "stetro", new Date());
+        TwitterMessage message = new TwitterMessage("Interessant aber ich würde es wie folgt machen: ", "stetro", new Date());
         socialListView.getItems().add(message);
     }
 
+    /**
+     * UI Darstellungsklasse je nach Message Inhalt
+     */
     private class SocialMediaCell extends ListCell<SocialMediaMessage> {
         public void updateItem(SocialMediaMessage item, boolean empty) {
             super.updateItem(item, empty);
@@ -92,7 +103,7 @@ public class SocialMediaListHandler {
                     Text date = new Text(format.format(tm.getTime()));
                     date.setStyle("-fx-font-weight:lighter;");
                     vbox.getChildren().add(date);
-                    vbox.getChildren().add(new Text(tm.getMessage()));
+                    vbox.getChildren().add(new Text("@" + tm.getUser() + " : " + tm.getMessage()));
                     box.getChildren().add(vbox);
                 } else if (item instanceof FacebookMessage) {
                     i.setImage(new Image("gui/component/img/facebook.png"));

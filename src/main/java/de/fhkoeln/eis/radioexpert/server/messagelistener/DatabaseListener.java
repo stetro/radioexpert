@@ -17,7 +17,6 @@ import java.io.Serializable;
  * Datenbank Listener hat alle Topics Abboniert und speichert die Nachrichten in
  * die Datenbank ab. Zusätzlich verknüpft der Listener alle eingehenden Nachrichten
  * mit der aktuellen Sendung.
- *
  */
 @Service
 public class DatabaseListener implements MessageListener {
@@ -46,6 +45,11 @@ public class DatabaseListener implements MessageListener {
         }
     }
 
+    /**
+     * Ersetzt die Letzte Sendung oder setzt die neue Zeit in die Zugehörigkeit der Sendung
+     *
+     * @param object
+     */
     private void manageMessages(Serializable object) {
 
         //TODO: Wenn currentBroadcast == null muss eine instanz aus der Datenbank geladen werden !

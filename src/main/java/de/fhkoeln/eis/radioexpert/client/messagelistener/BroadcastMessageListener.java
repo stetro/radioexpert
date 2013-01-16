@@ -16,7 +16,7 @@ import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
 
 /**
- * Empfängt neu erstellte Sendungen
+ * Empfängt neu erstellte Sendungen und übergibt sie dem uiHandler
  * <p/>
  * Date: 17.12.12
  * Time: 11:03

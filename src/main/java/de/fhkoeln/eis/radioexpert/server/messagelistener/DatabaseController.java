@@ -44,6 +44,12 @@ public class DatabaseController implements MessageListener {
         logger.info("Abfragenachricht wurde empfangen  !!");
     }
 
+    /**
+     * Baut eine Response Nachricht aus der Datenbank
+     *
+     * @param s
+     * @return
+     */
     private BroadcastResponse buildUpBroadcastResponse(Session s) {
         BroadcastResponse broadcastResponse = new BroadcastResponse();
         broadcastResponse.setBroadcastMessage(DatabaseListener.currentBroadcast);

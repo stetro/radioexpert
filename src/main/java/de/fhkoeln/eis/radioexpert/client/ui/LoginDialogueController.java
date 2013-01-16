@@ -51,6 +51,12 @@ public class LoginDialogueController implements Initializable {
 
     private Logger logger = LoggerFactory.getLogger(LoginDialogueController.class);
 
+    /**
+     * Startet den Login Dialog
+     *
+     * @param stage
+     * @throws IOException
+     */
     public void startLoginGui(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/gui/login.fxml"));
         stage.getIcons().add(new Image("gui/component/img/icon.png"));
@@ -68,10 +74,16 @@ public class LoginDialogueController implements Initializable {
         showServerStatus();
     }
 
+    /**
+     * Zeigt das Logo an
+     */
     private void showLogoImage() {
         logoImageView.setImage(new Image("gui/component/img/logo.png"));
     }
 
+    /**
+     * Funktionalität beim Abschicken des Dialogs
+     */
     private void submitButtonBindingAndApplicationStart() {
         submitButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -89,6 +101,9 @@ public class LoginDialogueController implements Initializable {
         });
     }
 
+    /**
+     * Login Durchführen und Informationen speichern
+     */
     private void executeLogin() {
         String name = nameTextField.getText();
         if (name.length() <= 2 || !ServerStatusHandler.serverIsAvailable()) {
@@ -99,6 +114,11 @@ public class LoginDialogueController implements Initializable {
         ClientApplication.runApplication("localhost", name, role);
     }
 
+    /**
+     * Gibt die Ausgewählte Rolle aus der Selection Box beim Login
+     *
+     * @return gewählte Rolle
+     */
     private UserRole getSelectedRole() {
         for (UserRole u : UserRole.values()) {
             if (roleComboBox.getValue().equals(u.getFullname())) {
@@ -108,6 +128,9 @@ public class LoginDialogueController implements Initializable {
         return UserRole.REDAKTEUR;
     }
 
+    /**
+     * Füllt die Selection Box für die Rollen aus einer Enumeration
+     */
     private void setComboBoxContent() {
         ObservableList<String> items = roleComboBox.getItems();
         items.clear();
@@ -117,6 +140,9 @@ public class LoginDialogueController implements Initializable {
         roleComboBox.setValue(items.get(0));
     }
 
+    /**
+     * Gibt an ob Server Verfügbar ist
+     */
     private void showServerStatus() {
         if (ServerStatusHandler.serverIsAvailable()) {
             serverStatusText.setText(serverStatusText.getText() + " Verfügbar!");
