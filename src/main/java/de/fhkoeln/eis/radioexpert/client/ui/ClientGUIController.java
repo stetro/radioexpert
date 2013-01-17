@@ -94,6 +94,9 @@ public class ClientGUIController implements Initializable {
     @FXML
     private Rectangle infoRectangle;
 
+    @FXML
+    private SplitPane sideSplitPane;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -135,10 +138,8 @@ public class ClientGUIController implements Initializable {
             }
         });
 
-        if (ClientApplication.role != UserRole.REDAKTEUR && socialAnchorPane != null) {
-
-            socialAnchorPane.setPrefHeight(0);
-            socialAnchorPane.setVisible(false);
+        if (ClientApplication.role != UserRole.REDAKTEUR && sideSplitPane != null) {
+            sideSplitPane.getItems().remove(1);
         }
 
         // Nur Redaktion darf Sendung und Elemente hinzufuegen

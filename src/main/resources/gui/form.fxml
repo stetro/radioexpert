@@ -37,7 +37,7 @@
             </WebView>
           </children>
         </VBox>
-        <SplitPane dividerPositions="0.09502262443438914, 0.5294117647058824" focusTraversable="true" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" HBox.hgrow="ALWAYS">
+        <SplitPane fx:id="sideSplitPane" dividerPositions="0.09502262443438914, 0.5294117647058824" focusTraversable="true" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" HBox.hgrow="ALWAYS">
           <items>
             <ListView fx:id="onlineStatusListView" disable="true" maxHeight="60.0" minHeight="60.0" opacity="0.9" orientation="HORIZONTAL" prefHeight="60.0" prefWidth="200.0" />
             <AnchorPane id="socialAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
