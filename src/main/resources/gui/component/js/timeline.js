@@ -34,10 +34,14 @@ var updatePointer = function(time){
     },'fast');
 }
 
-var setModule = function(name, infotext, type, start, end, createdat) {
+var setModule = function(name, infotext, type, start, end, createdat, active) {
+        var addingClass="";
+        if(active == true){
+            var addingClass="running";
+        }
         beginning = Math.round((start - timeLineFrom) / 1000 / 60);
         ending = Math.round((end - timeLineFrom) / 1000 / 60);
-        $("#timelineComponent #timeline #modules").append('<div data-createdat="'+createdat+'" class="module ' + type + '" style="' + 'height: ' + ((ending - beginning) * timeLineSize - 12) + 'px;' + 'top:' + (beginning * timeLineSize+6) + 'px">' + '' + name + '&nbsp;' + '<span>' + infotext + '</span></div>');
+        $("#timelineComponent #timeline #modules").append('<div data-createdat="'+createdat+'" class="module ' + type+' '+addingClass + '" style="' + 'height: ' + ((ending - beginning) * timeLineSize - 12) + 'px;' + 'top:' + (beginning * timeLineSize+6) + 'px">' + '' + name + '&nbsp;' + '<span>' + infotext + '</span><img class="play" src="img/play.png" width="20" /></div>');
         $("#modules .module").unbind('click').bind({click:selectModule});
     }
 
@@ -46,6 +50,15 @@ var selectModule = function (event){
     $(".active").removeClass("active");
     $(this).addClass("active");
 }
+
+var startModule = function(event){
+    window.SelectElementHandler.startElement($(this).attr("data-createdat"));
+    $(".play").removeClass("play");
+    $(this).addClass("running");
+    $(".module:not(.running)").addClass("play");
+
+}
+
 
 var updateTimeLine = function(title, intro, start, end) {
         $("div#header h4").empty().append(title).append("&nbsp;<span class=\"descr\">" + printDate(start) + "</span>");

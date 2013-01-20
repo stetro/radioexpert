@@ -29,6 +29,7 @@ public class AudioMessage implements Serializable, TimeLineElement {
     private String title;
     private Date broadcastCreatedAt;
     private String messages = "";
+    private boolean active;
 
     public AudioMessage() {
     }
@@ -43,6 +44,11 @@ public class AudioMessage implements Serializable, TimeLineElement {
 
     public String getTitle() {
         return "<img src=\"img/audio.png\" />";
+    }
+
+    @Override
+    public boolean getActive() {
+        return this.active;
     }
 
     @Override
@@ -107,5 +113,9 @@ public class AudioMessage implements Serializable, TimeLineElement {
 
     public void setBroadcastCreatedAt(Date broadcastCreatedAt) {
         this.broadcastCreatedAt = broadcastCreatedAt;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

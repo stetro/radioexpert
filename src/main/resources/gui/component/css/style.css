@@ -228,6 +228,18 @@ div#modules div.module:hover{
     cursor:pointer;
 }
 
+div#modules div.module img.play{
+    position:absolute;
+    bottom:5px;
+    left:30px;
+    width:10px;
+    cursor:pointer;
+}
+
+div#modules div.module.running{
+    border:1px solid #F00;
+}
+
 div#modules div.module.active img,div#modules div.module:hover img{
     opacity:1;
 }

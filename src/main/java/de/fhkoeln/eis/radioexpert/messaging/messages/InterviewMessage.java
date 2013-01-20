@@ -53,6 +53,7 @@ public class InterviewMessage implements Serializable, TimeLineElement {
     @Column(name = "city")
     private String city;
     private String messages = "";
+    private boolean active;
 
     public InterviewMessage() {
         this.createdAt = new Date();
@@ -110,6 +111,11 @@ public class InterviewMessage implements Serializable, TimeLineElement {
 
     public String getTitle() {
         return "<img src=\"img/phone.png\"/>";
+    }
+
+    @Override
+    public boolean getActive() {
+        return this.active;
     }
 
     public void setTitle(String title) {
@@ -207,5 +213,9 @@ public class InterviewMessage implements Serializable, TimeLineElement {
 
     public void setCreatedAt(Date t) {
         this.createdAt = t;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

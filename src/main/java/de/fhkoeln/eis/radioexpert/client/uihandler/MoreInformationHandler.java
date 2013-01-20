@@ -212,5 +212,9 @@ public class MoreInformationHandler {
             resource += "&smsg[" + i + "]=" + s;
         }
     }
+
+    public static void clear() {
+        moreInformationWebView.getEngine().loadContent("");
+    }
 }
 

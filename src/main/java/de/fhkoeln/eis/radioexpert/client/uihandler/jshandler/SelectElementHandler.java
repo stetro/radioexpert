@@ -20,6 +20,7 @@ public class SelectElementHandler {
 
     /**
      * Stellt ein Element mit dem Primärschlüssel dar (Erstelldatum)
+     *
      * @param createdAt
      */
     public void showElement(long createdAt) {
@@ -38,6 +39,18 @@ public class SelectElementHandler {
                         }
                     }
                 });
+            }
+        }
+    }
+
+    public void startElement(long createdAt) {
+        Date b = new Date(createdAt);
+        b.setTime(createdAt);
+        for (final TimeLineElement e : TimeLineHandler.timeLineElements) {
+            if (e.getCreatedAt().equals(b)) {
+                e.setActive(true);
+            } else if(e.getActive()){
+                e.setActive(false);
             }
         }
     }

@@ -1,6 +1,7 @@
 package de.fhkoeln.eis.radioexpert.client.uihandler.jshandler;
 
 import de.fhkoeln.eis.radioexpert.client.uihandler.MoreInformationHandler;
+import de.fhkoeln.eis.radioexpert.client.util.InfoBox;
 import de.fhkoeln.eis.radioexpert.messaging.messages.AudioMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.BroadcastMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.InterviewMessage;
@@ -69,6 +70,8 @@ public class NewElementHandler {
         interviewMessage.setBroadcastCreatedAt(currentBroadcastMessage.getCreatedAt());
 
         jmsTemplate.convertAndSend("interview", interviewMessage);
+        InfoBox.showMessage("Interview wurde erfolgreich erstellt !");
+        MoreInformationHandler.clear();
     }
 
     /**
@@ -105,6 +108,8 @@ public class NewElementHandler {
         interviewMessage.setBroadcastCreatedAt(currentBroadcastMessage.getCreatedAt());
 
         jmsTemplate.convertAndSend("interview", interviewMessage);
+        InfoBox.showMessage("Interview wurde erfolgreich bearbeitet !");
+        MoreInformationHandler.clear();
     }
 
     /**
@@ -126,6 +131,8 @@ public class NewElementHandler {
         AudioMessage audioMessage = new AudioMessage(title, cFrom.getTime(), cTo.getTime());
         audioMessage.setCreatedAt(new Date());
         jmsTemplate.convertAndSend("audio", audioMessage);
+        InfoBox.showMessage("Audio wurde erfolgreich erstellt !");
+        MoreInformationHandler.clear();
     }
 
     /**
@@ -148,6 +155,8 @@ public class NewElementHandler {
         audioMessage.setStart(cFrom.getTime());
         audioMessage.setEnd(cTo.getTime());
         jmsTemplate.convertAndSend("audio", audioMessage);
+        InfoBox.showMessage("Audio wurde erfolgreich bearbeitet !");
+        MoreInformationHandler.clear();
     }
 
     /**
@@ -165,6 +174,8 @@ public class NewElementHandler {
         Date to = new Date(givenTo);
         BroadcastMessage broadcastMessage = new BroadcastMessage(from, to, title, intro, description);
         jmsTemplate.convertAndSend("broadcast", broadcastMessage);
+        InfoBox.showMessage("Sendung wurde erfolgreich erstellt !");
+        MoreInformationHandler.clear();
     }
 
     /**

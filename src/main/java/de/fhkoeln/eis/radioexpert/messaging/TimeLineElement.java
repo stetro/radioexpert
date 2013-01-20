@@ -8,7 +8,6 @@ import java.util.List;
  * ->AudioMessage
  * ->InterviewMessage
  * -> ...
- * TODO: Auffüllen
  * <p/>
  * Date: 21.12.12
  * Time: 13:22
@@ -31,4 +30,8 @@ public interface TimeLineElement {
     void addMessage(String message);
 
     List<String> getMessages();
+
+    boolean getActive();
+
+    void setActive(boolean active);
 }
