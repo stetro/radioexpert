@@ -48,7 +48,8 @@ public class SocialMediaListHandler {
 
                 Dragboard db = socialListView.startDragAndDrop(TransferMode.ANY);
                 ClipboardContent content = new ClipboardContent();
-                content.putString(socialListView.getSelectionModel().getSelectedItem().getMessage());
+                content.putString(socialListView.getSelectionModel().getSelectedItem().getSender() + ": " +
+                        socialListView.getSelectionModel().getSelectedItem().getMessage());
                 db.setContent(content);
                 mouseEvent.consume();
             }

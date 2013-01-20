@@ -84,6 +84,11 @@ public class FacebookMessage implements Serializable, SocialMediaMessage {
         return message;
     }
 
+    @Override
+    public String getSender() {
+        return user;
+    }
+
     public void setMessage(String message) {
         this.message = message;
     }

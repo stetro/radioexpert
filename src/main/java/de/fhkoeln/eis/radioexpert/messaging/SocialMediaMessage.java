@@ -7,4 +7,6 @@ package de.fhkoeln.eis.radioexpert.messaging;
  */
 public interface SocialMediaMessage {
     public String getMessage();
+
+    String getSender();
 }

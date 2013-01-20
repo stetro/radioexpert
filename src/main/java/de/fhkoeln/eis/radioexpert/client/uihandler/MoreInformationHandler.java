@@ -1,5 +1,6 @@
 package de.fhkoeln.eis.radioexpert.client.uihandler;
 
+import de.fhkoeln.eis.radioexpert.client.ClientApplication;
 import de.fhkoeln.eis.radioexpert.client.uihandler.jshandler.NewElementHandler;
 import de.fhkoeln.eis.radioexpert.messaging.TimeLineElement;
 import de.fhkoeln.eis.radioexpert.messaging.messages.AudioMessage;
@@ -15,6 +16,7 @@ import javafx.scene.web.WebView;
 import netscape.javascript.JSObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.jms.core.JmsTemplate;
 
 import java.net.URL;
 import java.util.List;
@@ -29,8 +31,10 @@ public class MoreInformationHandler {
     private static WebView moreInformationWebView;
     private static Logger logger = LoggerFactory.getLogger(MoreInformationHandler.class);
     public static TimeLineElement currentSelectedElement;
+    private JmsTemplate jmsTemplate;
 
     public MoreInformationHandler(WebView givenMoreInformationWebView) {
+        jmsTemplate = ClientApplication.context.getBean(JmsTemplate.class);
         moreInformationWebView = givenMoreInformationWebView;
         moreInformationWebView.setContextMenuEnabled(false);
         moreInformationWebView.getEngine().setJavaScriptEnabled(true);
@@ -89,6 +93,11 @@ public class MoreInformationHandler {
             public void handle(final DragEvent dragEvent) {
                 if (currentSelectedElement != null && dragEvent.getDragboard().hasString()) {
                     currentSelectedElement.addMessage(dragEvent.getDragboard().getString());
+                    if (currentSelectedElement instanceof AudioMessage) {
+                        jmsTemplate.convertAndSend("audio", currentSelectedElement);
+                    } else if (currentSelectedElement instanceof InterviewMessage) {
+                        jmsTemplate.convertAndSend("interview", currentSelectedElement);
+                    }
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
@@ -175,20 +184,6 @@ public class MoreInformationHandler {
     }
 
     /**
-     * Hinzufügen der Nachrichten beim Laden
-     *
-     * @param messages
-     * @param resource
-     */
-    private static void appendSocialMediaMessages(List<String> messages, String resource) {
-        int i = 0;
-        for (String s : messages) {
-            i++;
-            resource += "&smsg[" + i + "]=" + s;
-        }
-    }
-
-    /**
      * Zeigt das selektierte Interview Element dar
      *
      * @param e
@@ -202,6 +197,20 @@ public class MoreInformationHandler {
         moreInformationWebView.getEngine().load(resource);
         currentSelectedElement = e;
         logger.info("Interview Anzeige UI wird geladen ...");
+    }
+
+    /**
+     * Hinzufügen der Nachrichten beim Laden
+     *
+     * @param messages
+     * @param resource
+     */
+    private static void appendSocialMediaMessages(List<String> messages, String resource) {
+        int i = 0;
+        for (String s : messages) {
+            i++;
+            resource += "&smsg[" + i + "]=" + s;
+        }
     }
 }
 

@@ -97,7 +97,6 @@ public class ClientGUIController implements Initializable {
     @FXML
     private SplitPane sideSplitPane;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         timeLineHandler = new TimeLineHandler(timeLineWebView, addElementDropDownMenuButton);
