@@ -42,4 +42,10 @@ $(function(){
         to.setSeconds(0);
         window.NewElementHandler.newAudio($("#title").val(),from,to);
     });
+    $.mask.definitions['H']='[012]';
+    $.mask.definitions['M']='[012345]';
+    $("#start, #end").mask("H9:?M9");
+    $("#start, #end").blur(function(){
+                    if($(this).val().match(/[0-9]{1,2}$/)==null) $(this).val($(this).val() + "00");
+    });
 });

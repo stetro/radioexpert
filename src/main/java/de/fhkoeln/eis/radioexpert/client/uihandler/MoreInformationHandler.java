@@ -2,6 +2,7 @@ package de.fhkoeln.eis.radioexpert.client.uihandler;
 
 import de.fhkoeln.eis.radioexpert.client.ClientApplication;
 import de.fhkoeln.eis.radioexpert.client.uihandler.jshandler.NewElementHandler;
+import de.fhkoeln.eis.radioexpert.client.util.UserRole;
 import de.fhkoeln.eis.radioexpert.messaging.TimeLineElement;
 import de.fhkoeln.eis.radioexpert.messaging.messages.AudioMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.InterviewMessage;
@@ -176,7 +177,8 @@ public class MoreInformationHandler {
      */
     public static void showElement(AudioMessage e) {
         URL url = MoreInformationHandler.class.getResource("/gui/component/audio.html");
-        String resource = url.toExternalForm() + "?title=" + e.getInfo() + "&from=" + e.getStart().getTime() + "&to=" + e.getEnd().getTime();
+        boolean editable = (ClientApplication.role == UserRole.REDAKTEUR);
+        String resource = url.toExternalForm() + "?title=" + e.getInfo() + "&from=" + e.getStart().getTime() + "&to=" + e.getEnd().getTime()+"&editable="+editable;
         appendSocialMediaMessages(e.getMessages(), resource);
         moreInformationWebView.getEngine().load(resource);
         currentSelectedElement = e;
@@ -190,8 +192,9 @@ public class MoreInformationHandler {
      */
     public static void showElement(InterviewMessage e) {
         URL url = MoreInformationHandler.class.getResource("/gui/component/interview.html");
+        boolean editable = (ClientApplication.role == UserRole.REDAKTEUR);
         String resource = url.toExternalForm() + "?title=" + e.getInfo() + "&from=" + e.getStart().getTime() + "&to=" + e.getEnd().getTime() + "&thma=" + e.getTitle()
-                + "&name=" + e.getName() + "&phone=" + e.getPhone() + "&mail=" + e.getMail() + "&street=" + e.getStreet() + "&city=" + e.getCity() + "&questions=" + e.getQuestions() + "&infotext=" + e.getInfo();
+                + "&name=" + e.getName() + "&phone=" + e.getPhone() + "&mail=" + e.getMail() + "&street=" + e.getStreet() + "&city=" + e.getCity() + "&questions=" + e.getQuestions() + "&infotext=" + e.getInfo()+"&editable="+editable;
         appendSocialMediaMessages(e.getMessages(), resource);
 
         moreInformationWebView.getEngine().load(resource);

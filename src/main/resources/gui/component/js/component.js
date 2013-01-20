@@ -1,6 +1,10 @@
 /*Darstellung von TImelineElementen im Detail*/
 
 $(function(){
+    if(!parseBoolean($.getUrlVar("editable")))
+    {
+        $("img").hide();
+    }
     $("#audio").each(function(){
         $("#title").val(unescape($.getUrlVar("title")));
         $("#title-text").text(unescape($.getUrlVar("title")));
@@ -96,6 +100,12 @@ $(function(){
         });
 
     });
+    $.mask.definitions['H']='[012]';
+    $.mask.definitions['M']='[012345]';
+    $("#start, #end").mask("H9:?M9");
+    $("#start, #end").blur(function(){
+        if($(this).val().match(/[0-9]{1,2}$/)==null) $(this).val($(this).val() + "00");
+    });
 });
 
 var addMessage = function(message){
@@ -126,3 +136,20 @@ $.extend({
             return $.getUrlVars()[name];
     }
 });
+function parseBoolean(string) {
+  switch (String(string).toLowerCase()) {
+    case "true":
+    case "1":
+    case "yes":
+    case "y":
+      return true;
+    case "false":
+    case "0":
+    case "no":
+    case "n":
+      return false;
+    default:
+      //you could throw an error, but 'undefined' seems a more logical reply
+      return undefined;
+  }
+}
