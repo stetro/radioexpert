@@ -39,6 +39,9 @@ public class LoadBroadcastMessageListener implements MessageListener {
                 InfoBox.showMessage("Es muss zunächst eine Sendung erstellt werden!");
                 return;
             }
+
+            TimeLineHandler.clearElements();
+            TimeLineHandler.setBroadcast(response.getBroadcastMessage());
             ChatHandler.clearMessages();
             for (ChatMessage c : response.getChatMessages()) {
                 ChatHandler.displayChatMessage(c);
@@ -52,15 +55,12 @@ public class LoadBroadcastMessageListener implements MessageListener {
                 TimeLineHandler.updateElement(e);
             }
             NewElementHandler.currentBroadcastMessage = response.getBroadcastMessage();
-
             if (ClientApplication.role == UserRole.REDAKTEUR) {
                 TimeLineHandler.addElementDropDownMenuButton.setVisible(true);
             }
-
-            TimeLineHandler.setBroadcast(response.getBroadcastMessage());
             logger.info("Response erhalten !!");
-        } catch (JMSException e) {
-
+        } catch (Exception e) {
+            InfoBox.showMessage("Fehler beim Laden der Nachrichten!");
         }
     }
 }
