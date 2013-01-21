@@ -96,7 +96,7 @@ public class TimeLineHandler {
                 @Override
                 public void run() {
                     // Javascript: function(name, infotext, type, start, end)
-                    boolean running = e.getActive() && (ClientApplication.role == UserRole.REDAKTEUR);
+                    boolean running = e.getActive();
                     timeLineWebView.getEngine().executeScript("setModule('" + e.getTitle() + "','" + e.getInfo() + "','" + e.getType() + "'," + e.getStart().getTime() + "," + e.getEnd().getTime() + "," + e.getCreatedAt().getTime() + "," + running + ")");
                 }
             });
