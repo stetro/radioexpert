@@ -41,8 +41,9 @@ var setModule = function(name, infotext, type, start, end, createdat, active) {
         }
         beginning = Math.round((start - timeLineFrom) / 1000 / 60);
         ending = Math.round((end - timeLineFrom) / 1000 / 60);
-        $("#timelineComponent #timeline #modules").append('<div data-createdat="'+createdat+'" class="module ' + type+' '+addingClass + '" style="' + 'height: ' + ((ending - beginning) * timeLineSize - 12) + 'px;' + 'top:' + (beginning * timeLineSize+6) + 'px">' + '' + name + '&nbsp;' + '<span>' + infotext + '</span><img class="play" src="img/play.png" width="20" /></div>');
+        $("#timelineComponent #timeline #modules").append('<div data-createdat="'+createdat+'" class="module ' + type+' '+addingClass + '" style="' + 'height: ' + ((ending - beginning) * timeLineSize - 12) + 'px;' + 'top:' + (beginning * timeLineSize+6) + 'px">' + '' + name + '&nbsp;' + '<span>' + infotext + '</span><img class="play" src="img/play.png" width="20"  /></div>');
         $("#modules .module").unbind('click').bind({click:selectModule});
+        $("#modules .module .play").unbind('click').bind({click:startModule});
     }
 
 var selectModule = function (event){
@@ -52,11 +53,7 @@ var selectModule = function (event){
 }
 
 var startModule = function(event){
-    window.SelectElementHandler.startElement($(this).attr("data-createdat"));
-    $(".play").removeClass("play");
-    $(this).addClass("running");
-    $(".module:not(.running)").addClass("play");
-
+    window.SelectElementHandler.startElement($(this).parent().attr("data-createdat"));
 }
 
 

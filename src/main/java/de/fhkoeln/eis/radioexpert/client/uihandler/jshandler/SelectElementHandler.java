@@ -1,11 +1,15 @@
 package de.fhkoeln.eis.radioexpert.client.uihandler.jshandler;
 
+import de.fhkoeln.eis.radioexpert.client.ClientApplication;
 import de.fhkoeln.eis.radioexpert.client.uihandler.MoreInformationHandler;
 import de.fhkoeln.eis.radioexpert.client.uihandler.TimeLineHandler;
 import de.fhkoeln.eis.radioexpert.messaging.TimeLineElement;
 import de.fhkoeln.eis.radioexpert.messaging.messages.AudioMessage;
 import de.fhkoeln.eis.radioexpert.messaging.messages.InterviewMessage;
 import javafx.application.Platform;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.jms.core.JmsTemplate;
 
 import java.util.Date;
 
@@ -17,6 +21,12 @@ import java.util.Date;
  * Time: 10:53
  */
 public class SelectElementHandler {
+    private Logger logger = LoggerFactory.getLogger(SelectElementHandler.class);
+    private JmsTemplate jmsTemplate;
+
+    public SelectElementHandler() {
+        jmsTemplate = ClientApplication.context.getBean(JmsTemplate.class);
+    }
 
     /**
      * Stellt ein Element mit dem Primärschlüssel dar (Erstelldatum)
@@ -43,15 +53,49 @@ public class SelectElementHandler {
         }
     }
 
+    /**
+     * Startet ein Timline Element
+     *
+     * @param createdAt
+     */
     public void startElement(long createdAt) {
+        logger.info("Element starten ...");
         Date b = new Date(createdAt);
         b.setTime(createdAt);
         for (final TimeLineElement e : TimeLineHandler.timeLineElements) {
-            if (e.getCreatedAt().equals(b)) {
+            if (b.equals(e.getCreatedAt())) {
                 e.setActive(true);
-            } else if(e.getActive()){
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        sendTimeLineElement(e);
+                    }
+                });
+            } else if (e.getActive()) {
                 e.setActive(false);
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        sendTimeLineElement(e);
+                    }
+                });
             }
         }
+    }
+
+    /**
+     * Sendet ein bearbeitetes TimeLine Element zu allen Subscribern
+     *
+     * @param e
+     */
+    private void sendTimeLineElement(TimeLineElement e) {
+        logger.info("TimeLineElement geändert, wird weitergegeben");
+        if (e instanceof AudioMessage) {
+            jmsTemplate.convertAndSend("audio", e);
+        }
+        if (e instanceof InterviewMessage) {
+            jmsTemplate.convertAndSend("interview", e);
+        }
+
     }
 }

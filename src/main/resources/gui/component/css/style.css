@@ -235,9 +235,11 @@ div#modules div.module img.play{
     width:10px;
     cursor:pointer;
 }
-
+div#modules div.module.running .play{
+    display:none;
+}
 div#modules div.module.running{
-    border:1px solid #F00;
+    border:1px solid #333;
 }
 
 div#modules div.module.active img,div#modules div.module:hover img{
