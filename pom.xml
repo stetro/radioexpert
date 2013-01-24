@@ -236,7 +236,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>de.fhkoeln.eis.radioexpert.client.ClientApplication</mainClass>
+                            <mainClass>de.fhkoeln.eis.radioexpert.server.ServerInstance</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
