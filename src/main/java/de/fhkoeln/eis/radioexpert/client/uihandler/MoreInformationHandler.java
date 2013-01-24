@@ -20,7 +20,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jms.core.JmsTemplate;
 
 import java.net.URL;
-import java.util.List;
 
 /**
  * Repraesentiert den Mittelteil der UI mit WebView Elementen
@@ -178,8 +177,8 @@ public class MoreInformationHandler {
     public static void showElement(AudioMessage e) {
         URL url = MoreInformationHandler.class.getResource("/gui/component/audio.html");
         boolean editable = (ClientApplication.role == UserRole.REDAKTEUR);
-        String resource = url.toExternalForm() + "?title=" + e.getInfo() + "&from=" + e.getStart().getTime() + "&to=" + e.getEnd().getTime()+"&editable="+editable;
-        appendSocialMediaMessages(e.getMessages(), resource);
+        String resource = url.toExternalForm() + "?title=" + e.getInfo() + "&from=" + e.getStart().getTime() + "&to=" + e.getEnd().getTime() + "&editable=" + editable;
+        resource = appendSocialMediaMessages(e.getMessages(), resource);
         moreInformationWebView.getEngine().load(resource);
         currentSelectedElement = e;
         logger.info("Audio Anzeige UI wird geladen ...");
@@ -194,9 +193,8 @@ public class MoreInformationHandler {
         URL url = MoreInformationHandler.class.getResource("/gui/component/interview.html");
         boolean editable = (ClientApplication.role == UserRole.REDAKTEUR);
         String resource = url.toExternalForm() + "?title=" + e.getInfo() + "&from=" + e.getStart().getTime() + "&to=" + e.getEnd().getTime() + "&thma=" + e.getTitle()
-                + "&name=" + e.getName() + "&phone=" + e.getPhone() + "&mail=" + e.getMail() + "&street=" + e.getStreet() + "&city=" + e.getCity() + "&questions=" + e.getQuestions() + "&infotext=" + e.getInfo()+"&editable="+editable;
-        appendSocialMediaMessages(e.getMessages(), resource);
-
+                + "&name=" + e.getName() + "&phone=" + e.getPhone() + "&mail=" + e.getMail() + "&street=" + e.getStreet() + "&city=" + e.getCity() + "&questions=" + e.getQuestions() + "&infotext=" + e.getInfo() + "&editable=" + editable;
+        resource = appendSocialMediaMessages(e.getMessages(), resource);
         moreInformationWebView.getEngine().load(resource);
         currentSelectedElement = e;
         logger.info("Interview Anzeige UI wird geladen ...");
@@ -208,12 +206,16 @@ public class MoreInformationHandler {
      * @param messages
      * @param resource
      */
-    private static void appendSocialMediaMessages(List<String> messages, String resource) {
+    private static String appendSocialMediaMessages(String[] messages, String resource) {
         int i = 0;
         for (String s : messages) {
-            i++;
+            if (s.trim().length() == 0) break;
+            s = s.replace("=", "");
+            System.out.println(s);
             resource += "&smsg[" + i + "]=" + s;
+            i++;
         }
+        return resource;
     }
 
     public static void clear() {

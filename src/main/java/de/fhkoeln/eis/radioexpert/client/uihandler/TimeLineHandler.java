@@ -45,8 +45,9 @@ public class TimeLineHandler {
         addElementDropDownMenuButton.setVisible(false);
         timeLineWebView = givenTimeLineWebView;
         timeLineWebView.getEngine().setJavaScriptEnabled(true);
+        boolean editable = (ClientApplication.role == UserRole.REDAKTEUR);
         URL url = TimeLineHandler.class.getResource("/gui/component/timeline.html");
-        timeLineWebView.getEngine().load(url.toExternalForm());
+        timeLineWebView.getEngine().load(url.toExternalForm() + "?editable=" + editable);
         timeLineWebView.setContextMenuEnabled(false);
         timeLineWebView.getEngine().getLoadWorker().stateProperty().addListener(new ChangeListener<Worker.State>() {
             @Override

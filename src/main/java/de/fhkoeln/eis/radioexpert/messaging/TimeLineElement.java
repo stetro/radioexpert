@@ -29,7 +29,7 @@ public interface TimeLineElement {
 
     void addMessage(String message);
 
-    List<String> getMessages();
+    String[] getMessages();
 
     boolean getActive();
 

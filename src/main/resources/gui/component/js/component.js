@@ -25,17 +25,10 @@ $(function(){
             $("input,textarea").show();
         });
 
-        var i =0;
-        while(true)
-        {
-            if($.getUrlVar("smsg["+i+"]") == undefined)
-            {
-                break;
-            }
-            var msg = unescape($.getUrlVar("smsg["+i+"]"));
-            addMessage(msg);
-            // TODO: CALLBACK definieren
+        for(var i=0;$.getUrlVar("smsg["+i+"]") != undefined;i++){
+            addMessage($.getUrlVar("smsg["+i+"]"));
         }
+
         $("#submitAudio").click(function(){
             var from = new Date();
             var to = new Date();
@@ -81,6 +74,10 @@ $(function(){
         $("#interviewpartner").show();
         $("#thema-text, #start-text, #end-text").show();
 
+        for(var i=0;$.getUrlVar("smsg["+i+"]") != undefined;i++){
+            addMessage($.getUrlVar("smsg["+i+"]"));
+        }
+
         $("#interview img").click(function(){
             $("#thema-text, #start-text, #end-text").hide();
             $("#interviewpartner").hide();
@@ -109,7 +106,7 @@ $(function(){
 });
 
 var addMessage = function(message){
-    $("#socialMedia ul ").append("<li>"+unescape(message)+"</li>")
+    $("#socialMedia ul ").append("<li>"+unescape(message)+"</li>");
 }
 
 var highlightSocialMedia = function(){

@@ -73,6 +73,10 @@ var updateTimeLineSize = function() {
 $(function() {
     window.onresize = updateTimeLineSize;
     updateTimeLineSize();
+    if(!parseBoolean($.getUrlVar("editable")))
+    {
+        $("img").hide();
+    }
     window.setInterval(function(){
         now = new Date();
         if(timeLineTo > now && now > timeLineFrom){
@@ -89,10 +93,44 @@ $(function() {
 
 function printDate(temp) {
     var temp = new Date();
-    var dateStr = padStr(temp.getFullYear()) + "." + padStr(1 + temp.getMonth()) + "." + padStr(temp.getDate());
+    var dateStr = padStr(  padStr(temp.getDate())+ "." +padStr(1 + temp.getMonth())+"."+temp.getFullYear());
     return dateStr;
 }
 
 function padStr(i) {
     return(i < 10) ? "0" + i : "" + i;
+}
+
+$.extend({
+    getUrlVars: function(){
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    },
+        getUrlVar: function(name){
+            return $.getUrlVars()[name];
+    }
+});
+function parseBoolean(string) {
+  switch (String(string).toLowerCase()) {
+    case "true":
+    case "1":
+    case "yes":
+    case "y":
+      return true;
+    case "false":
+    case "0":
+    case "no":
+    case "n":
+      return false;
+    default:
+      //you could throw an error, but 'undefined' seems a more logical reply
+      return undefined;
+  }
 }
